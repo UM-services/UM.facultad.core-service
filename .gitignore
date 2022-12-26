@@ -1,0 +1,7 @@
+logs/
+src/main/resources/application-prod.properties
+target/
+target/classes target/generated-sources target/generated-test-sources target/maven-archiver target/maven-status target/surefire-reports target/test-classes target/um.facultad.rest-0.0.1-SNAPSHOT.jar target/um.facultad.rest-0.0.1-SNAPSHOT.jar.original
+/bin/
+/.apt_generated/
+/.apt_generated_tests/
