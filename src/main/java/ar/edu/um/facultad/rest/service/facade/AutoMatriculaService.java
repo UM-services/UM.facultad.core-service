@@ -9,13 +9,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import ar.edu.um.facultad.rest.kotlin.model.Legajo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ar.edu.um.facultad.rest.exception.LegajoNotFoundException;
 import ar.edu.um.facultad.rest.model.Inscripcion;
 import ar.edu.um.facultad.rest.model.InscripcionDetalle;
-import ar.edu.um.facultad.rest.model.Legajo;
 import ar.edu.um.facultad.rest.model.MateriaCurso;
 import ar.edu.um.facultad.rest.model.PreInscripcion;
 import ar.edu.um.facultad.rest.service.InscripcionDetalleService;

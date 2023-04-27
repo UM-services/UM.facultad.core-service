@@ -7,18 +7,16 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
+import ar.edu.um.facultad.rest.kotlin.model.Legajo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
-import ar.edu.um.facultad.rest.model.Legajo;
-import ar.edu.um.facultad.rest.model.pk.LegajoPk;
 
 /**
  * @author daniel
  *
  */
 @Repository
-public interface ILegajoRepository extends JpaRepository<Legajo, LegajoPk> {
+public interface ILegajoRepository extends JpaRepository<Legajo, Long> {
 
 	public List<Legajo> findAllByPersonaIdInAndFacultadId(List<BigDecimal> numeros, Integer facultadId);
 

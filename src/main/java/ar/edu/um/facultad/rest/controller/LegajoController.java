@@ -6,6 +6,7 @@ package ar.edu.um.facultad.rest.controller;
 import java.math.BigDecimal;
 import java.util.List;
 
+import ar.edu.um.facultad.rest.kotlin.model.Legajo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import ar.edu.um.facultad.rest.model.Legajo;
 import ar.edu.um.facultad.rest.model.view.LegajoKey;
 import ar.edu.um.facultad.rest.service.LegajoService;
 
@@ -37,7 +37,7 @@ public class LegajoController {
 
 	@GetMapping("/asigna/{facultadId}/{lectivoId}/{personaId}/{documentoId}")
 	public ResponseEntity<Legajo> asignaNumeroLegajo(@PathVariable Integer facultadId, @PathVariable Integer lectivoId,
-			@PathVariable BigDecimal personaId, @PathVariable Integer documentoId) {
+													 @PathVariable BigDecimal personaId, @PathVariable Integer documentoId) {
 		return new ResponseEntity<Legajo>(service.asignaNumeroLegajo(facultadId, lectivoId, personaId, documentoId),
 				HttpStatus.OK);
 	}

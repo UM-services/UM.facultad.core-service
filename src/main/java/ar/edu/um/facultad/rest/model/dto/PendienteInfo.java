@@ -6,6 +6,7 @@ package ar.edu.um.facultad.rest.model.dto;
 import java.io.Serializable;
 import java.util.List;
 
+import ar.edu.um.facultad.rest.kotlin.model.Persona;
 import ar.edu.um.facultad.rest.model.Carrera;
 import ar.edu.um.facultad.rest.model.Documento;
 import ar.edu.um.facultad.rest.model.Facultad;
@@ -16,7 +17,6 @@ import ar.edu.um.facultad.rest.model.Lectivo;
 import ar.edu.um.facultad.rest.model.Materia;
 import ar.edu.um.facultad.rest.model.MateriaCarrera;
 import ar.edu.um.facultad.rest.model.MateriaCurso;
-import ar.edu.um.facultad.rest.model.Persona;
 import ar.edu.um.facultad.rest.model.Plan;
 import ar.edu.um.facultad.rest.model.Regularidad;
 import lombok.AllArgsConstructor;

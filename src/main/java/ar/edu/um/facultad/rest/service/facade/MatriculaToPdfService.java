@@ -8,6 +8,8 @@ import java.math.BigDecimal;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
+import ar.edu.um.facultad.rest.kotlin.model.Legajo;
+import ar.edu.um.facultad.rest.kotlin.model.Persona;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
@@ -41,11 +43,9 @@ import ar.edu.um.facultad.rest.model.Geografica;
 import ar.edu.um.facultad.rest.model.Inscripcion;
 import ar.edu.um.facultad.rest.model.InscripcionDetalle;
 import ar.edu.um.facultad.rest.model.Lectivo;
-import ar.edu.um.facultad.rest.model.Legajo;
 import ar.edu.um.facultad.rest.model.Localidad;
 import ar.edu.um.facultad.rest.model.Materia;
 import ar.edu.um.facultad.rest.model.Nacimiento;
-import ar.edu.um.facultad.rest.model.Persona;
 import ar.edu.um.facultad.rest.model.Provincia;
 import ar.edu.um.facultad.rest.service.CarreraService;
 import ar.edu.um.facultad.rest.service.DocumentoService;
@@ -266,7 +266,7 @@ public class MatriculaToPdfService {
 			}
 			phrase = new Phrase(", legajo ", new Font(Font.HELVETICA, 10, Font.NORMAL));
 			paragraph.add(phrase);
-			phrase = new Phrase(legajo.getNumeroLegajo().toString(), new Font(Font.HELVETICA, 10, Font.BOLD));
+			phrase = new Phrase(String.valueOf(legajo.getNumeroLegajo()), new Font(Font.HELVETICA, 10, Font.BOLD));
 			paragraph.add(phrase);
 			phrase = new Phrase(", con domicilio en ", new Font(Font.HELVETICA, 10, Font.NORMAL));
 			paragraph.add(phrase);

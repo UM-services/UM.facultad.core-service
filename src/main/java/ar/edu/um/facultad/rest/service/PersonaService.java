@@ -6,11 +6,11 @@ package ar.edu.um.facultad.rest.service;
 import java.math.BigDecimal;
 import java.util.List;
 
+import ar.edu.um.facultad.rest.kotlin.model.Persona;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import ar.edu.um.facultad.rest.model.Persona;
 import ar.edu.um.facultad.rest.repository.IPersonaRepository;
 
 /**

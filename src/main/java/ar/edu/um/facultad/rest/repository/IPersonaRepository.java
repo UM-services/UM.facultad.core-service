@@ -7,19 +7,17 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
+import ar.edu.um.facultad.rest.kotlin.model.Persona;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
-import ar.edu.um.facultad.rest.model.Persona;
-import ar.edu.um.facultad.rest.model.pk.PersonaPk;
 
 /**
  * @author daniel
  *
  */
 @Repository
-public interface IPersonaRepository extends JpaRepository<Persona, PersonaPk> {
+public interface IPersonaRepository extends JpaRepository<Persona, Long> {
 
 	public List<Persona> findAllByPersonaIdIn(List<BigDecimal> numeros, Sort sort);
 

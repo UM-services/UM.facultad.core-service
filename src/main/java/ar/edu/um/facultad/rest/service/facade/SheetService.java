@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import ar.edu.um.facultad.rest.kotlin.model.Legajo;
+import ar.edu.um.facultad.rest.kotlin.model.Persona;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;
@@ -27,8 +29,6 @@ import ar.edu.um.facultad.rest.model.Facultad;
 import ar.edu.um.facultad.rest.model.Geografica;
 import ar.edu.um.facultad.rest.model.Inscripcion;
 import ar.edu.um.facultad.rest.model.Lectivo;
-import ar.edu.um.facultad.rest.model.Legajo;
-import ar.edu.um.facultad.rest.model.Persona;
 import ar.edu.um.facultad.rest.service.CarreraService;
 import ar.edu.um.facultad.rest.service.EstadoAlumnoService;
 import ar.edu.um.facultad.rest.service.EstadoService;
