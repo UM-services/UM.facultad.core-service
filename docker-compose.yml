@@ -2,17 +2,30 @@ version: "3.9"
 
 services:
 
-    um.facultad.fcjs:
-        build: .
+    mysql:
+        image: dqmdz/mysql:5.7
         ports:
-            - 8103:8080
+            - "3306:3306"
+        volumes:
+            - ./data:/var/lib/mysql
+            - /etc/localtime:/etc/localtime:ro
+            - /etc/timezone:/etc/timezone:ro
+        restart: always
         environment:
-            APP_SERVER: 10.147.20.25:3306
-            APP_DATABASE: fcjsadm
-            APP_USER: root
-            APP_PASSWORD: root
-            APP_ADD-PROPERTIES: "false"
-            APP_LOGGING: "off"
-            APP_LIVERELOAD_ENABLED: "true"
-            APP_LIVERELOAD_PORT: 35803
-            APP_OPEN-IN-VIEW: "false"
+            - MYSQL_ROOT_PASSWORD=root
+            - TZ=America/Argentina/Mendoza
+
+#    facultad.fcjs:
+#        build: .
+#        ports:
+#            - 8103:8080
+#        environment:
+#            APP_SERVER: mysql:3306
+#            APP_DATABASE: fcjsadm
+#            APP_USER: root
+#            APP_PASSWORD: root
+#            APP_ADD-PROPERTIES: "false"
+#            APP_LOGGING: "off"
+#            APP_LIVERELOAD_ENABLED: "true"
+#            APP_LIVERELOAD_PORT: 35803
+#            APP_OPEN-IN-VIEW: "false"

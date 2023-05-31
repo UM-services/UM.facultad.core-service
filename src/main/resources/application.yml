@@ -1,6 +1,6 @@
 app:
-  server: 10.147.20.25:3306
-  database: fcjsadm
+  server: 127.0.0.1:3306
+  database: fiadm
   user: root
   password: root
   add-properties: true
