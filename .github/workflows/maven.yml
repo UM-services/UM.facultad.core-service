@@ -32,7 +32,7 @@ jobs:
     - uses: mr-smithers-excellent/docker-build-push@v5
       name: Build & push Docker image
       env:
-        VERSION: 3.5.7
+        VERSION: 4.6.8
       with:
         image: dqmdz/um.facultad
         tags: ${VERSION}, latest, "${GITHUB_REF#refs/heads/}.$(git rev-parse --short ${GITHUB_SHA})"
