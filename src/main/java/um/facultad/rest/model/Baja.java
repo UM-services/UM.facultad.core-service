@@ -53,7 +53,6 @@ public class Baja implements Serializable {
 	@Column(name = "baj_idlectivo")
 	private Integer lectivoId;
 	
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "baj_id")
 	private Long bajaId;
 	

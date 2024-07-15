@@ -56,7 +56,6 @@ public class Inscripcion extends Auditable implements Serializable {
 	private Integer lectivoId;
 
 	@Column(name = "ins_id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long inscripcionId;
 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ssZ", timezone = "UTC")

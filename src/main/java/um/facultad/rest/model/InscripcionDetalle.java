@@ -59,7 +59,6 @@ public class InscripcionDetalle implements Serializable {
 	private String materiaId;
 
 	@Column(name = "din_id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long inscripciondetalleId;
 
 	@Column(name = "din_cur_id")
