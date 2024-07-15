@@ -57,7 +57,6 @@ public class TituloEntrega implements Serializable {
 	@Column(name = "idcarrera")
 	private Integer carreraId;
 
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "tit_id")
 	private Long tituloentregaId;
 

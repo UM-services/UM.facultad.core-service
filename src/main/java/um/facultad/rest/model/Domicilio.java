@@ -38,7 +38,6 @@ public class Domicilio implements Serializable {
 	@Column(name = "idtipodoc")
 	private Integer documentoId;
 
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "clave")
 	private Long domicilioId;
 

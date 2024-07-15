@@ -1,5 +1,5 @@
 app:
-  server: 127.0.0.1:3306
+  server: 10.147.20.20:3306
   database: fiadm
   user: root
   password: root

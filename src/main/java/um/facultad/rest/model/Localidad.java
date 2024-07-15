@@ -45,7 +45,6 @@ public class Localidad implements Serializable {
 	@Column(name = "idlocalidad")
 	private Integer localidadId;
 
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Long unicoId;
 

@@ -41,7 +41,6 @@ public class Division implements Serializable {
 	@Column(name = "iddivision")
 	private Integer divisionId;
 
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "clave")
 	private Long uniqueId;
 

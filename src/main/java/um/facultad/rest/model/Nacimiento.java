@@ -45,7 +45,6 @@ public class Nacimiento implements Serializable {
 	@Column(name = "idtipodoc")
 	private Integer documentoId;
 
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "nci_id")
 	private Long nacimientoId;
 

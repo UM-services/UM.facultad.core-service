@@ -41,7 +41,6 @@ public class Provincia implements Serializable {
 	@Column(name = "idprovincia")
 	private Integer provinciaId;
 
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Long unicoId;
 
