@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import um.facultad.rest.model.InscripcionDetalle;
-import um.facultad.rest.repository.IInscripcionDetalleRepository;
+import um.facultad.rest.repository.InscripcionDetalleRepository;
 
 /**
  * @author daniel
@@ -20,7 +20,7 @@ import um.facultad.rest.repository.IInscripcionDetalleRepository;
 public class InscripcionDetalleService {
 
 	@Autowired
-	private IInscripcionDetalleRepository repository;
+	private InscripcionDetalleRepository repository;
 
 	public List<InscripcionDetalle> findAllByPersona(BigDecimal personaId, Integer documentoId, Integer facultadId,
 			Integer lectivoId) {

@@ -9,9 +9,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import um.facultad.rest.exception.PreInscripcionNotFoundException;
+import um.facultad.rest.exception.PreInscripcionException;
 import um.facultad.rest.model.PreInscripcion;
-import um.facultad.rest.repository.IPreInscripcionRepository;
+import um.facultad.rest.repository.PreInscripcionRepository;
 
 /**
  * @author daniel
@@ -21,7 +21,7 @@ import um.facultad.rest.repository.IPreInscripcionRepository;
 public class PreInscripcionService {
 
 	@Autowired
-	private IPreInscripcionRepository repository;
+	private PreInscripcionRepository repository;
 
 	public List<PreInscripcion> findAllByLectivo(Integer facultadId, Integer lectivoId) {
 		return repository.findAllByFacultadIdAndLectivoId(facultadId, lectivoId);
@@ -41,7 +41,7 @@ public class PreInscripcionService {
 			Integer lectivoId) {
 		return repository
 				.findByFacultadIdAndPersonaIdAndDocumentoIdAndLectivoId(facultadId, personaId, documentoId, lectivoId)
-				.orElseThrow(() -> new PreInscripcionNotFoundException(facultadId, personaId, documentoId, lectivoId));
+				.orElseThrow(() -> new PreInscripcionException(facultadId, personaId, documentoId, lectivoId));
 	}
 
 }

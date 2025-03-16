@@ -8,9 +8,9 @@ import java.math.BigDecimal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import um.facultad.rest.exception.BajaNotFoundException;
+import um.facultad.rest.exception.BajaException;
 import um.facultad.rest.model.Baja;
-import um.facultad.rest.repository.IBajaRepository;
+import um.facultad.rest.repository.BajaRepository;
 
 /**
  * @author daniel
@@ -20,10 +20,10 @@ import um.facultad.rest.repository.IBajaRepository;
 public class BajaService {
 
 	@Autowired
-	private IBajaRepository repository;
+	private BajaRepository repository;
 
 	public Baja findByUnique(Integer facultadId, BigDecimal personaId, Integer documentoId, Integer lectivoId) {
 		return repository.findByFacultadIdAndPersonaIdAndDocumentoIdAndLectivoId(facultadId, personaId, documentoId,
-				lectivoId).orElseThrow(() -> new BajaNotFoundException(facultadId, personaId, documentoId, lectivoId));
+				lectivoId).orElseThrow(() -> new BajaException(facultadId, personaId, documentoId, lectivoId));
 	}
 }

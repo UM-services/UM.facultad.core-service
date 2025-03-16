@@ -9,9 +9,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import um.facultad.rest.exception.InscripcionNotFoundException;
+import um.facultad.rest.exception.InscripcionException;
 import um.facultad.rest.model.Inscripcion;
-import um.facultad.rest.repository.IInscripcionRepository;
+import um.facultad.rest.repository.InscripcionRepository;
 
 /**
  * @author daniel
@@ -21,7 +21,7 @@ import um.facultad.rest.repository.IInscripcionRepository;
 public class InscripcionService {
 
 	@Autowired
-	private IInscripcionRepository repository;
+	private InscripcionRepository repository;
 
 	public List<Inscripcion> findAllByLectivo(Integer facultadId, Integer lectivoId) {
 		return repository.findAllByFacultadIdAndLectivoId(facultadId, lectivoId);
@@ -48,7 +48,7 @@ public class InscripcionService {
 	public Inscripcion findByUnique(Integer facultadId, BigDecimal personaId, Integer documentoId, Integer lectivoId) {
 		return repository
 				.findByFacultadIdAndPersonaIdAndDocumentoIdAndLectivoId(facultadId, personaId, documentoId, lectivoId)
-				.orElseThrow(() -> new InscripcionNotFoundException(facultadId, personaId, documentoId, lectivoId));
+				.orElseThrow(() -> new InscripcionException(facultadId, personaId, documentoId, lectivoId));
 	}
 
 	public List<Inscripcion> saveAll(List<Inscripcion> inscriptos) {

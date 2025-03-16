@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import um.facultad.rest.exception.BajaNotFoundException;
+import um.facultad.rest.exception.BajaException;
 import um.facultad.rest.model.Baja;
 import um.facultad.rest.service.BajaService;
 import lombok.extern.slf4j.Slf4j;
@@ -38,7 +38,7 @@ public class BajaController {
 		try {
 			return new ResponseEntity<Baja>(service.findByUnique(facultadId, personaId, documentoId, lectivoId),
 					HttpStatus.OK);
-		} catch (BajaNotFoundException e) {
+		} catch (BajaException e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
 	}

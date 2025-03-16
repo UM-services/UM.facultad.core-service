@@ -13,10 +13,11 @@ import um.facultad.rest.kotlin.model.Legajo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import um.facultad.rest.exception.LegajoNotFoundException;
+import um.facultad.rest.exception.LegajoException;
 import um.facultad.rest.model.Inscripcion;
+import um.facultad.rest.model.PreInscripcion;
 import um.facultad.rest.model.view.LegajoKey;
-import um.facultad.rest.repository.ILegajoRepository;
+import um.facultad.rest.repository.LegajoRepository;
 import um.facultad.rest.service.view.LegajoKeyService;
 
 /**
@@ -26,17 +27,20 @@ import um.facultad.rest.service.view.LegajoKeyService;
 @Service
 public class LegajoService {
 
-	@Autowired
-	private ILegajoRepository repository;
+	private final LegajoRepository repository;
+	private final InscripcionService inscripcionService;
+	private final LegajoKeyService legajokeyService;
+	private final PreInscripcionService preinscripcionService;
 
-	@Autowired
-	private InscripcionService inscripcionService;
-
-	@Autowired
-	private LegajoKeyService legajokeyService;
-
-	@Autowired
-	private PreInscripcionService preinscripcionService;
+	public LegajoService(LegajoRepository repository,
+						 InscripcionService inscripcionService,
+						 LegajoKeyService legajokeyService,
+						 PreInscripcionService preinscripcionService) {
+		this.repository = repository;
+		this.inscripcionService = inscripcionService;
+		this.legajokeyService = legajokeyService;
+		this.preinscripcionService = preinscripcionService;
+	}
 
 	public List<Legajo> findAllByPersonaIdInAndFacultadId(List<BigDecimal> numeros, Integer facultadId) {
 		return repository.findAllByPersonaIdInAndFacultadId(numeros, facultadId);
@@ -44,7 +48,7 @@ public class LegajoService {
 
 	public List<LegajoKey> findAllByPreuniversitario(Integer facultadId, Integer lectivoId, Integer geograficaId) {
 		List<String> preinscriptoKeys = preinscripcionService.findAllBySede(facultadId, lectivoId, geograficaId)
-				.stream().map(preinscripto -> preinscripto.getPersonaKey()).collect(Collectors.toList());
+				.stream().map(PreInscripcion::getPersonaKey).collect(Collectors.toList());
 		return legajokeyService.findAllByFacultadAndPersonaKeys(facultadId, preinscriptoKeys);
 	}
 
@@ -62,15 +66,15 @@ public class LegajoService {
 
 	public Legajo findByPersona(BigDecimal personaId, Integer documentoId, Integer facultadId) {
 		return repository.findByPersonaIdAndDocumentoIdAndFacultadId(personaId, documentoId, facultadId)
-				.orElseThrow(() -> new LegajoNotFoundException(personaId, documentoId, facultadId));
+				.orElseThrow(() -> new LegajoException(personaId, documentoId, facultadId));
 	}
 
 	public Legajo asignaNumeroLegajo(Integer facultadId, Integer lectivoId, BigDecimal personaId, Integer documentoId) {
 		// Verifica si ya tiene número de legajo
-		Legajo legajo = null;
+		Legajo legajo;
 		try {
 			legajo = findByPersona(personaId, documentoId, facultadId);
-		} catch (LegajoNotFoundException e) {
+		} catch (LegajoException e) {
 			return null;
 		}
 		if (legajo.getNumeroLegajo() > 0) {
@@ -83,7 +87,7 @@ public class LegajoService {
 	}
 
 	private Long newByLectivoId(Integer facultadId, Integer lectivoId) {
-		Long minimo = 1 + (lectivoId + 29L) * 1000L;
+		long minimo = 1 + (lectivoId + 29L) * 1000L;
 		Long maximo = minimo + 998;
 
 		Map<Long, Legajo> ocupados = repository.findAllByFacultadIdAndNumeroLegajoBetween(facultadId, minimo, maximo)
@@ -95,7 +99,7 @@ public class LegajoService {
 				disponibles.add(posible);
 			}
 		}
-		return disponibles.get(0);
+		return disponibles.getFirst();
 	}
 
 }

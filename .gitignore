@@ -7,3 +7,4 @@ target/classes target/generated-sources target/generated-test-sources target/mav
 /bin/
 /.apt_generated/
 /.apt_generated_tests/
+/.vscode/

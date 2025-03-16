@@ -13,7 +13,7 @@ import um.facultad.rest.kotlin.model.Legajo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import um.facultad.rest.exception.LegajoNotFoundException;
+import um.facultad.rest.exception.LegajoException;
 import um.facultad.rest.model.Inscripcion;
 import um.facultad.rest.model.InscripcionDetalle;
 import um.facultad.rest.model.MateriaCurso;
@@ -62,7 +62,7 @@ public class AutoMatriculaService {
 			try {
 				legajo = legajoservice.findByPersona(preinscripcion.getPersonaId(), preinscripcion.getDocumentoId(),
 						facultadId);
-			} catch (LegajoNotFoundException e) {
+			} catch (LegajoException e) {
 				legajo = new Legajo();
 			}
 			Long inscripcionId = null;
