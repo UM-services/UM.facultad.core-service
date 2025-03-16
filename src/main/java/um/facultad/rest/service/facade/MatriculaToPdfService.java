@@ -26,15 +26,15 @@ import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
 
-import um.facultad.rest.exception.CarreraNotFoundException;
-import um.facultad.rest.exception.DomicilioNotFoundException;
-import um.facultad.rest.exception.FacultadNotFoundException;
-import um.facultad.rest.exception.InscripcionNotFoundException;
-import um.facultad.rest.exception.LegajoNotFoundException;
-import um.facultad.rest.exception.LocalidadNotFoundException;
-import um.facultad.rest.exception.MateriaNotFoundException;
-import um.facultad.rest.exception.NacimientoNotFoundException;
-import um.facultad.rest.exception.ProvinciaNotFoundException;
+import um.facultad.rest.exception.CarreraException;
+import um.facultad.rest.exception.DomicilioException;
+import um.facultad.rest.exception.FacultadException;
+import um.facultad.rest.exception.InscripcionException;
+import um.facultad.rest.exception.LegajoException;
+import um.facultad.rest.exception.LocalidadException;
+import um.facultad.rest.exception.MateriaException;
+import um.facultad.rest.exception.NacimientoException;
+import um.facultad.rest.exception.ProvinciaException;
 import um.facultad.rest.model.Carrera;
 import um.facultad.rest.model.Documento;
 import um.facultad.rest.model.Domicilio;
@@ -121,7 +121,7 @@ public class MatriculaToPdfService {
 		Inscripcion inscripcion = null;
 		try {
 			inscripcion = inscripcionService.findByUnique(facultadId, personaId, documentoId, lectivoId);
-		} catch (InscripcionNotFoundException e) {
+		} catch (InscripcionException e) {
 			return "";
 		}
 		log.debug("Inscripcion -> {}", inscripcion);
@@ -129,7 +129,7 @@ public class MatriculaToPdfService {
 		Facultad facultad = null;
 		try {
 			facultad = facultadService.findByFacultadId(facultadId);
-		} catch (FacultadNotFoundException e) {
+		} catch (FacultadException e) {
 			return "";
 		}
 		log.debug("Facultad -> {}", facultad);
@@ -146,7 +146,7 @@ public class MatriculaToPdfService {
 		Nacimiento nacimiento = null;
 		try {
 			nacimiento = nacimientoService.findByUnique(personaId, documentoId);
-		} catch (NacimientoNotFoundException e) {
+		} catch (NacimientoException e) {
 			nacimiento = new Nacimiento();
 		}
 		log.debug("Nacimiento -> {}", nacimiento);
@@ -154,7 +154,7 @@ public class MatriculaToPdfService {
 		Legajo legajo = null;
 		try {
 			legajo = legajoService.findByPersona(personaId, documentoId, facultadId);
-		} catch (LegajoNotFoundException e) {
+		} catch (LegajoException e) {
 			legajo = new Legajo();
 		}
 		log.debug("Legajo -> {}", legajo);
@@ -162,7 +162,7 @@ public class MatriculaToPdfService {
 		Domicilio domicilio = null;
 		try {
 			domicilio = domicilioService.findByPersonaIdAndDocumentoId(personaId, documentoId);
-		} catch (DomicilioNotFoundException e) {
+		} catch (DomicilioException e) {
 			domicilio = new Domicilio();
 		}
 		log.debug("Domicilio -> {}", domicilio);
@@ -171,7 +171,7 @@ public class MatriculaToPdfService {
 		try {
 			localidad = localidadService.findByUnique(domicilio.getFacultadId(), domicilio.getProvinciaId(),
 					domicilio.getLocalidadId());
-		} catch (LocalidadNotFoundException e) {
+		} catch (LocalidadException e) {
 			localidad = new Localidad();
 		}
 		log.debug("Localidad -> {}", localidad);
@@ -179,7 +179,7 @@ public class MatriculaToPdfService {
 		Provincia provincia = null;
 		try {
 			provincia = provinciaService.findByUnique(domicilio.getFacultadId(), domicilio.getProvinciaId());
-		} catch (ProvinciaNotFoundException e) {
+		} catch (ProvinciaException e) {
 			provincia = new Provincia();
 		}
 		log.debug("Provincia -> {}", provincia);
@@ -188,7 +188,7 @@ public class MatriculaToPdfService {
 		try {
 			carrera = carreraService.findByUnique(inscripcion.getFacultadId(), inscripcion.getPlanId(),
 					inscripcion.getCarreraId());
-		} catch (CarreraNotFoundException e) {
+		} catch (CarreraException e) {
 			carrera = new Carrera();
 		}
 		log.debug("Carrera -> {}", carrera);
@@ -321,7 +321,7 @@ public class MatriculaToPdfService {
 				try {
 					materia = materiaService.findByUnique(inscripciondetalle.getFacultadId(),
 							inscripciondetalle.getPlanId(), inscripciondetalle.getMateriaId());
-				} catch (MateriaNotFoundException e) {
+				} catch (MateriaException e) {
 					materia = new Materia();
 				}
 

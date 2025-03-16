@@ -10,14 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import um.facultad.rest.exception.DomicilioNotFoundException;
-import um.facultad.rest.exception.SetupApiNotFoundException;
+import um.facultad.rest.exception.DomicilioException;
+import um.facultad.rest.exception.SetupApiException;
 import um.facultad.rest.model.Domicilio;
 import um.facultad.rest.model.InscripcionPago;
 import um.facultad.rest.model.SetupApi;
-import um.facultad.rest.repository.IDomicilioRepository;
-import um.facultad.rest.repository.IInscripcionPagoRepository;
-import um.facultad.rest.repository.ISetupApiRepository;
+import um.facultad.rest.repository.DomicilioRepository;
+import um.facultad.rest.repository.InscripcionPagoRepository;
+import um.facultad.rest.repository.SetupApiRepository;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 
@@ -29,13 +29,13 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class DomicilioService {
 	@Autowired
-	private IDomicilioRepository repository;
+	private DomicilioRepository repository;
 
 	@Autowired
-	private ISetupApiRepository setupApiRepository;
+	private SetupApiRepository setupApiRepository;
 
 	@Autowired
-	private IInscripcionPagoRepository inscripcionPagoRepository;
+	private InscripcionPagoRepository inscripcionPagoRepository;
 
 	public Domicilio findByPersonaIdAndDocumentoId(BigDecimal personaId, Integer documentoId) {
 		Domicilio domicilio = repository.findByPersonaIdAndDocumentoId(personaId, documentoId).orElse(new Domicilio());
@@ -52,7 +52,7 @@ public class DomicilioService {
 		return repository
 				.findByPersonaIdAndDocumentoId(inscripcionPago.getPersonaIdpagador(),
 						inscripcionPago.getDocumentoIdpagador())
-				.orElseThrow(() -> new DomicilioNotFoundException(personaId, documentoId));
+				.orElseThrow(() -> new DomicilioException(personaId, documentoId));
 	}
 
 	@Transactional
@@ -90,13 +90,13 @@ public class DomicilioService {
 				this.sincronizeTesoreria(domicilio);
 
 			return domicilio;
-		}).orElseThrow(() -> new DomicilioNotFoundException(personaId, documentoId));
+		}).orElseThrow(() -> new DomicilioException(personaId, documentoId));
 	}
 
 	private void sincronizeTesoreria(Domicilio domicilio) {
 		RestTemplate restTemplate = new RestTemplate();
 		SetupApi setupapi = setupApiRepository.findTopByOrderBySetupId()
-				.orElseThrow(() -> new SetupApiNotFoundException());
+				.orElseThrow(() -> new SetupApiException());
 		String url = "http://" + setupapi.getApiservertesoreria() + ":" + setupapi.getApiporttesoreria()
 				+ "/domicilio/sincronize";
 		Domicilio otro_domicilio = restTemplate.postForObject(url, domicilio, Domicilio.class);

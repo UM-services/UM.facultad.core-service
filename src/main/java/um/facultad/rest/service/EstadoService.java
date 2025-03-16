@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import um.facultad.rest.model.Estado;
-import um.facultad.rest.repository.IEstadoRepository;
+import um.facultad.rest.repository.EstadoRepository;
 
 /**
  * @author daniel
@@ -20,7 +20,7 @@ import um.facultad.rest.repository.IEstadoRepository;
 public class EstadoService {
 
 	@Autowired
-	private IEstadoRepository repository;
+	private EstadoRepository repository;
 
 	public List<Estado> findAllByPersonaIdInAndFacultadId(List<BigDecimal> numeros, Integer facultadId) {
 		return repository.findAllByPersonaIdInAndFacultadId(numeros, facultadId);

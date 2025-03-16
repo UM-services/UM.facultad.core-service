@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import um.facultad.rest.model.MateriaCurso;
-import um.facultad.rest.repository.IMateriaCursoRepository;
+import um.facultad.rest.repository.MateriaCursoRepository;
 
 /**
  * @author daniel
@@ -19,7 +19,7 @@ import um.facultad.rest.repository.IMateriaCursoRepository;
 public class MateriaCursoService {
 
 	@Autowired
-	private IMateriaCursoRepository repository;
+	private MateriaCursoRepository repository;
 
 	public List<MateriaCurso> findAllByCurso(Integer facultadId, Integer planId, Integer carreraId, Integer curso) {
 		return repository.findAllByFacultadIdAndPlanIdAndCarreraIdAndCurso(facultadId, planId, carreraId, curso);

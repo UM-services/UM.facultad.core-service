@@ -17,9 +17,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
-import um.facultad.rest.exception.DivisionNotFoundException;
-import um.facultad.rest.exception.DomicilioNotFoundException;
-import um.facultad.rest.exception.MateriaNotFoundException;
+import um.facultad.rest.exception.DivisionException;
+import um.facultad.rest.exception.DomicilioException;
+import um.facultad.rest.exception.MateriaException;
 import um.facultad.rest.model.Division;
 import um.facultad.rest.model.Domicilio;
 import um.facultad.rest.model.Materia;
@@ -61,13 +61,13 @@ public class InscriptosToXlsService {
 		Materia materia = new Materia();
 		try {
 			materia = materiaService.findByUnique(facultadId, planId, materiaId);
-		} catch (MateriaNotFoundException e) {
+		} catch (MateriaException e) {
 
 		}
 		Division division = new Division();
 		try {
 			division = divisionService.findByUnique(facultadId, divisionId);
-		} catch (DivisionNotFoundException e) {
+		} catch (DivisionException e) {
 
 		}
 		Workbook book = new HSSFWorkbook();
@@ -130,7 +130,7 @@ public class InscriptosToXlsService {
 			try {
 				domicilio = domicilioService.findByPersonaIdAndDocumentoId(inscripto.getPersonaId(),
 						inscripto.getDocumentoId());
-			} catch (DomicilioNotFoundException e) {
+			} catch (DomicilioException e) {
 
 			}
 			row = sheet.createRow(++fila);

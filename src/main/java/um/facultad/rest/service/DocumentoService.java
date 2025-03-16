@@ -6,9 +6,9 @@ package um.facultad.rest.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import um.facultad.rest.exception.DocumentoNotFoundException;
+import um.facultad.rest.exception.DocumentoException;
 import um.facultad.rest.model.Documento;
-import um.facultad.rest.repository.IDocumentoRepository;
+import um.facultad.rest.repository.DocumentoRepository;
 
 /**
  * @author daniel
@@ -18,10 +18,10 @@ import um.facultad.rest.repository.IDocumentoRepository;
 public class DocumentoService {
 
 	@Autowired
-	private IDocumentoRepository repository;
+	private DocumentoRepository repository;
 
 	public Documento findByDocumentoId(Integer documentoId) {
-		return repository.findByDocumentoId(documentoId).orElseThrow(() -> new DocumentoNotFoundException(documentoId));
+		return repository.findByDocumentoId(documentoId).orElseThrow(() -> new DocumentoException(documentoId));
 	}
 
 }

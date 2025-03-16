@@ -15,7 +15,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
-import um.facultad.rest.exception.MateriaNotFoundException;
+import um.facultad.rest.exception.MateriaException;
 import um.facultad.rest.model.Materia;
 import um.facultad.rest.model.extern.NotificacionExamen;
 import um.facultad.rest.model.view.AlumnoExamen;
@@ -55,7 +55,7 @@ public class MailService {
 		Materia materia = new Materia();
 		try {
 			materia = materiaService.findByUnique(facultadId, planId, materiaId);
-		} catch (MateriaNotFoundException e) {
+		} catch (MateriaException e) {
 
 		}
 

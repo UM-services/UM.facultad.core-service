@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import um.facultad.rest.model.Regularidad;
-import um.facultad.rest.repository.IRegularidadRepository;
+import um.facultad.rest.repository.RegularidadRepository;
 
 /**
  * @author daniel
@@ -20,7 +20,7 @@ import um.facultad.rest.repository.IRegularidadRepository;
 public class RegularidadService {
 
 	@Autowired
-	private IRegularidadRepository repository;
+	private RegularidadRepository repository;
 
 	public List<Regularidad> findAllByMaterias(BigDecimal personaId, Integer documentoId, Integer facultadId,
 			Integer planId, List<String> materiaIds) {

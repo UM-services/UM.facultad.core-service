@@ -9,9 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import um.facultad.rest.exception.LectivoNotFoundException;
+import um.facultad.rest.exception.LectivoException;
 import um.facultad.rest.model.Lectivo;
-import um.facultad.rest.repository.ILectivoRepository;
+import um.facultad.rest.repository.LectivoRepository;
 
 /**
  * @author daniel
@@ -21,7 +21,7 @@ import um.facultad.rest.repository.ILectivoRepository;
 public class LectivoService {
 
 	@Autowired
-	private ILectivoRepository repository;
+	private LectivoRepository repository;
 
 	public List<Lectivo> findAll() {
 		return repository.findAll(Sort.by("lectivoId").ascending());
@@ -32,7 +32,7 @@ public class LectivoService {
 	}
 
 	public Lectivo findByLectivoId(Integer lectivoId) {
-		return repository.findByLectivoId(lectivoId).orElseThrow(() -> new LectivoNotFoundException(lectivoId));
+		return repository.findByLectivoId(lectivoId).orElseThrow(() -> new LectivoException(lectivoId));
 	}
 
 }

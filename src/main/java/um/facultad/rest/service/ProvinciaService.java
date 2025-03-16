@@ -6,9 +6,9 @@ package um.facultad.rest.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import um.facultad.rest.exception.ProvinciaNotFoundException;
+import um.facultad.rest.exception.ProvinciaException;
 import um.facultad.rest.model.Provincia;
-import um.facultad.rest.repository.IProvinciaRepository;
+import um.facultad.rest.repository.ProvinciaRepository;
 
 /**
  * @author daniel
@@ -17,10 +17,10 @@ import um.facultad.rest.repository.IProvinciaRepository;
 @Service
 public class ProvinciaService {
 	@Autowired
-	private IProvinciaRepository repository;
+	private ProvinciaRepository repository;
 
 	public Provincia findByUnique(Integer facultadId, Integer provinciaId) {
 		return repository.findByFacultadIdAndProvinciaId(facultadId, provinciaId)
-				.orElseThrow(() -> new ProvinciaNotFoundException(facultadId, provinciaId));
+				.orElseThrow(() -> new ProvinciaException(facultadId, provinciaId));
 	}
 }
