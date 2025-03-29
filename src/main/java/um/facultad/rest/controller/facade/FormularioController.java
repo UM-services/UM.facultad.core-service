@@ -8,7 +8,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.math.BigDecimal;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -34,11 +33,13 @@ import jakarta.mail.MessagingException;
 @RequestMapping("/formularios")
 public class FormularioController {
 
-	@Autowired
-	private MatriculaToPdfService matriculaToPdfService;
+	private final MatriculaToPdfService matriculaToPdfService;
+	private final MailService mailing;
 
-	@Autowired
-	private MailService mailing;
+	public FormularioController(MatriculaToPdfService matriculaToPdfService, MailService mailing) {
+		this.matriculaToPdfService = matriculaToPdfService;
+		this.mailing = mailing;
+	}
 
 	@GetMapping("/matricula/{personaId}/{documentoId}/{facultadId}/{lectivoId}")
 	public ResponseEntity<Resource> generateMatricula(@PathVariable BigDecimal personaId, @PathVariable Integer documentoId,

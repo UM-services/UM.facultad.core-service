@@ -6,8 +6,8 @@ app:
   user: root
   password: root
   mail:
-    username: envios@um.edu.ar
-    password: 4Siby2KPwWIStCyX9gLB
+    username: uid
+    password: pwd
 
 server:
   port: ${app.port}
