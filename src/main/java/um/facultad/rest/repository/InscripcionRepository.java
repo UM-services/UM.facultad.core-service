@@ -20,18 +20,18 @@ import um.facultad.rest.model.pk.InscripcionPk;
 @Repository
 public interface InscripcionRepository extends JpaRepository<Inscripcion, InscripcionPk> {
 
-	public List<Inscripcion> findAllByFacultadIdAndLectivoId(Integer facultadId, Integer lectivoId);
+	List<Inscripcion> findAllByFacultadIdAndLectivoId(Integer facultadId, Integer lectivoId);
 
-	public List<Inscripcion> findAllByFacultadIdAndLectivoIdAndGeograficaIdAndCurso(Integer facultadId,
+	List<Inscripcion> findAllByFacultadIdAndLectivoIdAndGeograficaIdAndCurso(Integer facultadId,
 			Integer lectivoId, Integer geograficaId, Integer curso);
 
-	public List<Inscripcion> findAllByFacultadIdAndLectivoIdAndGeograficaIdAndCursoAndProvisoria(Integer facultadId,
+	List<Inscripcion> findAllByFacultadIdAndLectivoIdAndGeograficaIdAndCursoAndProvisoria(Integer facultadId,
 			Integer lectivoId, Integer geograficaId, Integer curso, Byte provisoria);
 
-	public List<Inscripcion> findAllByPersonaIdAndDocumentoIdAndFacultadIdAndLectivoIdLessThanOrderByLectivoIdDesc(
+	List<Inscripcion> findAllByPersonaIdAndDocumentoIdAndFacultadIdAndLectivoIdLessThanOrderByLectivoIdDesc(
 			BigDecimal personaId, Integer documentoId, Integer facultadId, Integer lectivoId);
 
-	public Optional<Inscripcion> findByFacultadIdAndPersonaIdAndDocumentoIdAndLectivoId(Integer facultadId,
+	Optional<Inscripcion> findByFacultadIdAndPersonaIdAndDocumentoIdAndLectivoId(Integer facultadId,
 			BigDecimal personaId, Integer documentoId, Integer lectivoId);
 
 }

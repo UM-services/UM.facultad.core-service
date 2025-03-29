@@ -9,7 +9,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -33,17 +32,20 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class MailService {
 
-	@Autowired
-	private InscriptosToXlsService xlsService;
+	private final InscriptosToXlsService xlsService;
+	private final JavaMailSender sender;
+	private final MateriaService materiaService;
+	private final AlumnoExamenService alumnoExamenService;
 
-	@Autowired
-	private JavaMailSender sender;
-
-	@Autowired
-	private MateriaService materiaService;
-
-	@Autowired
-	private AlumnoExamenService alumnoExamenService;
+	public MailService(InscriptosToXlsService xlsService,
+					   JavaMailSender sender,
+					   MateriaService materiaService,
+					   AlumnoExamenService alumnoExamenService) {
+		this.xlsService = xlsService;
+		this.sender = sender;
+		this.materiaService = materiaService;
+		this.alumnoExamenService = alumnoExamenService;
+	}
 
 	public String sendLista(Integer facultadId, Integer lectivoId, Integer planId, String materiaId, Integer cursoId,
 			Integer periodoId, Integer divisionId, Integer geograficaId, String email) throws MessagingException {
@@ -56,7 +58,7 @@ public class MailService {
 		try {
 			materia = materiaService.findByUnique(facultadId, planId, materiaId);
 		} catch (MateriaException e) {
-
+			log.debug("Materia not found");
 		}
 
 		data = "Estimado Profesor:" + (char) 10;
@@ -87,7 +89,6 @@ public class MailService {
 			FileSystemResource file_list = new FileSystemResource(filename_list);
 			helper.addAttachment(filename_list, file_list);
 		} catch (MessagingException e) {
-			e.printStackTrace();
 			return "ERROR: No pudo ENVIARSE";
 		}
 		sender.send(message);
@@ -141,16 +142,15 @@ public class MailService {
 			for (NotificacionExamen notificacionexamen : emails)
 				if (notificacionexamen.getGeograficaId() == examen.getGeograficaId())
 					to.add(notificacionexamen.getEmail());
-			if (to.size() > 0) {
+			if (!to.isEmpty()) {
 				try {
-					helper.setTo(to.toArray(new String[to.size()]));
+					helper.setTo(to.toArray(new String[0]));
 					helper.setText(data);
 					helper.setReplyTo("no-reply@um.edu.ar");
 					helper.setSubject("Envío Automático por Carga o Habilitación de Pago/s de " + examen.getNombre()
 							+ " " + examen.getApellido() + " Examen: "
 							+ examen.getFecha().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
 				} catch (MessagingException e) {
-					e.printStackTrace();
 					return;
 				}
 				sender.send(message);

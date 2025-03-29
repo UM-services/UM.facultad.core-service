@@ -3,6 +3,7 @@
  */
 package um.facultad.rest.model.dto;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 import lombok.Data;
@@ -16,6 +17,7 @@ public class DivisionDto implements Serializable {
 	/**
 	* 
 	*/
+	@Serial
 	private static final long serialVersionUID = 7570468671518048065L;
 
 	private Integer facultadId;

@@ -20,8 +20,11 @@ import um.facultad.rest.repository.InscripcionRepository;
 @Service
 public class InscripcionService {
 
-	@Autowired
-	private InscripcionRepository repository;
+	private final InscripcionRepository repository;
+
+	public InscripcionService(InscripcionRepository repository) {
+		this.repository = repository;
+	}
 
 	public List<Inscripcion> findAllByLectivo(Integer facultadId, Integer lectivoId) {
 		return repository.findAllByFacultadIdAndLectivoId(facultadId, lectivoId);
