@@ -9,14 +9,8 @@ import java.time.OffsetDateTime;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import jakarta.persistence.*;
 import um.facultad.rest.model.pk.InscripcionPk;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.IdClass;
-import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -28,7 +22,6 @@ import lombok.NoArgsConstructor;
  */
 @Data
 @Entity
-@Table
 @IdClass(InscripcionPk.class)
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
@@ -107,6 +100,15 @@ public class Inscripcion extends Auditable implements Serializable {
 
 	@Column(name = "ins_debe_matricula")
 	private Byte debematricula = 0;
+
+	@OneToOne(optional = true)
+	@JoinColumns({
+			@JoinColumn(name = "idfacultad", referencedColumnName = "ipg_fac_id", insertable = false, updatable = false),
+			@JoinColumn(name = "iddocumento", referencedColumnName = "ipg_per_id", insertable = false, updatable = false),
+			@JoinColumn(name = "idtipodoc", referencedColumnName = "ipg_doc_id", insertable = false, updatable = false),
+			@JoinColumn(name = "idlectivo", referencedColumnName = "ipg_lec_id", insertable = false, updatable = false)
+	})
+	private InscripcionPago inscripcionPago = null;
 
 	public String getKey() {
 		return this.personaId + "." + this.documentoId;

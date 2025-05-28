@@ -6,7 +6,6 @@ package um.facultad.rest.service;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -28,14 +27,16 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 public class DomicilioService {
-	@Autowired
-	private DomicilioRepository repository;
 
-	@Autowired
-	private SetupApiRepository setupApiRepository;
+	private final DomicilioRepository repository;
+	private final SetupApiRepository setupApiRepository;
+	private final InscripcionPagoRepository inscripcionPagoRepository;
 
-	@Autowired
-	private InscripcionPagoRepository inscripcionPagoRepository;
+	public DomicilioService(DomicilioRepository repository, SetupApiRepository setupApiRepository, InscripcionPagoRepository inscripcionPagoRepository) {
+		this.repository = repository;
+		this.setupApiRepository = setupApiRepository;
+		this.inscripcionPagoRepository = inscripcionPagoRepository;
+	}
 
 	public Domicilio findByPersonaIdAndDocumentoId(BigDecimal personaId, Integer documentoId) {
 		Domicilio domicilio = repository.findByPersonaIdAndDocumentoId(personaId, documentoId).orElse(new Domicilio());
@@ -50,8 +51,8 @@ public class DomicilioService {
 			return new Domicilio();
 		log.debug("InscripcionPago -> " + inscripcionPago);
 		return repository
-				.findByPersonaIdAndDocumentoId(inscripcionPago.getPersonaIdpagador(),
-						inscripcionPago.getDocumentoIdpagador())
+				.findByPersonaIdAndDocumentoId(inscripcionPago.getPersonaIdPagador(),
+						inscripcionPago.getDocumentoIdPagador())
 				.orElseThrow(() -> new DomicilioException(personaId, documentoId));
 	}
 

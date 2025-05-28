@@ -3,6 +3,7 @@
  */
 package um.facultad.rest.model;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -31,12 +32,13 @@ public class InscripcionPago implements Serializable {
 	/**
 	 * 
 	 */
+	@Serial
 	private static final long serialVersionUID = -5575856187906637330L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ipg_id")
-	private Long inscripcionpagoId;
+	private Long inscripcionPagoId;
 
 	@Column(name = "ipg_per_id")
 	private BigDecimal personaId;
@@ -51,9 +53,9 @@ public class InscripcionPago implements Serializable {
 	private Integer lectivoId;
 	
 	@Column(name = "ipg_per_id_paga")
-	private BigDecimal personaIdpagador;
+	private BigDecimal personaIdPagador;
 
 	@Column(name = "ipg_doc_id_paga")
-	private Integer documentoIdpagador;
+	private Integer documentoIdPagador;
 
 }
