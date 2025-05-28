@@ -23,7 +23,6 @@ data class Legajo(
     @Column(name = "idfacultad")
     var facultadId: Int? = null,
 
-
     @Column(name = "ale_geo_id")
     var geograficaId: Int? = null,
 

@@ -5,7 +5,6 @@ package um.facultad.rest.controller;
 
 import java.math.BigDecimal;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,35 +26,38 @@ import um.facultad.rest.service.DomicilioService;
 @RequestMapping("/domicilio")
 public class DomicilioController {
 	
-	@Autowired
-	private DomicilioService service;
+	private final DomicilioService service;
+
+	public DomicilioController(DomicilioService service) {
+		this.service = service;
+	}
 
 	@GetMapping("/{personaId}/{documentoId}")
 	public ResponseEntity<Domicilio> findByPersonaIdAndDocumentoId(@PathVariable BigDecimal personaId,
                                                                    @PathVariable Integer documentoId) {
-		return new ResponseEntity<Domicilio>(service.findByPersonaIdAndDocumentoId(personaId, documentoId),
+		return new ResponseEntity<>(service.findByPersonaIdAndDocumentoId(personaId, documentoId),
 				HttpStatus.OK);
 	}
 
 	@GetMapping("/pagador/{personaId}/{documentoId}")
 	public ResponseEntity<Domicilio> findByPagador(@PathVariable BigDecimal personaId,
 			@PathVariable Integer documentoId) {
-		return new ResponseEntity<Domicilio>(service.findByPagador(personaId, documentoId), HttpStatus.OK);
+		return new ResponseEntity<>(service.findByPagador(personaId, documentoId), HttpStatus.OK);
 	}
 
 	@PostMapping("/")
 	public ResponseEntity<Domicilio> add(@RequestBody Domicilio domicilio) {
-		return new ResponseEntity<Domicilio>(service.add(domicilio, true), HttpStatus.OK);
+		return new ResponseEntity<>(service.add(domicilio, true), HttpStatus.OK);
 	}
 
 	@PutMapping("/{personaId}/{documentoId}")
 	public ResponseEntity<Domicilio> update(@RequestBody Domicilio domicilio, @PathVariable BigDecimal personaId,
 			@PathVariable Integer documentoId) {
-		return new ResponseEntity<Domicilio>(service.update(domicilio, personaId, documentoId, true), HttpStatus.OK);
+		return new ResponseEntity<>(service.update(domicilio, personaId, documentoId, true), HttpStatus.OK);
 	}
 
 	@PostMapping("/sincronize")
 	public ResponseEntity<Domicilio> sincronize(@RequestBody Domicilio domicilio) {
-		return new ResponseEntity<Domicilio>(service.sincronize(domicilio), HttpStatus.OK);
+		return new ResponseEntity<>(service.sincronize(domicilio), HttpStatus.OK);
 	}
 }
