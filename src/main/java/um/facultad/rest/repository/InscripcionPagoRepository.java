@@ -18,7 +18,9 @@ import um.facultad.rest.model.InscripcionPago;
 @Repository
 public interface InscripcionPagoRepository extends JpaRepository<InscripcionPago, Long> {
 
-	public Optional<InscripcionPago> findTopByPersonaIdAndDocumentoIdOrderByLectivoIdDesc(BigDecimal personaId,
+	Optional<InscripcionPago> findTopByPersonaIdAndDocumentoIdOrderByLectivoIdDesc(BigDecimal personaId,
 			Integer documentoId);
+
+    Optional<InscripcionPago> findByFacultadIdAndPersonaIdAndDocumentoIdAndLectivoId(Integer facultadId, BigDecimal personaId, Integer documentoId, Integer lectivoId);
 
 }

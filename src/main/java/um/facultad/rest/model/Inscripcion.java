@@ -101,15 +101,6 @@ public class Inscripcion extends Auditable implements Serializable {
 	@Column(name = "ins_debe_matricula")
 	private Byte debematricula = 0;
 
-	@OneToOne(optional = true)
-	@JoinColumns({
-			@JoinColumn(name = "idfacultad", referencedColumnName = "ipg_fac_id", insertable = false, updatable = false),
-			@JoinColumn(name = "iddocumento", referencedColumnName = "ipg_per_id", insertable = false, updatable = false),
-			@JoinColumn(name = "idtipodoc", referencedColumnName = "ipg_doc_id", insertable = false, updatable = false),
-			@JoinColumn(name = "idlectivo", referencedColumnName = "ipg_lec_id", insertable = false, updatable = false)
-	})
-	private InscripcionPago inscripcionPago = null;
-
 	public String getKey() {
 		return this.personaId + "." + this.documentoId;
 	}

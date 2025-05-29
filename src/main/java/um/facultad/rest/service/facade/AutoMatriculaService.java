@@ -72,7 +72,7 @@ public class AutoMatriculaService {
 			inscriptos.add(new Inscripcion(preinscripcion.getFacultadId(), preinscripcion.getPersonaId(),
 					preinscripcion.getDocumentoId(), lectivoId, inscripcionId, Tool.dateAbsoluteArgentina(), "", "", 0L,
 					1, legajo.getPlanId(), legajo.getCarreraId(), preinscripcion.getGeograficaId(), (byte) 0, (byte) 0,
-					1989 + lectivoId, (byte) 0, (byte) 0, 0, "Automatricula", 0, 0, 0, (byte) 0, null));
+					1989 + lectivoId, (byte) 0, (byte) 0, 0, "Automatricula", 0, 0, 0, (byte) 0));
 			// Buscar y registrar las materias de 1er año
 			Map<String, InscripcionDetalle> detalles = inscripciondetalleservice
 					.findAllByPersona(preinscripcion.getPersonaId(), preinscripcion.getDocumentoId(), facultadId,

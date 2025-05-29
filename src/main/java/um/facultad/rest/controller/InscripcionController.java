@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import um.facultad.rest.exception.InscripcionException;
 import um.facultad.rest.model.Inscripcion;
+import um.facultad.rest.model.dto.InscripcionFullDto;
 import um.facultad.rest.service.InscripcionService;
 
 /**
@@ -61,6 +62,12 @@ public class InscripcionController {
 		} catch (InscripcionException e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage(), e);
 		}
+	}
+
+	@GetMapping("/full/{facultadId}/{personaId}/{documentoId}/{lectivoId}")
+	public ResponseEntity<InscripcionFullDto> findInscripcionFull(@PathVariable Integer facultadId,
+																  @PathVariable BigDecimal personaId, @PathVariable Integer documentoId, @PathVariable Integer lectivoId) {
+		return ResponseEntity.ok(service.findInscripcionFull(facultadId, personaId, documentoId, lectivoId));
 	}
 
 }

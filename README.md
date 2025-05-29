@@ -104,10 +104,12 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE.md](LICENSE.m
 🟢 Activo - En desarrollo activo
 
 ### Últimas Actualizaciones
-- Refactorización de inyección de dependencias
-- Actualización de versiones de dependencias
+- Nuevo endpoint para obtener información completa de inscripciones
+- Refactorización de servicios y manejo de pagos
+- Actualización de dependencias y mejoras de código (PR #27)
+- Implementación de inyección por constructor (PR #25)
+- Optimización de relaciones entre entidades
 - Mejoras en el manejo de excepciones
-- Optimización de código y estructura
 
 ## 💬 Soporte
 
