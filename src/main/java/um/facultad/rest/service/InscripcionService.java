@@ -6,11 +6,15 @@ package um.facultad.rest.service;
 import java.math.BigDecimal;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import um.facultad.rest.exception.InscripcionException;
+import um.facultad.rest.exception.InscripcionPagoException;
+import um.facultad.rest.kotlin.model.Persona;
+import um.facultad.rest.model.Domicilio;
 import um.facultad.rest.model.Inscripcion;
+import um.facultad.rest.model.InscripcionPago;
+import um.facultad.rest.model.dto.InscripcionFullDto;
 import um.facultad.rest.repository.InscripcionRepository;
 
 /**
@@ -21,9 +25,16 @@ import um.facultad.rest.repository.InscripcionRepository;
 public class InscripcionService {
 
 	private final InscripcionRepository repository;
+	private final InscripcionPagoService inscripcionPagoService;
+	private final PersonaService personaService;
+	private final DomicilioService domicilioService;
 
-	public InscripcionService(InscripcionRepository repository) {
+	public InscripcionService(InscripcionRepository repository,
+							  InscripcionPagoService inscripcionPagoService, PersonaService personaService, DomicilioService domicilioService) {
 		this.repository = repository;
+		this.inscripcionPagoService = inscripcionPagoService;
+		this.personaService = personaService;
+		this.domicilioService = domicilioService;
 	}
 
 	public List<Inscripcion> findAllByLectivo(Integer facultadId, Integer lectivoId) {
@@ -57,5 +68,33 @@ public class InscripcionService {
 	public List<Inscripcion> saveAll(List<Inscripcion> inscriptos) {
 		return repository.saveAll(inscriptos);
 	}
+
+    public InscripcionFullDto findInscripcionFull(Integer facultadId, BigDecimal personaId, Integer documentoId, Integer lectivoId) {
+		Inscripcion inscripcion;
+		try {
+			inscripcion = findByUnique(facultadId, personaId, documentoId, lectivoId);
+		} catch (InscripcionException e) {
+			inscripcion = null;
+		}
+		InscripcionPago inscripcionPago;
+		Persona personaPago;
+		Domicilio domicilioPago;
+		try {
+			inscripcionPago = inscripcionPagoService.findByUnique(facultadId, personaId, documentoId, lectivoId);
+			personaPago = personaService.findByPersonaIdAndDocumentoId(inscripcionPago.getPersonaIdPagador(), inscripcionPago.getDocumentoId());
+			domicilioPago = domicilioService.findByPersonaIdAndDocumentoId(personaPago.getPersonaId(), personaPago.getDocumentoId());
+		} catch (InscripcionPagoException e) {
+			inscripcionPago = null;
+			personaPago = null;
+			domicilioPago = null;
+		}
+
+		return InscripcionFullDto.builder()
+				.inscripcion(inscripcion)
+				.inscripcionPago(inscripcionPago)
+				.personaPago(personaPago)
+				.domicilioPago(domicilioPago)
+				.build();
+    }
 
 }
