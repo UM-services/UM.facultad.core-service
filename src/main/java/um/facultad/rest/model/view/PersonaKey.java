@@ -43,7 +43,7 @@ public class PersonaKey implements Serializable {
 	private Integer profesionId;
 	private String mascara;
 
-	@Column(name = "key")
+	@Column(name = "unified_key")
 	private String unified;
 
 }

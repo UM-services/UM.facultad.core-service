@@ -6,11 +6,11 @@ package um.facultad.rest.service;
 import java.math.BigDecimal;
 import java.util.List;
 
-import um.facultad.rest.kotlin.model.Persona;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import um.facultad.rest.model.Persona;
 import um.facultad.rest.repository.PersonaRepository;
 
 /**
@@ -18,10 +18,10 @@ import um.facultad.rest.repository.PersonaRepository;
  *
  */
 @Service
+@RequiredArgsConstructor
 public class PersonaService {
 	
-	@Autowired
-	private PersonaRepository repository;
+	private final PersonaRepository repository;
 
 	public List<Persona> findAllByPersonaIdIn(List<BigDecimal> numeros) {
 		return repository.findAllByPersonaIdIn(numeros, Sort.by("apellido").ascending().and(Sort.by("nombre").ascending()));

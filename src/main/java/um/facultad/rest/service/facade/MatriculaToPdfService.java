@@ -8,23 +8,13 @@ import java.math.BigDecimal;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
-import um.facultad.rest.kotlin.model.Legajo;
-import um.facultad.rest.kotlin.model.Persona;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import org.openpdf.text.*;
+import org.openpdf.text.pdf.PdfPCell;
+import org.openpdf.text.pdf.PdfPTable;
+import org.openpdf.text.pdf.PdfWriter;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
-
-import com.lowagie.text.Document;
-import com.lowagie.text.Element;
-import com.lowagie.text.Font;
-import com.lowagie.text.Image;
-import com.lowagie.text.PageSize;
-import com.lowagie.text.Paragraph;
-import com.lowagie.text.Phrase;
-import com.lowagie.text.Rectangle;
-import com.lowagie.text.pdf.PdfPCell;
-import com.lowagie.text.pdf.PdfPTable;
-import com.lowagie.text.pdf.PdfWriter;
 
 import um.facultad.rest.exception.CarreraException;
 import um.facultad.rest.exception.DomicilioException;
@@ -35,18 +25,7 @@ import um.facultad.rest.exception.LocalidadException;
 import um.facultad.rest.exception.MateriaException;
 import um.facultad.rest.exception.NacimientoException;
 import um.facultad.rest.exception.ProvinciaException;
-import um.facultad.rest.model.Carrera;
-import um.facultad.rest.model.Documento;
-import um.facultad.rest.model.Domicilio;
-import um.facultad.rest.model.Facultad;
-import um.facultad.rest.model.Geografica;
-import um.facultad.rest.model.Inscripcion;
-import um.facultad.rest.model.InscripcionDetalle;
-import um.facultad.rest.model.Lectivo;
-import um.facultad.rest.model.Localidad;
-import um.facultad.rest.model.Materia;
-import um.facultad.rest.model.Nacimiento;
-import um.facultad.rest.model.Provincia;
+import um.facultad.rest.model.*;
 import um.facultad.rest.service.CarreraService;
 import um.facultad.rest.service.DocumentoService;
 import um.facultad.rest.service.DomicilioService;
@@ -69,52 +48,24 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class MatriculaToPdfService {
 
-	@Autowired
-	private InscripcionService inscripcionService;
-
-	@Autowired
-	private FacultadService facultadService;
-
-	@Autowired
-	private GeograficaService geograficaService;
-
-	@Autowired
-	private PersonaService personaService;
-
-	@Autowired
-	private LectivoService lectivoService;
-
-	@Autowired
-	private DocumentoService documentoService;
-
-	@Autowired
-	private NacimientoService nacimientoService;
-
-	@Autowired
-	private LegajoService legajoService;
-
-	@Autowired
-	private DomicilioService domicilioService;
-
-	@Autowired
-	private LocalidadService localidadService;
-
-	@Autowired
-	private ProvinciaService provinciaService;
-
-	@Autowired
-	private CarreraService carreraService;
-
-	@Autowired
-	private MateriaService materiaService;
-
-	@Autowired
-	private InscripcionDetalleService inscripcionDetalleService;
-
-	@Autowired
-	private Environment env;
+	private final InscripcionService inscripcionService;
+	private final FacultadService facultadService;
+	private final GeograficaService geograficaService;
+	private final PersonaService personaService;
+	private final LectivoService lectivoService;
+	private final DocumentoService documentoService;
+	private final NacimientoService nacimientoService;
+	private final LegajoService legajoService;
+	private final DomicilioService domicilioService;
+	private final LocalidadService localidadService;
+	private final ProvinciaService provinciaService;
+	private final CarreraService carreraService;
+	private final MateriaService materiaService;
+	private final InscripcionDetalleService inscripcionDetalleService;
+	private final Environment env;
 
 	public String generateMatriculaPdf(BigDecimal personaId, Integer documentoId, Integer facultadId,
 			Integer lectivoId) {
@@ -380,7 +331,7 @@ public class MatriculaToPdfService {
 
 			document.close();
 		} catch (Exception ex) {
-			System.out.println(ex.getMessage().toString());
+			System.out.println(ex.getMessage());
 		}
 
 		return filename;

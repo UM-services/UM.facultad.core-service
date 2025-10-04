@@ -1,0 +1,17 @@
+sequenceDiagram
+    participant U as Usuario
+    participant C as Controller
+    participant S as Service
+    participant R as Repository
+    participant DB as Database
+
+    U->>C: POST /inscripcion
+    C->>S: procesarInscripcion()
+    S->>R: save(inscripcion)
+    R->>DB: INSERT
+    DB-->>R: OK
+    R-->>S: Inscripcion
+    S->>S: generarDocumentos()
+    S->>S: enviarEmail()
+    S-->>C: Response
+    C-->>U: 201 Created

@@ -6,14 +6,15 @@ package um.facultad.rest.service;
 import java.math.BigDecimal;
 import java.util.List;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import um.facultad.rest.exception.InscripcionException;
 import um.facultad.rest.exception.InscripcionPagoException;
-import um.facultad.rest.kotlin.model.Persona;
 import um.facultad.rest.model.Domicilio;
 import um.facultad.rest.model.Inscripcion;
 import um.facultad.rest.model.InscripcionPago;
+import um.facultad.rest.model.Persona;
 import um.facultad.rest.model.dto.InscripcionFullDto;
 import um.facultad.rest.repository.InscripcionRepository;
 
@@ -22,20 +23,13 @@ import um.facultad.rest.repository.InscripcionRepository;
  *
  */
 @Service
+@RequiredArgsConstructor
 public class InscripcionService {
 
 	private final InscripcionRepository repository;
 	private final InscripcionPagoService inscripcionPagoService;
 	private final PersonaService personaService;
 	private final DomicilioService domicilioService;
-
-	public InscripcionService(InscripcionRepository repository,
-							  InscripcionPagoService inscripcionPagoService, PersonaService personaService, DomicilioService domicilioService) {
-		this.repository = repository;
-		this.inscripcionPagoService = inscripcionPagoService;
-		this.personaService = personaService;
-		this.domicilioService = domicilioService;
-	}
 
 	public List<Inscripcion> findAllByLectivo(Integer facultadId, Integer lectivoId) {
 		return repository.findAllByFacultadIdAndLectivoId(facultadId, lectivoId);

@@ -5,6 +5,43 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.0] - 2025-10-04
+
+### Added
+- feat: Implementar endpoint completo para inscripciones y refactorizar servicios
+- Adición de Spring Security con configuración básica
+- Integración de Lombok para simplificar el código Java
+- Adición de tests unitarios para controladores (CarreraController, PersonaController)
+- Workflow de GitHub Actions para generación automática de documentación
+- Configuración de H2 para tests
+- Adición de actuator para monitoreo
+
+### Changed
+- **BREAKING**: Migración completa de Kotlin a Java
+- **BREAKING**: Actualización de Spring Boot de 3.4.5 a 4.0.0-M3
+- Reemplazo de @Autowired con inyección por constructor usando @RequiredArgsConstructor
+- Conversión de modelos de Kotlin a Java con anotaciones Lombok
+- Actualización de dependencias:
+  - MySQL Connector de 9.3.0 a 9.4.0
+  - SpringDoc OpenAPI de 2.8.8 a 3.0.0-M1
+  - OpenPDF de 2.0.4 a 3.0.0
+  - Java de 21 a 25
+- Refactorización de excepciones y repositorios para mejores prácticas
+- Mejora en la estructura del proyecto eliminando dependencias Kotlin
+- Actualización de configuración de logging y aplicación
+
+### Fixed
+- Corrección de versiones de dependencias y compatibilidad
+- Ajustes en la configuración de desarrollo y testing
+
+### Security
+- Implementación de autenticación básica para endpoints de documentación
+- Actualización de dependencias por seguridad
+
+### Removed
+- Eliminación completa de dependencias y código Kotlin
+- Remoción de archivos .iml y configuraciones obsoletas
+
 ## [Unreleased]
 
 ### Added

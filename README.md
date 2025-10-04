@@ -13,18 +13,20 @@ Este servicio proporciona la funcionalidad core para la gestión de facultades, 
 
 ## 🛠️ Tecnologías Utilizadas
 
-- Java 21
-- Kotlin 2.1.20
-- Spring Boot 3.4.5
-- MySQL 9.3.0
+- Java 25
+- Spring Boot 4.0.0-M3
+- MySQL 9.4.0
 - Apache POI 5.4.1
-- OpenPDF 2.0.4
-- SpringDoc OpenAPI 2.8.8
+- OpenPDF 3.0.0
+- SpringDoc OpenAPI 3.0.0-M1
+- Spring Security
+- Lombok
 - Docker
+- H2 (para tests)
 
 ## 📦 Prerrequisitos
 
-- Java 21 o superior
+- Java 25 o superior
 - Maven 3.8+
 - Docker (opcional)
 - MySQL 5.7+
@@ -39,7 +41,7 @@ cd um.facultad.core-service
 
 2. Configurar la base de datos:
    - Crear una base de datos MySQL
-   - Configurar las credenciales en `application.properties`
+   - Configurar las credenciales en `application.yml`
 
 3. Compilar el proyecto:
 ```bash
@@ -55,10 +57,16 @@ mvn spring-boot:run
 
 > **Nota**: La configuración de Docker está en proceso de actualización. Por favor, use la configuración local por ahora.
 
+## 🔒 Seguridad
+
+La aplicación incluye configuración básica de Spring Security:
+- Endpoints de documentación protegidos con autenticación básica
+- Credenciales configurables via variables de entorno (`app.swagger_user`, `app.swagger_password`)
+
 ## 📚 API Documentation
 
 La documentación de la API está disponible en:
-- Swagger UI: `http://localhost:8080/swagger-ui.html`
+- Swagger UI: `http://localhost:8080/swagger-ui.html` (requiere autenticación)
 - OpenAPI: `http://localhost:8080/v3/api-docs`
 
 ## 🧪 Testing
@@ -104,12 +112,12 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE.md](LICENSE.m
 🟢 Activo - En desarrollo activo
 
 ### Últimas Actualizaciones
-- Nuevo endpoint para obtener información completa de inscripciones
-- Refactorización de servicios y manejo de pagos
-- Actualización de dependencias y mejoras de código (PR #27)
-- Implementación de inyección por constructor (PR #25)
-- Optimización de relaciones entre entidades
-- Mejoras en el manejo de excepciones
+- Migración completa a Java eliminando Kotlin
+- Actualización a Spring Boot 4.0.0-M3
+- Implementación de Spring Security
+- Adición de tests unitarios
+- Generación automática de documentación via GitHub Actions
+- Refactorización completa de inyección de dependencias
 
 ## 💬 Soporte
 

@@ -11,8 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import um.facultad.rest.kotlin.model.Legajo;
-import um.facultad.rest.kotlin.model.Persona;
+import lombok.RequiredArgsConstructor;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;
@@ -20,15 +19,9 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import um.facultad.rest.model.Carrera;
-import um.facultad.rest.model.Estado;
-import um.facultad.rest.model.Facultad;
-import um.facultad.rest.model.Geografica;
-import um.facultad.rest.model.Inscripcion;
-import um.facultad.rest.model.Lectivo;
+import um.facultad.rest.model.*;
 import um.facultad.rest.service.CarreraService;
 import um.facultad.rest.service.EstadoAlumnoService;
 import um.facultad.rest.service.EstadoService;
@@ -46,34 +39,18 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class SheetService {
 
-	@Autowired
-	private FacultadService facultadService;
-
-	@Autowired
-	private LectivoService lectivoService;
-
-	@Autowired
-	private GeograficaService geograficaService;
-
-	@Autowired
-	private InscripcionService inscripcionService;
-
-	@Autowired
-	private PersonaService personaService;
-
-	@Autowired
-	private LegajoService legajoService;
-
-	@Autowired
-	private EstadoService estadoService;
-
-	@Autowired
-	private EstadoAlumnoService estadoAlumnoService;
-
-	@Autowired
-	private CarreraService carreraService;
+	private final FacultadService facultadService;
+	private final LectivoService lectivoService;
+	private final GeograficaService geograficaService;
+	private final InscripcionService inscripcionService;
+	private final PersonaService personaService;
+	private final LegajoService legajoService;
+	private final EstadoService estadoService;
+	private final EstadoAlumnoService estadoAlumnoService;
+	private final CarreraService carreraService;
 
 	public String generateMatriculaCurso(Integer facultadId, Integer lectivoId, Integer geograficaId, Integer curso) {
 
