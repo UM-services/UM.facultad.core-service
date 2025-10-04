@@ -9,12 +9,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import um.facultad.rest.kotlin.model.Legajo;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import um.facultad.rest.exception.LegajoException;
 import um.facultad.rest.model.Inscripcion;
+import um.facultad.rest.model.Legajo;
 import um.facultad.rest.model.PreInscripcion;
 import um.facultad.rest.model.view.LegajoKey;
 import um.facultad.rest.repository.LegajoRepository;
@@ -25,22 +25,13 @@ import um.facultad.rest.service.view.LegajoKeyService;
  *
  */
 @Service
+@RequiredArgsConstructor
 public class LegajoService {
 
 	private final LegajoRepository repository;
 	private final InscripcionService inscripcionService;
 	private final LegajoKeyService legajokeyService;
 	private final PreInscripcionService preinscripcionService;
-
-	public LegajoService(LegajoRepository repository,
-						 InscripcionService inscripcionService,
-						 LegajoKeyService legajokeyService,
-						 PreInscripcionService preinscripcionService) {
-		this.repository = repository;
-		this.inscripcionService = inscripcionService;
-		this.legajokeyService = legajokeyService;
-		this.preinscripcionService = preinscripcionService;
-	}
 
 	public List<Legajo> findAllByPersonaIdInAndFacultadId(List<BigDecimal> numeros, Integer facultadId) {
 		return repository.findAllByPersonaIdInAndFacultadId(numeros, facultadId);

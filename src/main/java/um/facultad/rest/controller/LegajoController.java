@@ -6,9 +6,9 @@ package um.facultad.rest.controller;
 import java.math.BigDecimal;
 import java.util.List;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.server.ResponseStatusException;
 import um.facultad.rest.exception.LegajoException;
-import um.facultad.rest.kotlin.model.Legajo;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import um.facultad.rest.model.Legajo;
 import um.facultad.rest.model.view.LegajoKey;
 import um.facultad.rest.service.LegajoService;
 
@@ -25,17 +26,14 @@ import um.facultad.rest.service.LegajoService;
  */
 @RestController
 @RequestMapping("/legajo")
+@RequiredArgsConstructor
 public class LegajoController {
 
 	private final LegajoService service;
 
-	public LegajoController(LegajoService service) {
-		this.service = service;
-	}
-
 	@GetMapping("/persona/{personaId}/{documentoId}/{facultadId}")
 	public ResponseEntity<Legajo> findByPersona(@PathVariable BigDecimal personaId, @PathVariable Integer documentoId,
-			@PathVariable Integer facultadId) {
+                                                @PathVariable Integer facultadId) {
 		// agregar respuesta para evitar la excepcion
 		try {
 			return new ResponseEntity<>(service.findByPersona(personaId, documentoId, facultadId), HttpStatus.OK);

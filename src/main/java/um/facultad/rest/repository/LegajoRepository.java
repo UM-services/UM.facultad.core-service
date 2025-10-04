@@ -7,9 +7,9 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
-import um.facultad.rest.kotlin.model.Legajo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import um.facultad.rest.model.Legajo;
 
 /**
  * @author daniel

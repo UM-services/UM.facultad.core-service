@@ -1,0 +1,15 @@
+graph TB
+    A[Cliente HTTP] --> B[Spring Security]
+    B --> C[Controllers Layer]
+    C --> D[Services Layer]
+    D --> E[Repositories Layer]
+    E --> F[MySQL Database]
+
+    C --> G[Exception Handlers]
+    D --> H[External Services]
+    H --> I[Email Service]
+    H --> J[PDF Generation]
+    H --> K[Excel Generation]
+
+    style A fill:#e1f5fe
+    style F fill:#f3e5f5

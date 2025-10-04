@@ -9,15 +9,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import um.facultad.rest.kotlin.model.Legajo;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import um.facultad.rest.exception.LegajoException;
-import um.facultad.rest.model.Inscripcion;
-import um.facultad.rest.model.InscripcionDetalle;
-import um.facultad.rest.model.MateriaCurso;
-import um.facultad.rest.model.PreInscripcion;
+import um.facultad.rest.model.*;
 import um.facultad.rest.service.InscripcionDetalleService;
 import um.facultad.rest.service.InscripcionService;
 import um.facultad.rest.service.LegajoService;
@@ -31,22 +28,14 @@ import jakarta.transaction.Transactional;
  *
  */
 @Service
+@RequiredArgsConstructor
 public class AutoMatriculaService {
 
-	@Autowired
-	private PreInscripcionService preinscripcionservice;
-
-	@Autowired
-	private LegajoService legajoservice;
-
-	@Autowired
-	private InscripcionService inscripcionservice;
-
-	@Autowired
-	private MateriaCursoService materiacursoservice;
-
-	@Autowired
-	private InscripcionDetalleService inscripciondetalleservice;
+	private final PreInscripcionService preinscripcionservice;
+	private final LegajoService legajoservice;
+	private final InscripcionService inscripcionservice;
+	private final MateriaCursoService materiacursoservice;
+	private final InscripcionDetalleService inscripciondetalleservice;
 
 	@Transactional
 	public List<Inscripcion> auto_matricula_pre(Integer facultadId, Integer lectivoId, Integer geograficaId,

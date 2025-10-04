@@ -1,0 +1,35 @@
+erDiagram
+    PERSONA ||--o{ LEGAJO : tiene
+    PERSONA {
+        Long uniqueId PK
+        BigDecimal personaId
+        Integer documentoId
+        String apellido
+        String nombre
+        String sexo
+    }
+    LEGAJO ||--o{ INSCRIPCION : registra
+    LEGAJO {
+        Long legajoId PK
+        BigDecimal personaId
+        Integer documentoId
+        Integer facultadId
+        Long numeroLegajo
+    }
+    INSCRIPCION ||--|{ INSCRIPCION_DETALLE : contiene
+    INSCRIPCION {
+        Long inscripcionId PK
+        Integer facultadId
+        Integer lectivoId
+    }
+    INSCRIPCION_DETALLE {
+        Long detalleId PK
+        Long inscripcionId FK
+        Integer materiaId
+    }
+    DOMICILIO ||--o{ PERSONA : reside
+    DOMICILIO {
+        Long domicilioId PK
+        BigDecimal personaId
+        Integer documentoId
+    }
