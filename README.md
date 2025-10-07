@@ -59,8 +59,10 @@ mvn spring-boot:run
 
 ## 🔒 Seguridad
 
-La aplicación incluye configuración básica de Spring Security:
+La aplicación incluye configuración de Spring Security:
 - Endpoints de documentación protegidos con autenticación básica
+- Endpoint /domicilio/sincronize permitido sin autenticación
+- CSRF deshabilitado
 - Credenciales configurables via variables de entorno (`app.swagger_user`, `app.swagger_password`)
 
 ## 📚 API Documentation

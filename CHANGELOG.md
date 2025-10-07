@@ -5,6 +5,11 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2025-10-07
+
+### Changed
+- Security configuration: disabled CSRF globally and permitted all access to /domicilio/sincronize endpoint
+
 ## [1.0.0] - 2025-10-04
 
 ### Added
@@ -41,32 +46,6 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 ### Removed
 - Eliminación completa de dependencias y código Kotlin
 - Remoción de archivos .iml y configuraciones obsoletas
-
-## [Unreleased]
-
-### Added
-- Documentación inicial del proyecto
-- Estructura base del README
-- Configuración de Docker
-- Integración con Swagger UI
-
-### Changed
-- Actualización de dependencias:
-  - Spring Boot a 3.4.4
-  - Kotlin a 2.1.20
-  - MySQL Connector a 9.2.0
-  - Apache POI a 5.4.0
-  - LibrePDF a 2.0.3
-- Mejora en la estructura del proyecto
-- Optimización de la configuración de Maven
-
-### Fixed
-- Corrección de problemas de compatibilidad entre Java y Kotlin
-- Ajustes en la configuración de logging
-
-### Security
-- Actualización de dependencias por seguridad
-- Implementación de validación de entrada
 
 ## [0.0.1-SNAPSHOT] - 2024-03-29
 
