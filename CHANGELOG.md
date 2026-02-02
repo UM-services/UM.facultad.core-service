@@ -5,6 +5,21 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2026-02-02
+
+### Changed
+- Actualización de Spring Boot de 4.0.0-M3 a 4.0.2
+- Actualización de SpringDoc OpenAPI de 3.0.0-M1 a 3.0.1
+- Actualización de MySQL Connector de 9.4.0 a 9.6.0
+- Actualización de Apache POI de 5.4.1 a 5.5.1
+- Cambio de anotación @AutoConfigureMockMvc para tests (Spring Boot 4.0.2 compatibility)
+
+### Added
+- Dependencia spring-boot-starter-webmvc-test para tests
+
+### Removed
+- Configuración executable del spring-boot-maven-plugin (heredada del parent)
+
 ## [1.1.0] - 2025-10-07
 
 ### Changed
