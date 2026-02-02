@@ -14,11 +14,11 @@ Este servicio proporciona la funcionalidad core para la gestión de facultades, 
 ## 🛠️ Tecnologías Utilizadas
 
 - Java 25
-- Spring Boot 4.0.0-M3
-- MySQL 9.4.0
-- Apache POI 5.4.1
+- Spring Boot 4.0.2
+- MySQL 9.6.0
+- Apache POI 5.5.1
 - OpenPDF 3.0.0
-- SpringDoc OpenAPI 3.0.0-M1
+- SpringDoc OpenAPI 3.0.1
 - Spring Security
 - Lombok
 - Docker

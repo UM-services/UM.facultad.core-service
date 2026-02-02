@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>4.0.0-M3</version>
+		<version>4.0.2</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>ar.edu</groupId>
@@ -54,12 +54,12 @@
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-			<version>3.0.0-M1</version>
+			<version>3.0.1</version>
 		</dependency>
 		<dependency>
 			<groupId>com.mysql</groupId>
 			<artifactId>mysql-connector-j</artifactId>
-			<version>9.4.0</version>
+			<version>9.6.0</version>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
@@ -79,6 +79,11 @@
 			</exclusions>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webmvc-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
@@ -86,12 +91,12 @@
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi</artifactId>
-			<version>5.4.1</version>
+			<version>5.5.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml</artifactId>
-			<version>5.4.1</version>
+			<version>5.5.1</version>
 		</dependency>
 		        <dependency>
             <groupId>com.github.librepdf</groupId>
@@ -117,9 +122,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<executable>true</executable>
-				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
