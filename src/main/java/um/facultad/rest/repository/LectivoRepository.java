@@ -8,15 +8,15 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import um.facultad.rest.model.Lectivo;
+import um.facultad.rest.model.LectivoEntity;
 
 /**
  * @author daniel
  *
  */
 @Repository
-public interface LectivoRepository extends JpaRepository<Lectivo, Integer> {
+public interface LectivoRepository extends JpaRepository<LectivoEntity, Integer> {
 
-	public Optional<Lectivo> findByLectivoId(Integer lectivoId);
+	public Optional<LectivoEntity> findByLectivoId(Integer lectivoId);
 
 }

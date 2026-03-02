@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import org.springframework.web.server.ResponseStatusException;
 import um.facultad.rest.exception.InscripcionException;
-import um.facultad.rest.model.Inscripcion;
+import um.facultad.rest.model.InscripcionEntity;
 import um.facultad.rest.model.dto.InscripcionFullDto;
 import um.facultad.rest.service.InscripcionService;
 
@@ -34,28 +34,28 @@ public class InscripcionController {
 	}
 
 	@GetMapping("/lectivo/{facultadId}/{lectivoId}")
-	public ResponseEntity<List<Inscripcion>> findAllByLectivo(@PathVariable Integer facultadId,
-                                                              @PathVariable Integer lectivoId) {
+	public ResponseEntity<List<InscripcionEntity>> findAllByLectivo(@PathVariable Integer facultadId,
+                                                                    @PathVariable Integer lectivoId) {
 		return new ResponseEntity<>(service.findAllByLectivo(facultadId, lectivoId), HttpStatus.OK);
 	}
 
 	@GetMapping("/curso/{facultadId}/{lectivoId}/{geograficaId}/{curso}")
-	public ResponseEntity<List<Inscripcion>> findAllByCurso(@PathVariable Integer facultadId,
-			@PathVariable Integer lectivoId, @PathVariable Integer geograficaId, @PathVariable Integer curso) {
+	public ResponseEntity<List<InscripcionEntity>> findAllByCurso(@PathVariable Integer facultadId,
+                                                                  @PathVariable Integer lectivoId, @PathVariable Integer geograficaId, @PathVariable Integer curso) {
 		return new ResponseEntity<>(service.findAllByCurso(facultadId, lectivoId, geograficaId, curso),
 				HttpStatus.OK);
 	}
 
 	@GetMapping("/cursosinprovisoria/{facultadId}/{lectivoId}/{geograficaId}/{curso}")
-	public ResponseEntity<List<Inscripcion>> findAllByCursoSinProvisoria(@PathVariable Integer facultadId,
-			@PathVariable Integer lectivoId, @PathVariable Integer geograficaId, @PathVariable Integer curso) {
+	public ResponseEntity<List<InscripcionEntity>> findAllByCursoSinProvisoria(@PathVariable Integer facultadId,
+                                                                               @PathVariable Integer lectivoId, @PathVariable Integer geograficaId, @PathVariable Integer curso) {
 		return new ResponseEntity<>(service.findAllByCursoSinProvisoria(facultadId, lectivoId, geograficaId, curso),
 				HttpStatus.OK);
 	}
 
 	@GetMapping("/unique/{facultadId}/{personaId}/{documentoId}/{lectivoId}")
-	public ResponseEntity<Inscripcion> findByUnique(@PathVariable Integer facultadId,
-			@PathVariable BigDecimal personaId, @PathVariable Integer documentoId, @PathVariable Integer lectivoId) {
+	public ResponseEntity<InscripcionEntity> findByUnique(@PathVariable Integer facultadId,
+                                                          @PathVariable BigDecimal personaId, @PathVariable Integer documentoId, @PathVariable Integer lectivoId) {
 		try {
 			return new ResponseEntity<>(service.findByUnique(facultadId, personaId, documentoId, lectivoId),
 					HttpStatus.OK);

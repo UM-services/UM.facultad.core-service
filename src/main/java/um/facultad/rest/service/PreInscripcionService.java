@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import um.facultad.rest.exception.PreInscripcionException;
-import um.facultad.rest.model.PreInscripcion;
+import um.facultad.rest.model.PreInscripcionEntity;
 import um.facultad.rest.repository.PreInscripcionRepository;
 
 /**
@@ -23,22 +23,22 @@ public class PreInscripcionService {
 	@Autowired
 	private PreInscripcionRepository repository;
 
-	public List<PreInscripcion> findAllByLectivo(Integer facultadId, Integer lectivoId) {
+	public List<PreInscripcionEntity> findAllByLectivo(Integer facultadId, Integer lectivoId) {
 		return repository.findAllByFacultadIdAndLectivoId(facultadId, lectivoId);
 	}
 
-	public List<PreInscripcion> findAllBySede(Integer facultadId, Integer lectivoId, Integer geograficaId) {
+	public List<PreInscripcionEntity> findAllBySede(Integer facultadId, Integer lectivoId, Integer geograficaId) {
 		return repository.findAllByFacultadIdAndLectivoIdAndGeograficaId(facultadId, lectivoId, geograficaId);
 	}
 
-	public List<PreInscripcion> findAllByTurno(Integer facultadId, Integer lectivoId, Integer geograficaId,
-			Integer turnoId) {
+	public List<PreInscripcionEntity> findAllByTurno(Integer facultadId, Integer lectivoId, Integer geograficaId,
+                                                     Integer turnoId) {
 		return repository.findAllByFacultadIdAndLectivoIdAndGeograficaIdAndTurnoId(facultadId, lectivoId, geograficaId,
 				turnoId);
 	}
 
-	public PreInscripcion findPersonaByLectivo(Integer facultadId, BigDecimal personaId, Integer documentoId,
-			Integer lectivoId) {
+	public PreInscripcionEntity findPersonaByLectivo(Integer facultadId, BigDecimal personaId, Integer documentoId,
+                                                     Integer lectivoId) {
 		return repository
 				.findByFacultadIdAndPersonaIdAndDocumentoIdAndLectivoId(facultadId, personaId, documentoId, lectivoId)
 				.orElseThrow(() -> new PreInscripcionException(facultadId, personaId, documentoId, lectivoId));

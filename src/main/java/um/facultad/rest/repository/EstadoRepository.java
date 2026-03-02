@@ -9,15 +9,15 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import um.facultad.rest.model.Estado;
+import um.facultad.rest.model.EstadoEntity;
 
 /**
  * @author daniel
  *
  */
 @Repository
-public interface EstadoRepository extends JpaRepository<Estado, Long> {
+public interface EstadoRepository extends JpaRepository<EstadoEntity, Long> {
 
-	public List<Estado> findAllByPersonaIdInAndFacultadId(List<BigDecimal> numeros, Integer facultadId);
+	public List<EstadoEntity> findAllByPersonaIdInAndFacultadId(List<BigDecimal> numeros, Integer facultadId);
 
 }

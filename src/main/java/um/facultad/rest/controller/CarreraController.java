@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import um.facultad.rest.model.Carrera;
+import um.facultad.rest.model.CarreraEntity;
 import um.facultad.rest.service.CarreraService;
 
 /**
@@ -28,14 +28,14 @@ public class CarreraController {
 	private CarreraService service;
 
 	@GetMapping("/")
-	public ResponseEntity<List<Carrera>> findAll() {
-		return new ResponseEntity<List<Carrera>>(service.findAll(), HttpStatus.OK);
+	public ResponseEntity<List<CarreraEntity>> findAll() {
+		return new ResponseEntity<List<CarreraEntity>>(service.findAll(), HttpStatus.OK);
 	}
 
 	@GetMapping("/unique/{facultadId}/{planId}/{carreraId}")
-	public ResponseEntity<Carrera> findByUnique(@PathVariable Integer facultadId, @PathVariable Integer planId,
-			@PathVariable Integer carreraId) {
-		return new ResponseEntity<Carrera>(service.findByUnique(facultadId, planId, carreraId), HttpStatus.OK);
+	public ResponseEntity<CarreraEntity> findByUnique(@PathVariable Integer facultadId, @PathVariable Integer planId,
+                                                      @PathVariable Integer carreraId) {
+		return new ResponseEntity<CarreraEntity>(service.findByUnique(facultadId, planId, carreraId), HttpStatus.OK);
 	}
 
 }

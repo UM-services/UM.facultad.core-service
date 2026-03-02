@@ -10,17 +10,17 @@ import java.util.Optional;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import um.facultad.rest.model.Persona;
+import um.facultad.rest.model.PersonaEntity;
 
 /**
  * @author daniel
  *
  */
 @Repository
-public interface PersonaRepository extends JpaRepository<Persona, Long> {
+public interface PersonaRepository extends JpaRepository<PersonaEntity, Long> {
 
-	List<Persona> findAllByPersonaIdIn(List<BigDecimal> numeros, Sort sort);
+	List<PersonaEntity> findAllByPersonaIdIn(List<BigDecimal> numeros, Sort sort);
 
-	Optional<Persona> findByPersonaIdAndDocumentoId(BigDecimal personaId, Integer documentoId);
+	Optional<PersonaEntity> findByPersonaIdAndDocumentoId(BigDecimal personaId, Integer documentoId);
 
 }

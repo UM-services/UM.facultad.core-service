@@ -8,16 +8,16 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import um.facultad.rest.model.MateriaCarrera;
+import um.facultad.rest.model.MateriaCarreraEntity;
 
 /**
  * @author daniel
  *
  */
 @Repository
-public interface MateriaCarreraRepository extends JpaRepository<MateriaCarrera, Long> {
+public interface MateriaCarreraRepository extends JpaRepository<MateriaCarreraEntity, Long> {
 
-	public List<MateriaCarrera> findAllByFacultadIdAndPlanIdAndCarreraId(Integer facultadId, Integer planId,
-			Integer carreraId);
+	public List<MateriaCarreraEntity> findAllByFacultadIdAndPlanIdAndCarreraId(Integer facultadId, Integer planId,
+                                                                               Integer carreraId);
 
 }

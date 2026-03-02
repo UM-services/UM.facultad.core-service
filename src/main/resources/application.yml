@@ -24,6 +24,12 @@ spring:
     username: ${app.user}
     password: ${app.password}
     driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maxLifetime: 1800000
+      keepaliveTime: 300000
+      connectionTimeout: 20000
+      idleTimeout: 600000
+      validationTimeout: 5000
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
     hibernate:

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import um.facultad.rest.model.PreTurno;
+import um.facultad.rest.model.PreTurnoEntity;
 import um.facultad.rest.service.PreTurnoService;
 
 /**
@@ -28,9 +28,9 @@ public class PreTurnoController {
 	private PreTurnoService service;
 
 	@GetMapping("/lectivo/{facultadId}/{lectivoId}")
-	public ResponseEntity<List<PreTurno>> findAllByLectivo(@PathVariable Integer facultadId,
-                                                           @PathVariable Integer lectivoId) {
-		return new ResponseEntity<List<PreTurno>>(service.findAllByLectivo(facultadId, lectivoId), HttpStatus.OK);
+	public ResponseEntity<List<PreTurnoEntity>> findAllByLectivo(@PathVariable Integer facultadId,
+                                                                 @PathVariable Integer lectivoId) {
+		return new ResponseEntity<List<PreTurnoEntity>>(service.findAllByLectivo(facultadId, lectivoId), HttpStatus.OK);
 	}
 	
 }

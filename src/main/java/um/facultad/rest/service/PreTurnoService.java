@@ -8,7 +8,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import um.facultad.rest.model.PreTurno;
+import um.facultad.rest.model.PreTurnoEntity;
 import um.facultad.rest.repository.PreTurnoRepository;
 
 /**
@@ -21,7 +21,7 @@ public class PreTurnoService {
 	@Autowired
 	private PreTurnoRepository repository;
 
-	public List<PreTurno> findAllByLectivo(Integer facultadId, Integer lectivoId) {
+	public List<PreTurnoEntity> findAllByLectivo(Integer facultadId, Integer lectivoId) {
 		return repository.findAllByFacultadIdAndLectivoId(facultadId, lectivoId);
 	}
 

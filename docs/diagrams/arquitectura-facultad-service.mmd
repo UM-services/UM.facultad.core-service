@@ -1,15 +1,28 @@
 graph TB
-    A[Cliente HTTP] --> B[Spring Security]
-    B --> C[Controllers Layer]
-    C --> D[Services Layer]
-    D --> E[Repositories Layer]
-    E --> F[MySQL Database]
+    subgraph "Clientes"
+        A[Cliente HTTP] --> B[Spring Security]
+    end
 
-    C --> G[Exception Handlers]
-    D --> H[External Services]
-    H --> I[Email Service]
-    H --> J[PDF Generation]
-    H --> K[Excel Generation]
+    subgraph "API Layer"
+        B --> C[Controllers]
+        C --> D[Services]
+    end
+
+    subgraph "Hexagonal Architecture"
+        D --> E[Application Layer<br/>Use Cases]
+        E --> F[Domain Layer<br/>Ports & Models]
+        F --> G[Infrastructure Layer<br/>Adapters]
+    end
+
+    subgraph "External"
+        G --> H[MySQL Database]
+        G --> I[Email Service]
+        G --> J[PDF Generation]
+        G --> K[Excel Generation]
+    end
 
     style A fill:#e1f5fe
-    style F fill:#f3e5f5
+    style H fill:#f3e5f5
+    style E fill:#fff3e0
+    style F fill:#fff3e0
+    style G fill:#fff3e0

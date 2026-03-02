@@ -5,6 +5,23 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0] - 2026-03-01
+
+### Added
+- Implementación de arquitectura hexagonal (Ports and Adapters) para el módulo de matriculación
+  - Domain layer: modelos (Persona, Inscripcion, Carrera, Materia, Plan, MatriculacionContext)
+  - Application layer: use cases (GetPersonaDataUseCase, GetInscripcionDataUseCase, GenerateMatriculacionContextUseCase)
+  - Infrastructure layer: mappers y repositorios adapters
+  - dependencyManagement con assertj-core 3.27.7 y tomcat-embed-core 11.0.18
+
+### Changed
+- Actualización de OpenPDF de 3.0.0 a 3.0.1
+- Renombramiento de entidades de dominio: todas las clases modelo ahora usan sufijo Entity (ej: Carrera → CarreraEntity)
+- Actualización de todos los controladores para usar las nuevas entidades con sufijo Entity
+
+### Deprecated
+- deprecated: clases de modelo antiguas sin sufijo Entity (serán eliminadas en versión mayor)
+
 ## [1.2.0] - 2026-02-02
 
 ### Changed

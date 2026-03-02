@@ -8,16 +8,16 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import um.facultad.rest.model.Carrera;
+import um.facultad.rest.model.CarreraEntity;
 
 /**
  * @author daniel
  *
  */
 @Repository
-public interface CarreraRepository extends JpaRepository<Carrera, Long> {
+public interface CarreraRepository extends JpaRepository<CarreraEntity, Long> {
 
-	public Optional<Carrera> findByFacultadIdAndPlanIdAndCarreraId(Integer facultadId, Integer planId,
-			Integer carreraId);
+	Optional<CarreraEntity> findByFacultadIdAndPlanIdAndCarreraId(Integer facultadId, Integer planId,
+                                                                         Integer carreraId);
 
 }

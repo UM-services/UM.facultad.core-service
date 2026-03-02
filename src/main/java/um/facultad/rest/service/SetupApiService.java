@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import um.facultad.rest.exception.SetupApiException;
-import um.facultad.rest.model.SetupApi;
+import um.facultad.rest.model.SetupApiEntity;
 import um.facultad.rest.repository.SetupApiRepository;
 
 /**
@@ -19,7 +19,7 @@ public class SetupApiService {
 	@Autowired
 	private SetupApiRepository repository;
 
-	public SetupApi findLast() {
+	public SetupApiEntity findLast() {
 		return repository.findTopByOrderBySetupId().orElseThrow(() -> new SetupApiException());
 	}
 }

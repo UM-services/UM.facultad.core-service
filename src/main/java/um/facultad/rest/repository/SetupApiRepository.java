@@ -8,15 +8,15 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import um.facultad.rest.model.SetupApi;
+import um.facultad.rest.model.SetupApiEntity;
 
 /**
  * @author daniel
  *
  */
 @Repository
-public interface SetupApiRepository extends JpaRepository<SetupApi, Long> {
+public interface SetupApiRepository extends JpaRepository<SetupApiEntity, Long> {
 
-	public Optional<SetupApi> findTopByOrderBySetupId();
+	public Optional<SetupApiEntity> findTopByOrderBySetupId();
 
 }

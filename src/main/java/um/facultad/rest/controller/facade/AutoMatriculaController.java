@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import um.facultad.rest.model.Inscripcion;
+import um.facultad.rest.model.InscripcionEntity;
 import um.facultad.rest.service.facade.AutoMatriculaService;
 
 /**
@@ -28,9 +28,9 @@ public class AutoMatriculaController {
 	private AutoMatriculaService service;
 
 	@GetMapping("/pre/{facultadId}/{lectivoId}/{geograficaId}/{turnoId}")
-	public ResponseEntity<List<Inscripcion>> auto_matricula_pre(@PathVariable Integer facultadId,
-                                                                @PathVariable Integer lectivoId, @PathVariable Integer geograficaId, @PathVariable Integer turnoId) {
-		return new ResponseEntity<List<Inscripcion>>(
+	public ResponseEntity<List<InscripcionEntity>> auto_matricula_pre(@PathVariable Integer facultadId,
+                                                                      @PathVariable Integer lectivoId, @PathVariable Integer geograficaId, @PathVariable Integer turnoId) {
+		return new ResponseEntity<List<InscripcionEntity>>(
 				service.auto_matricula_pre(facultadId, lectivoId, geograficaId, turnoId), HttpStatus.OK);
 	}
 	

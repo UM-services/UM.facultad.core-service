@@ -11,10 +11,10 @@ import org.springframework.stereotype.Service;
 
 import um.facultad.rest.exception.InscripcionException;
 import um.facultad.rest.exception.InscripcionPagoException;
-import um.facultad.rest.model.Domicilio;
-import um.facultad.rest.model.Inscripcion;
-import um.facultad.rest.model.InscripcionPago;
-import um.facultad.rest.model.Persona;
+import um.facultad.rest.model.DomicilioEntity;
+import um.facultad.rest.model.InscripcionEntity;
+import um.facultad.rest.model.InscripcionPagoEntity;
+import um.facultad.rest.model.PersonaEntity;
 import um.facultad.rest.model.dto.InscripcionFullDto;
 import um.facultad.rest.repository.InscripcionRepository;
 
@@ -31,48 +31,48 @@ public class InscripcionService {
 	private final PersonaService personaService;
 	private final DomicilioService domicilioService;
 
-	public List<Inscripcion> findAllByLectivo(Integer facultadId, Integer lectivoId) {
+	public List<InscripcionEntity> findAllByLectivo(Integer facultadId, Integer lectivoId) {
 		return repository.findAllByFacultadIdAndLectivoId(facultadId, lectivoId);
 	}
 
-	public List<Inscripcion> findAllByCurso(Integer facultadId, Integer lectivoId, Integer geograficaId,
-			Integer curso) {
+	public List<InscripcionEntity> findAllByCurso(Integer facultadId, Integer lectivoId, Integer geograficaId,
+												  Integer curso) {
 		return repository.findAllByFacultadIdAndLectivoIdAndGeograficaIdAndCurso(facultadId, lectivoId, geograficaId,
 				curso);
 	}
 
-	public List<Inscripcion> findAllByCursoSinProvisoria(Integer facultadId, Integer lectivoId, Integer geograficaId,
-			Integer curso) {
+	public List<InscripcionEntity> findAllByCursoSinProvisoria(Integer facultadId, Integer lectivoId, Integer geograficaId,
+															   Integer curso) {
 		return repository.findAllByFacultadIdAndLectivoIdAndGeograficaIdAndCursoAndProvisoria(facultadId, lectivoId, geograficaId,
 				curso, (byte) 0);
 	}
 
-	public List<Inscripcion> findAllAnteriores(BigDecimal personaId, Integer documentoId, Integer facultadId,
-			Integer lectivoId) {
+	public List<InscripcionEntity> findAllAnteriores(BigDecimal personaId, Integer documentoId, Integer facultadId,
+													 Integer lectivoId) {
 		return repository.findAllByPersonaIdAndDocumentoIdAndFacultadIdAndLectivoIdLessThanOrderByLectivoIdDesc(
 				personaId, documentoId, facultadId, lectivoId);
 	}
 
-	public Inscripcion findByUnique(Integer facultadId, BigDecimal personaId, Integer documentoId, Integer lectivoId) {
+	public InscripcionEntity findByUnique(Integer facultadId, BigDecimal personaId, Integer documentoId, Integer lectivoId) {
 		return repository
 				.findByFacultadIdAndPersonaIdAndDocumentoIdAndLectivoId(facultadId, personaId, documentoId, lectivoId)
 				.orElseThrow(() -> new InscripcionException(facultadId, personaId, documentoId, lectivoId));
 	}
 
-	public List<Inscripcion> saveAll(List<Inscripcion> inscriptos) {
+	public List<InscripcionEntity> saveAll(List<InscripcionEntity> inscriptos) {
 		return repository.saveAll(inscriptos);
 	}
 
     public InscripcionFullDto findInscripcionFull(Integer facultadId, BigDecimal personaId, Integer documentoId, Integer lectivoId) {
-		Inscripcion inscripcion;
+		InscripcionEntity inscripcion;
 		try {
 			inscripcion = findByUnique(facultadId, personaId, documentoId, lectivoId);
 		} catch (InscripcionException e) {
 			inscripcion = null;
 		}
-		InscripcionPago inscripcionPago;
-		Persona personaPago;
-		Domicilio domicilioPago;
+		InscripcionPagoEntity inscripcionPago;
+		PersonaEntity personaPago;
+		DomicilioEntity domicilioPago;
 		try {
 			inscripcionPago = inscripcionPagoService.findByUnique(facultadId, personaId, documentoId, lectivoId);
 			personaPago = personaService.findByPersonaIdAndDocumentoId(inscripcionPago.getPersonaIdPagador(), inscripcionPago.getDocumentoId());

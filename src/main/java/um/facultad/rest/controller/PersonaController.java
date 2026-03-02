@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import um.facultad.rest.model.Persona;
+import um.facultad.rest.model.PersonaEntity;
 import um.facultad.rest.service.PersonaService;
 
 /**
@@ -28,8 +28,8 @@ public class PersonaController {
 	private final PersonaService service;
 	
 	@GetMapping("/{personaId}/{documentoId}")
-	public ResponseEntity<Persona> findByPersonaIdAndDocumentoId(@PathVariable BigDecimal personaId, @PathVariable Integer documentoId) {
-		return new ResponseEntity<Persona>(service.findByPersonaIdAndDocumentoId(personaId, documentoId), HttpStatus.OK);
+	public ResponseEntity<PersonaEntity> findByPersonaIdAndDocumentoId(@PathVariable BigDecimal personaId, @PathVariable Integer documentoId) {
+		return new ResponseEntity<PersonaEntity>(service.findByPersonaIdAndDocumentoId(personaId, documentoId), HttpStatus.OK);
 	}
 	
 }

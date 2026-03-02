@@ -17,7 +17,7 @@ Este servicio proporciona la funcionalidad core para la gestión de facultades, 
 - Spring Boot 4.0.2
 - MySQL 9.6.0
 - Apache POI 5.5.1
-- OpenPDF 3.0.0
+- OpenPDF 3.0.1
 - SpringDoc OpenAPI 3.0.1
 - Spring Security
 - Lombok

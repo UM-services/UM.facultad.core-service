@@ -10,7 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import um.facultad.rest.exception.LectivoException;
-import um.facultad.rest.model.Lectivo;
+import um.facultad.rest.model.LectivoEntity;
 import um.facultad.rest.repository.LectivoRepository;
 
 /**
@@ -23,15 +23,15 @@ public class LectivoService {
 	@Autowired
 	private LectivoRepository repository;
 
-	public List<Lectivo> findAll() {
+	public List<LectivoEntity> findAll() {
 		return repository.findAll(Sort.by("lectivoId").ascending());
 	}
 
-	public List<Lectivo> findAllReverse() {
+	public List<LectivoEntity> findAllReverse() {
 		return repository.findAll(Sort.by("lectivoId").descending());
 	}
 
-	public Lectivo findByLectivoId(Integer lectivoId) {
+	public LectivoEntity findByLectivoId(Integer lectivoId) {
 		return repository.findByLectivoId(lectivoId).orElseThrow(() -> new LectivoException(lectivoId));
 	}
 
