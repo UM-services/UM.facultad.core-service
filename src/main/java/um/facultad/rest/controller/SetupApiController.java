@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import um.facultad.rest.model.SetupApi;
+import um.facultad.rest.model.SetupApiEntity;
 import um.facultad.rest.service.SetupApiService;
 
 /**
@@ -25,8 +25,8 @@ public class SetupApiController {
 	private SetupApiService service;
 	
 	@GetMapping("/last")
-	public ResponseEntity<SetupApi> findLast() {
-		return new ResponseEntity<SetupApi>(service.findLast(), HttpStatus.OK);
+	public ResponseEntity<SetupApiEntity> findLast() {
+		return new ResponseEntity<SetupApiEntity>(service.findLast(), HttpStatus.OK);
 	}
 	
 }

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import um.facultad.rest.model.Lectivo;
+import um.facultad.rest.model.LectivoEntity;
 import um.facultad.rest.service.LectivoService;
 
 /**
@@ -27,13 +27,13 @@ public class LectivoController {
 	private LectivoService service;
 
 	@GetMapping("/")
-	public ResponseEntity<List<Lectivo>> findAll() {
-		return new ResponseEntity<List<Lectivo>>(service.findAll(), HttpStatus.OK);
+	public ResponseEntity<List<LectivoEntity>> findAll() {
+		return new ResponseEntity<List<LectivoEntity>>(service.findAll(), HttpStatus.OK);
 	}
 	
 	@GetMapping("/reverse")
-	public ResponseEntity<List<Lectivo>> findAllReverse() {
-		return new ResponseEntity<List<Lectivo>>(service.findAllReverse(), HttpStatus.OK);
+	public ResponseEntity<List<LectivoEntity>> findAllReverse() {
+		return new ResponseEntity<List<LectivoEntity>>(service.findAllReverse(), HttpStatus.OK);
 	}
 
 }

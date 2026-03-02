@@ -20,9 +20,9 @@ import org.springframework.stereotype.Service;
 import um.facultad.rest.exception.DivisionException;
 import um.facultad.rest.exception.DomicilioException;
 import um.facultad.rest.exception.MateriaException;
-import um.facultad.rest.model.Division;
-import um.facultad.rest.model.Domicilio;
-import um.facultad.rest.model.Materia;
+import um.facultad.rest.model.DivisionEntity;
+import um.facultad.rest.model.DomicilioEntity;
+import um.facultad.rest.model.MateriaEntity;
 import um.facultad.rest.model.view.InscriptoMateria;
 import um.facultad.rest.service.DivisionService;
 import um.facultad.rest.service.DomicilioService;
@@ -58,13 +58,13 @@ public class InscriptosToXlsService {
 		String filename = path + "lista-" + facultadId + "-" + lectivoId + "-" + planId + "-" + materiaId + "-"
 				+ cursoId + "-" + periodoId + "-" + divisionId + "-" + geograficaId + ".xls";
 
-		Materia materia = new Materia();
+		MateriaEntity materia = new MateriaEntity();
 		try {
 			materia = materiaService.findByUnique(facultadId, planId, materiaId);
 		} catch (MateriaException e) {
 
 		}
-		Division division = new Division();
+		DivisionEntity division = new DivisionEntity();
 		try {
 			division = divisionService.findByUnique(facultadId, divisionId);
 		} catch (DivisionException e) {
@@ -126,7 +126,7 @@ public class InscriptosToXlsService {
 		cell.setCellStyle(style_bold);
 		for (InscriptoMateria inscripto : inscriptoMateriaService.findAllByDivision(facultadId, lectivoId, planId,
 				materiaId, cursoId, periodoId, divisionId, geograficaId)) {
-			Domicilio domicilio = new Domicilio();
+			DomicilioEntity domicilio = new DomicilioEntity();
 			try {
 				domicilio = domicilioService.findByPersonaIdAndDocumentoId(inscripto.getPersonaId(),
 						inscripto.getDocumentoId());

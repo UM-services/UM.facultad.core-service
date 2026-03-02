@@ -11,9 +11,9 @@ import org.springframework.web.client.RestTemplate;
 
 import um.facultad.rest.exception.DomicilioException;
 import um.facultad.rest.exception.SetupApiException;
-import um.facultad.rest.model.Domicilio;
-import um.facultad.rest.model.InscripcionPago;
-import um.facultad.rest.model.SetupApi;
+import um.facultad.rest.model.DomicilioEntity;
+import um.facultad.rest.model.InscripcionPagoEntity;
+import um.facultad.rest.model.SetupApiEntity;
 import um.facultad.rest.repository.DomicilioRepository;
 import um.facultad.rest.repository.InscripcionPagoRepository;
 import um.facultad.rest.repository.SetupApiRepository;
@@ -38,17 +38,17 @@ public class DomicilioService {
 		this.inscripcionPagoRepository = inscripcionPagoRepository;
 	}
 
-	public Domicilio findByPersonaIdAndDocumentoId(BigDecimal personaId, Integer documentoId) {
-		Domicilio domicilio = repository.findByPersonaIdAndDocumentoId(personaId, documentoId).orElse(new Domicilio());
+	public DomicilioEntity findByPersonaIdAndDocumentoId(BigDecimal personaId, Integer documentoId) {
+		DomicilioEntity domicilio = repository.findByPersonaIdAndDocumentoId(personaId, documentoId).orElse(new DomicilioEntity());
 		log.debug("Domicilio -> {}", domicilio);
 		return domicilio;
 	}
 
-	public Domicilio findByPagador(BigDecimal personaId, Integer documentoId) {
-		InscripcionPago inscripcionPago = inscripcionPagoRepository
+	public DomicilioEntity findByPagador(BigDecimal personaId, Integer documentoId) {
+		InscripcionPagoEntity inscripcionPago = inscripcionPagoRepository
 				.findTopByPersonaIdAndDocumentoIdOrderByLectivoIdDesc(personaId, documentoId).orElse(null);
 		if (inscripcionPago == null)
-			return new Domicilio();
+			return new DomicilioEntity();
 		log.debug("InscripcionPago -> " + inscripcionPago);
 		return repository
 				.findByPersonaIdAndDocumentoId(inscripcionPago.getPersonaIdPagador(),
@@ -57,7 +57,7 @@ public class DomicilioService {
 	}
 
 	@Transactional
-	public Domicilio add(Domicilio domicilio, Boolean sincronize) {
+	public DomicilioEntity add(DomicilioEntity domicilio, Boolean sincronize) {
 		domicilio.setFecha(OffsetDateTime.now());
 		repository.save(domicilio);
 
@@ -68,7 +68,7 @@ public class DomicilioService {
 	}
 
 	@Transactional
-	public Domicilio update(Domicilio newDomicilio, BigDecimal personaId, Integer documentoId, Boolean sincronize) {
+	public DomicilioEntity update(DomicilioEntity newDomicilio, BigDecimal personaId, Integer documentoId, Boolean sincronize) {
 		return repository.findByPersonaIdAndDocumentoId(personaId, documentoId).map(domicilio -> {
 			domicilio.setCalle(newDomicilio.getCalle());
 			domicilio.setPuerta(newDomicilio.getPuerta());
@@ -94,20 +94,20 @@ public class DomicilioService {
 		}).orElseThrow(() -> new DomicilioException(personaId, documentoId));
 	}
 
-	private void sincronizeTesoreria(Domicilio domicilio) {
+	private void sincronizeTesoreria(DomicilioEntity domicilio) {
 		RestTemplate restTemplate = new RestTemplate();
-		SetupApi setupapi = setupApiRepository.findTopByOrderBySetupId()
+		SetupApiEntity setupapi = setupApiRepository.findTopByOrderBySetupId()
 				.orElseThrow(() -> new SetupApiException());
 		String url = "http://" + setupapi.getApiservertesoreria() + ":" + setupapi.getApiporttesoreria()
 				+ "/domicilio/sincronize";
-		Domicilio otro_domicilio = restTemplate.postForObject(url, domicilio, Domicilio.class);
+		DomicilioEntity otro_domicilio = restTemplate.postForObject(url, domicilio, DomicilioEntity.class);
 		log.debug(otro_domicilio.toString());
 	}
 
-	public Domicilio sincronize(Domicilio domicilio) {
-		Domicilio otro_domicilio = repository
+	public DomicilioEntity sincronize(DomicilioEntity domicilio) {
+		DomicilioEntity otro_domicilio = repository
 				.findByPersonaIdAndDocumentoId(domicilio.getPersonaId(), domicilio.getDocumentoId())
-				.orElse(new Domicilio());
+				.orElse(new DomicilioEntity());
 		if (otro_domicilio.getDomicilioId() == null)
 			otro_domicilio = this.add(domicilio, false);
 		else

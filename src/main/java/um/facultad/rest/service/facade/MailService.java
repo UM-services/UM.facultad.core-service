@@ -15,7 +15,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import um.facultad.rest.exception.MateriaException;
-import um.facultad.rest.model.Materia;
+import um.facultad.rest.model.MateriaEntity;
 import um.facultad.rest.model.extern.NotificacionExamen;
 import um.facultad.rest.model.view.AlumnoExamen;
 import um.facultad.rest.service.MateriaService;
@@ -54,7 +54,7 @@ public class MailService {
 				divisionId, geograficaId);
 		String data = "";
 
-		Materia materia = new Materia();
+		MateriaEntity materia = new MateriaEntity();
 		try {
 			materia = materiaService.findByUnique(facultadId, planId, materiaId);
 		} catch (MateriaException e) {

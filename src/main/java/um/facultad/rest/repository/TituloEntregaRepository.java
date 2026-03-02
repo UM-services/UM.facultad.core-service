@@ -9,7 +9,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import um.facultad.rest.model.TituloEntrega;
+import um.facultad.rest.model.TituloEntregaEntity;
 import um.facultad.rest.model.pk.TituloEntregaPk;
 
 /**
@@ -17,9 +17,9 @@ import um.facultad.rest.model.pk.TituloEntregaPk;
  *
  */
 @Repository
-public interface TituloEntregaRepository extends JpaRepository<TituloEntrega, TituloEntregaPk> {
+public interface TituloEntregaRepository extends JpaRepository<TituloEntregaEntity, TituloEntregaPk> {
 
-	public Optional<TituloEntrega> findByPersonaIdAndDocumentoIdAndFacultadIdAndPlanIdAndCarreraId(BigDecimal personaId,
-			Integer documentoId, Integer facultadId, Integer planId, Integer carreraId);
+	public Optional<TituloEntregaEntity> findByPersonaIdAndDocumentoIdAndFacultadIdAndPlanIdAndCarreraId(BigDecimal personaId,
+                                                                                                         Integer documentoId, Integer facultadId, Integer planId, Integer carreraId);
 
 }

@@ -8,19 +8,19 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import um.facultad.rest.model.MateriaCurso;
+import um.facultad.rest.model.MateriaCursoEntity;
 
 /**
  * @author daniel
  *
  */
 @Repository
-public interface MateriaCursoRepository extends JpaRepository<MateriaCurso, Long> {
+public interface MateriaCursoRepository extends JpaRepository<MateriaCursoEntity, Long> {
 
-	public List<MateriaCurso> findAllByFacultadIdAndPlanIdAndCarreraIdAndCurso(Integer facultadId, Integer planId,
-			Integer carreraId, Integer curso);
+	public List<MateriaCursoEntity> findAllByFacultadIdAndPlanIdAndCarreraIdAndCurso(Integer facultadId, Integer planId,
+                                                                                     Integer carreraId, Integer curso);
 
-	public List<MateriaCurso> findAllByFacultadIdAndPlanIdAndCarreraId(Integer facultadId, Integer planId,
-			Integer carreraId);
+	public List<MateriaCursoEntity> findAllByFacultadIdAndPlanIdAndCarreraId(Integer facultadId, Integer planId,
+                                                                             Integer carreraId);
 
 }

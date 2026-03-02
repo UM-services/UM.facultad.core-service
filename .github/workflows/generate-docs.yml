@@ -124,7 +124,7 @@ jobs:
               document.getElementById('stats').innerHTML = statsHTML;
 
               // --- Architecture Diagram ---
-              fetch('diagrams/arquitectura-facultad-service.mmd')
+              fetch('docs/diagrams/arquitectura-facultad-service.mmd')
                   .then(response => response.text())
                   .then(data => {
                       const architectureContainer = document.getElementById('architecture');
@@ -133,7 +133,7 @@ jobs:
                   });
 
               // --- Sequence Diagram ---
-              fetch('diagrams/flujo-inscripcion.mmd')
+              fetch('docs/diagrams/flujo-inscripcion.mmd')
                   .then(response => response.text())
                   .then(data => {
                       const sequenceContainer = document.getElementById('sequence-diagram');
@@ -142,7 +142,7 @@ jobs:
                   });
 
               // --- ERD Diagram ---
-              fetch('diagrams/erd-database.mmd')
+              fetch('docs/diagrams/erd-database.mmd')
                   .then(response => response.text())
                   .then(data => {
                       const erdContainer = document.getElementById('erd-diagram');
@@ -151,7 +151,7 @@ jobs:
                   });
 
               // --- Deployment Diagram ---
-              fetch('diagrams/despliegue-infraestructura.mmd')
+              fetch('docs/diagrams/despliegue-infraestructura.mmd')
                   .then(response => response.text())
                   .then(data => {
                       const deploymentContainer = document.getElementById('deployment-diagram');

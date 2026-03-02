@@ -69,7 +69,7 @@ public class MatriculaToPdfService {
 
 	public String generateMatriculaPdf(BigDecimal personaId, Integer documentoId, Integer facultadId,
 			Integer lectivoId) {
-		Inscripcion inscripcion = null;
+		InscripcionEntity inscripcion = null;
 		try {
 			inscripcion = inscripcionService.findByUnique(facultadId, personaId, documentoId, lectivoId);
 		} catch (InscripcionException e) {
@@ -77,7 +77,7 @@ public class MatriculaToPdfService {
 		}
 		log.debug("Inscripcion -> {}", inscripcion);
 
-		Facultad facultad = null;
+		FacultadEntity facultad = null;
 		try {
 			facultad = facultadService.findByFacultadId(facultadId);
 		} catch (FacultadException e) {
@@ -85,62 +85,62 @@ public class MatriculaToPdfService {
 		}
 		log.debug("Facultad -> {}", facultad);
 
-		Geografica geografica = geograficaService.findByGeograficaId(inscripcion.getGeograficaId());
+		GeograficaEntity geografica = geograficaService.findByGeograficaId(inscripcion.getGeograficaId());
 		log.debug("Geografica -> {}", geografica);
-		Persona persona = personaService.findByPersonaIdAndDocumentoId(personaId, documentoId);
+		PersonaEntity persona = personaService.findByPersonaIdAndDocumentoId(personaId, documentoId);
 		log.debug("Persona -> {}", persona);
-		Lectivo lectivo = lectivoService.findByLectivoId(lectivoId);
+		LectivoEntity lectivo = lectivoService.findByLectivoId(lectivoId);
 		log.debug("Lectivo -> {}", lectivo);
-		Documento documento = documentoService.findByDocumentoId(documentoId);
+		DocumentoEntity documento = documentoService.findByDocumentoId(documentoId);
 		log.debug("Documento -> {}", documento);
 
-		Nacimiento nacimiento = null;
+		NacimientoEntity nacimiento = null;
 		try {
 			nacimiento = nacimientoService.findByUnique(personaId, documentoId);
 		} catch (NacimientoException e) {
-			nacimiento = new Nacimiento();
+			nacimiento = new NacimientoEntity();
 		}
 		log.debug("Nacimiento -> {}", nacimiento);
 
-		Legajo legajo = null;
+		LegajoEntity legajo = null;
 		try {
 			legajo = legajoService.findByPersona(personaId, documentoId, facultadId);
 		} catch (LegajoException e) {
-			legajo = new Legajo();
+			legajo = new LegajoEntity();
 		}
 		log.debug("Legajo -> {}", legajo);
 
-		Domicilio domicilio = null;
+		DomicilioEntity domicilio = null;
 		try {
 			domicilio = domicilioService.findByPersonaIdAndDocumentoId(personaId, documentoId);
 		} catch (DomicilioException e) {
-			domicilio = new Domicilio();
+			domicilio = new DomicilioEntity();
 		}
 		log.debug("Domicilio -> {}", domicilio);
 
-		Localidad localidad = null;
+		LocalidadEntity localidad = null;
 		try {
 			localidad = localidadService.findByUnique(domicilio.getFacultadId(), domicilio.getProvinciaId(),
 					domicilio.getLocalidadId());
 		} catch (LocalidadException e) {
-			localidad = new Localidad();
+			localidad = new LocalidadEntity();
 		}
 		log.debug("Localidad -> {}", localidad);
 
-		Provincia provincia = null;
+		ProvinciaEntity provincia = null;
 		try {
 			provincia = provinciaService.findByUnique(domicilio.getFacultadId(), domicilio.getProvinciaId());
 		} catch (ProvinciaException e) {
-			provincia = new Provincia();
+			provincia = new ProvinciaEntity();
 		}
 		log.debug("Provincia -> {}", provincia);
 
-		Carrera carrera = null;
+		CarreraEntity carrera = null;
 		try {
 			carrera = carreraService.findByUnique(inscripcion.getFacultadId(), inscripcion.getPlanId(),
 					inscripcion.getCarreraId());
 		} catch (CarreraException e) {
-			carrera = new Carrera();
+			carrera = new CarreraEntity();
 		}
 		log.debug("Carrera -> {}", carrera);
 
@@ -265,15 +265,15 @@ public class MatriculaToPdfService {
 
 			Integer orden = 1;
 
-			for (InscripcionDetalle inscripciondetalle : inscripcionDetalleService.findAllByPersona(
+			for (InscripcionDetalleEntity inscripciondetalle : inscripcionDetalleService.findAllByPersona(
 					inscripcion.getPersonaId(), inscripcion.getDocumentoId(), inscripcion.getFacultadId(),
 					inscripcion.getLectivoId())) {
-				Materia materia = null;
+				MateriaEntity materia = null;
 				try {
 					materia = materiaService.findByUnique(inscripciondetalle.getFacultadId(),
 							inscripciondetalle.getPlanId(), inscripciondetalle.getMateriaId());
 				} catch (MateriaException e) {
-					materia = new Materia();
+					materia = new MateriaEntity();
 				}
 
 				table = new PdfPTable(1);

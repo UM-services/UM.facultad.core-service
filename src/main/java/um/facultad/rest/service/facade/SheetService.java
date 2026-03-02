@@ -54,9 +54,9 @@ public class SheetService {
 
 	public String generateMatriculaCurso(Integer facultadId, Integer lectivoId, Integer geograficaId, Integer curso) {
 
-		Facultad facultad = facultadService.findByFacultadId(facultadId);
-		Lectivo lectivo = lectivoService.findByLectivoId(lectivoId);
-		Geografica geografica = geograficaService.findByGeograficaId(geograficaId);
+		FacultadEntity facultad = facultadService.findByFacultadId(facultadId);
+		LectivoEntity lectivo = lectivoService.findByLectivoId(lectivoId);
+		GeograficaEntity geografica = geograficaService.findByGeograficaId(geograficaId);
 
 		String filename = "matriculas." + facultadId + "." + lectivoId + "." + geograficaId + "." + curso + ".xlsx";
 
@@ -91,20 +91,20 @@ public class SheetService {
 		this.setCellString(row, 4, "Documento", style_normal);
 		this.setCellString(row, 5, "Carrera", style_normal);
 
-		Map<BigDecimal, Inscripcion> inscriptos = inscripcionService
+		Map<BigDecimal, InscripcionEntity> inscriptos = inscripcionService
 				.findAllByCurso(facultadId, lectivoId, geograficaId, curso).stream()
-				.collect(Collectors.toMap(Inscripcion::getPersonaId, inscripcion -> inscripcion));
+				.collect(Collectors.toMap(InscripcionEntity::getPersonaId, inscripcion -> inscripcion));
 		List<BigDecimal> numeros = new ArrayList<BigDecimal>(inscriptos.keySet());
-		Map<BigDecimal, Legajo> legajos = legajoService.findAllByPersonaIdInAndFacultadId(numeros, facultadId).stream()
-				.collect(Collectors.toMap(Legajo::getPersonaId, legajo -> legajo));
-		Map<BigDecimal, Estado> estados = estadoService.findAllByPersonaIdInAndFacultadId(numeros, facultadId).stream()
-				.collect(Collectors.toMap(Estado::getPersonaId, estado -> estado));
+		Map<BigDecimal, LegajoEntity> legajos = legajoService.findAllByPersonaIdInAndFacultadId(numeros, facultadId).stream()
+				.collect(Collectors.toMap(LegajoEntity::getPersonaId, legajo -> legajo));
+		Map<BigDecimal, EstadoEntity> estados = estadoService.findAllByPersonaIdInAndFacultadId(numeros, facultadId).stream()
+				.collect(Collectors.toMap(EstadoEntity::getPersonaId, estado -> estado));
 		// Carreras
-		Map<String, Carrera> carreras = carreraService.findAll().stream()
-				.collect(Collectors.toMap(Carrera::getKey, carrera -> carrera));
+		Map<String, CarreraEntity> carreras = carreraService.findAll().stream()
+				.collect(Collectors.toMap(CarreraEntity::getKey, carrera -> carrera));
 
 		Integer orden = 0;
-		for (Persona persona : personaService.findAllByPersonaIdIn(numeros)) {
+		for (PersonaEntity persona : personaService.findAllByPersonaIdIn(numeros)) {
 			row = sheet.createRow(++fila);
 			Long numero_legajo = 0L;
 			if (legajos.containsKey(persona.getPersonaId()))
@@ -114,7 +114,7 @@ public class SheetService {
 				estado = estadoAlumnoService.findByEstadoId(estados.get(persona.getPersonaId()).getEstadoId())
 						.getIniciales();
 			}
-			Inscripcion inscripcion = inscriptos.get(persona.getPersonaId());
+			InscripcionEntity inscripcion = inscriptos.get(persona.getPersonaId());
 			String key = inscripcion.getFacultadId() + "." + inscripcion.getPlanId() + "." + inscripcion.getCarreraId();
 			String carrera = "";
 			if (carreras.containsKey(key))

@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import um.facultad.rest.exception.FacultadException;
-import um.facultad.rest.model.Facultad;
+import um.facultad.rest.model.FacultadEntity;
 import um.facultad.rest.repository.FacultadRepository;
 
 /**
@@ -20,7 +20,7 @@ public class FacultadService {
 	@Autowired
 	private FacultadRepository repository;
 
-	public Facultad findByFacultadId(Integer facultadId) {
+	public FacultadEntity findByFacultadId(Integer facultadId) {
 		return repository.findByFacultadId(facultadId).orElseThrow(() -> new FacultadException(facultadId));
 	}
 

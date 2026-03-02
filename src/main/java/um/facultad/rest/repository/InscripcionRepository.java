@@ -10,7 +10,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import um.facultad.rest.model.Inscripcion;
+import um.facultad.rest.model.InscripcionEntity;
 import um.facultad.rest.model.pk.InscripcionPk;
 
 /**
@@ -18,20 +18,20 @@ import um.facultad.rest.model.pk.InscripcionPk;
  *
  */
 @Repository
-public interface InscripcionRepository extends JpaRepository<Inscripcion, InscripcionPk> {
+public interface InscripcionRepository extends JpaRepository<InscripcionEntity, InscripcionPk> {
 
-	List<Inscripcion> findAllByFacultadIdAndLectivoId(Integer facultadId, Integer lectivoId);
+	List<InscripcionEntity> findAllByFacultadIdAndLectivoId(Integer facultadId, Integer lectivoId);
 
-	List<Inscripcion> findAllByFacultadIdAndLectivoIdAndGeograficaIdAndCurso(Integer facultadId,
-			Integer lectivoId, Integer geograficaId, Integer curso);
+	List<InscripcionEntity> findAllByFacultadIdAndLectivoIdAndGeograficaIdAndCurso(Integer facultadId,
+                                                                                   Integer lectivoId, Integer geograficaId, Integer curso);
 
-	List<Inscripcion> findAllByFacultadIdAndLectivoIdAndGeograficaIdAndCursoAndProvisoria(Integer facultadId,
-			Integer lectivoId, Integer geograficaId, Integer curso, Byte provisoria);
+	List<InscripcionEntity> findAllByFacultadIdAndLectivoIdAndGeograficaIdAndCursoAndProvisoria(Integer facultadId,
+                                                                                                Integer lectivoId, Integer geograficaId, Integer curso, Byte provisoria);
 
-	List<Inscripcion> findAllByPersonaIdAndDocumentoIdAndFacultadIdAndLectivoIdLessThanOrderByLectivoIdDesc(
+	List<InscripcionEntity> findAllByPersonaIdAndDocumentoIdAndFacultadIdAndLectivoIdLessThanOrderByLectivoIdDesc(
 			BigDecimal personaId, Integer documentoId, Integer facultadId, Integer lectivoId);
 
-	Optional<Inscripcion> findByFacultadIdAndPersonaIdAndDocumentoIdAndLectivoId(Integer facultadId,
-			BigDecimal personaId, Integer documentoId, Integer lectivoId);
+	Optional<InscripcionEntity> findByFacultadIdAndPersonaIdAndDocumentoIdAndLectivoId(Integer facultadId,
+                                                                                       BigDecimal personaId, Integer documentoId, Integer lectivoId);
 
 }

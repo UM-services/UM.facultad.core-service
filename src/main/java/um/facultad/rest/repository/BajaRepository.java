@@ -9,7 +9,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import um.facultad.rest.model.Baja;
+import um.facultad.rest.model.BajaEntity;
 import um.facultad.rest.model.pk.BajaPk;
 
 /**
@@ -17,9 +17,9 @@ import um.facultad.rest.model.pk.BajaPk;
  *
  */
 @Repository
-public interface BajaRepository extends JpaRepository<Baja, BajaPk> {
+public interface BajaRepository extends JpaRepository<BajaEntity, BajaPk> {
 
-	public Optional<Baja> findByFacultadIdAndPersonaIdAndDocumentoIdAndLectivoId(Integer facultadId, BigDecimal personaId,
-			Integer documentoId, Integer lectivoId);
+	public Optional<BajaEntity> findByFacultadIdAndPersonaIdAndDocumentoIdAndLectivoId(Integer facultadId, BigDecimal personaId,
+                                                                                       Integer documentoId, Integer lectivoId);
 
 }

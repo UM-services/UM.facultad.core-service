@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import um.facultad.rest.model.InscripcionDetalle;
+import um.facultad.rest.model.InscripcionDetalleEntity;
 import um.facultad.rest.service.InscripcionDetalleService;
 
 /**
@@ -29,9 +29,9 @@ public class InscripcionDetalleController {
 	private InscripcionDetalleService service;
 
 	@GetMapping("/persona/{personaId}/{documentoId}/{facultadId}/{lectivoId}")
-	public ResponseEntity<List<InscripcionDetalle>> findAllByPersona(@PathVariable BigDecimal personaId,
-                                                                     @PathVariable Integer documentoId, @PathVariable Integer facultadId, @PathVariable Integer lectivoId) {
-		return new ResponseEntity<List<InscripcionDetalle>>(
+	public ResponseEntity<List<InscripcionDetalleEntity>> findAllByPersona(@PathVariable BigDecimal personaId,
+                                                                           @PathVariable Integer documentoId, @PathVariable Integer facultadId, @PathVariable Integer lectivoId) {
+		return new ResponseEntity<List<InscripcionDetalleEntity>>(
 				service.findAllByPersona(personaId, documentoId, facultadId, lectivoId), HttpStatus.OK);
 	}
 }

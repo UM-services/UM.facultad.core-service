@@ -9,18 +9,18 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import um.facultad.rest.model.InscripcionPago;
+import um.facultad.rest.model.InscripcionPagoEntity;
 
 /**
  * @author daniel
  *
  */
 @Repository
-public interface InscripcionPagoRepository extends JpaRepository<InscripcionPago, Long> {
+public interface InscripcionPagoRepository extends JpaRepository<InscripcionPagoEntity, Long> {
 
-	Optional<InscripcionPago> findTopByPersonaIdAndDocumentoIdOrderByLectivoIdDesc(BigDecimal personaId,
-			Integer documentoId);
+	Optional<InscripcionPagoEntity> findTopByPersonaIdAndDocumentoIdOrderByLectivoIdDesc(BigDecimal personaId,
+                                                                                         Integer documentoId);
 
-    Optional<InscripcionPago> findByFacultadIdAndPersonaIdAndDocumentoIdAndLectivoId(Integer facultadId, BigDecimal personaId, Integer documentoId, Integer lectivoId);
+    Optional<InscripcionPagoEntity> findByFacultadIdAndPersonaIdAndDocumentoIdAndLectivoId(Integer facultadId, BigDecimal personaId, Integer documentoId, Integer lectivoId);
 
 }

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import um.facultad.rest.model.TituloEntrega;
+import um.facultad.rest.model.TituloEntregaEntity;
 import um.facultad.rest.service.TituloEntregaService;
 
 /**
@@ -28,10 +28,10 @@ public class TituloEntregaController {
 	private TituloEntregaService service;
 
 	@GetMapping("/unique/{personaId}/{documentoId}/{facultadId}/{planId}/{carreraId}")
-	public ResponseEntity<TituloEntrega> findByUnique(@PathVariable BigDecimal personaId,
-                                                      @PathVariable Integer documentoId, @PathVariable Integer facultadId, @PathVariable Integer planId,
-                                                      @PathVariable Integer carreraId) {
-		return new ResponseEntity<TituloEntrega>(
+	public ResponseEntity<TituloEntregaEntity> findByUnique(@PathVariable BigDecimal personaId,
+                                                            @PathVariable Integer documentoId, @PathVariable Integer facultadId, @PathVariable Integer planId,
+                                                            @PathVariable Integer carreraId) {
+		return new ResponseEntity<TituloEntregaEntity>(
 				service.findByUnique(personaId, documentoId, facultadId, planId, carreraId), HttpStatus.OK);
 	}
 	

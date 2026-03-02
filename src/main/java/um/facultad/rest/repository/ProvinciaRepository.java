@@ -8,7 +8,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import um.facultad.rest.model.Provincia;
+import um.facultad.rest.model.ProvinciaEntity;
 import um.facultad.rest.model.pk.ProvinciaPk;
 
 /**
@@ -16,8 +16,8 @@ import um.facultad.rest.model.pk.ProvinciaPk;
  *
  */
 @Repository
-public interface ProvinciaRepository extends JpaRepository<Provincia, ProvinciaPk> {
+public interface ProvinciaRepository extends JpaRepository<ProvinciaEntity, ProvinciaPk> {
 
-	public Optional<Provincia> findByFacultadIdAndProvinciaId(Integer facultadId, Integer provinciaId);
+	public Optional<ProvinciaEntity> findByFacultadIdAndProvinciaId(Integer facultadId, Integer provinciaId);
 
 }

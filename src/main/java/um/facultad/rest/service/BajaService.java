@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import um.facultad.rest.exception.BajaException;
-import um.facultad.rest.model.Baja;
+import um.facultad.rest.model.BajaEntity;
 import um.facultad.rest.repository.BajaRepository;
 
 /**
@@ -22,7 +22,7 @@ public class BajaService {
 	@Autowired
 	private BajaRepository repository;
 
-	public Baja findByUnique(Integer facultadId, BigDecimal personaId, Integer documentoId, Integer lectivoId) {
+	public BajaEntity findByUnique(Integer facultadId, BigDecimal personaId, Integer documentoId, Integer lectivoId) {
 		return repository.findByFacultadIdAndPersonaIdAndDocumentoIdAndLectivoId(facultadId, personaId, documentoId,
 				lectivoId).orElseThrow(() -> new BajaException(facultadId, personaId, documentoId, lectivoId));
 	}

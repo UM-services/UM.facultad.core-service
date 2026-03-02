@@ -8,15 +8,15 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import um.facultad.rest.model.PreTurno;
+import um.facultad.rest.model.PreTurnoEntity;
 
 /**
  * @author daniel
  *
  */
 @Repository
-public interface PreTurnoRepository extends JpaRepository<PreTurno, Long> {
+public interface PreTurnoRepository extends JpaRepository<PreTurnoEntity, Long> {
 
-	public List<PreTurno> findAllByFacultadIdAndLectivoId(Integer facultadId, Integer lectivoId);
+	public List<PreTurnoEntity> findAllByFacultadIdAndLectivoId(Integer facultadId, Integer lectivoId);
 
 }

@@ -9,7 +9,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import um.facultad.rest.model.Domicilio;
+import um.facultad.rest.model.DomicilioEntity;
 import um.facultad.rest.model.pk.DomicilioPk;
 
 /**
@@ -17,8 +17,8 @@ import um.facultad.rest.model.pk.DomicilioPk;
  *
  */
 @Repository
-public interface DomicilioRepository extends JpaRepository<Domicilio, DomicilioPk> {
+public interface DomicilioRepository extends JpaRepository<DomicilioEntity, DomicilioPk> {
 
-	public Optional<Domicilio> findByPersonaIdAndDocumentoId(BigDecimal personaId, Integer documentoId);
+	public Optional<DomicilioEntity> findByPersonaIdAndDocumentoId(BigDecimal personaId, Integer documentoId);
 
 }

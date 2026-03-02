@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import um.facultad.rest.model.Provincia;
+import um.facultad.rest.model.ProvinciaEntity;
 import um.facultad.rest.service.ProvinciaService;
 
 /**
@@ -26,8 +26,8 @@ public class ProvinciaController {
 	private ProvinciaService service;
 
 	@GetMapping("/unique/{facultadId}/{provinciaId}")
-	public ResponseEntity<Provincia> findByUnique(@PathVariable Integer facultadId, @PathVariable Integer provinciaId) {
-		return new ResponseEntity<Provincia>(service.findByUnique(facultadId, provinciaId), HttpStatus.OK);
+	public ResponseEntity<ProvinciaEntity> findByUnique(@PathVariable Integer facultadId, @PathVariable Integer provinciaId) {
+		return new ResponseEntity<ProvinciaEntity>(service.findByUnique(facultadId, provinciaId), HttpStatus.OK);
 	}
 
 }

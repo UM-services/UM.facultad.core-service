@@ -8,3 +8,7 @@ target/classes target/generated-sources target/generated-test-sources target/mav
 /.apt_generated/
 /.apt_generated_tests/
 /.vscode/
+.classpath
+.factorypath
+.project
+.settings/

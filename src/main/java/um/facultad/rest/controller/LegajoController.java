@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import um.facultad.rest.model.Legajo;
+import um.facultad.rest.model.LegajoEntity;
 import um.facultad.rest.model.view.LegajoKey;
 import um.facultad.rest.service.LegajoService;
 
@@ -32,8 +32,8 @@ public class LegajoController {
 	private final LegajoService service;
 
 	@GetMapping("/persona/{personaId}/{documentoId}/{facultadId}")
-	public ResponseEntity<Legajo> findByPersona(@PathVariable BigDecimal personaId, @PathVariable Integer documentoId,
-                                                @PathVariable Integer facultadId) {
+	public ResponseEntity<LegajoEntity> findByPersona(@PathVariable BigDecimal personaId, @PathVariable Integer documentoId,
+                                                      @PathVariable Integer facultadId) {
 		// agregar respuesta para evitar la excepcion
 		try {
 			return new ResponseEntity<>(service.findByPersona(personaId, documentoId, facultadId), HttpStatus.OK);
@@ -43,15 +43,15 @@ public class LegajoController {
 	}
 
 	@GetMapping("/asigna/{facultadId}/{lectivoId}/{personaId}/{documentoId}")
-	public ResponseEntity<Legajo> asignaNumeroLegajo(@PathVariable Integer facultadId, @PathVariable Integer lectivoId,
-													 @PathVariable BigDecimal personaId, @PathVariable Integer documentoId) {
+	public ResponseEntity<LegajoEntity> asignaNumeroLegajo(@PathVariable Integer facultadId, @PathVariable Integer lectivoId,
+                                                           @PathVariable BigDecimal personaId, @PathVariable Integer documentoId) {
 		return new ResponseEntity<>(service.asignaNumeroLegajo(facultadId, lectivoId, personaId, documentoId),
 				HttpStatus.OK);
 	}
 
 	@GetMapping("/numera/{facultadId}/{lectivoId}")
-	public ResponseEntity<List<Legajo>> numeraByLectivoId(@PathVariable Integer facultadId,
-			@PathVariable Integer lectivoId) {
+	public ResponseEntity<List<LegajoEntity>> numeraByLectivoId(@PathVariable Integer facultadId,
+                                                                @PathVariable Integer lectivoId) {
 		return new ResponseEntity<>(service.numeraByLectivoId(facultadId, lectivoId), HttpStatus.OK);
 	}
 

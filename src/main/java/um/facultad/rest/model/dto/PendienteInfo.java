@@ -24,19 +24,19 @@ public class PendienteInfo implements Serializable {
 	*/
 	private static final long serialVersionUID = -2508210776345665100L;
 
-	private Facultad facultad;
-	private Lectivo lectivo;
-	private Geografica geografica;
-	private Documento documento;
-	private Persona persona;
-	private Plan plan;
-	private Carrera carrera;
-	private Inscripcion inscripcion;
-	private List<InscripcionDetalle> detalles;
-	private List<Materia> materias;
-	private List<MateriaCarrera> materiascarrera;
-	private List<MateriaCurso> materiascurso;
-	private List<Regularidad> regularidades;
-	private List<Inscripcion> inscripciones;
+	private FacultadEntity facultad;
+	private LectivoEntity lectivo;
+	private GeograficaEntity geografica;
+	private DocumentoEntity documento;
+	private PersonaEntity persona;
+	private PlanEntity plan;
+	private CarreraEntity carrera;
+	private InscripcionEntity inscripcion;
+	private List<InscripcionDetalleEntity> detalles;
+	private List<MateriaEntity> materias;
+	private List<MateriaCarreraEntity> materiascarrera;
+	private List<MateriaCursoEntity> materiascurso;
+	private List<RegularidadEntity> regularidades;
+	private List<InscripcionEntity> inscripciones;
 
 }
