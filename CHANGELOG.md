@@ -5,6 +5,12 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.4] - 2026-04-03
+
+### Changed
+- Actualización de configuración de GitHub Actions:
+  - Se agregó la variable de entorno `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true` para optar por Node.js 24 y silenciar advertencias de deprecación de Node.js 20.
+
 ## [1.3.3] - 2026-04-03
 
 ### Changed
