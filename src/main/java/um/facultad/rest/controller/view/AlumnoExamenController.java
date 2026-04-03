@@ -6,6 +6,7 @@ package um.facultad.rest.controller.view;
 import java.math.BigDecimal;
 import java.util.List;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,23 +24,24 @@ import um.facultad.rest.service.view.AlumnoExamenService;
  */
 @RestController
 @RequestMapping("/alumnoexamen")
+@RequiredArgsConstructor
 public class AlumnoExamenController {
-	@Autowired
-	private AlumnoExamenService service;
+
+	private final AlumnoExamenService service;
 	
 	@GetMapping("/48horas/{personaId}/{documentoId}/{facultadId}")
 	public ResponseEntity<List<AlumnoExamen>> findAllByPersona(@PathVariable BigDecimal personaId, @PathVariable Integer documentoId, @PathVariable Integer facultadId) {
-		return new ResponseEntity<List<AlumnoExamen>>(service.findAllByPersona(personaId, documentoId, facultadId, 2), HttpStatus.OK);
+		return ResponseEntity.ok(service.findAllByPersona(personaId, documentoId, facultadId, 2));
 	}
 	
 	@GetMapping("/48horascantidad/{personaId}/{documentoId}/{facultadId}")
 	public ResponseEntity<Integer> countAllByPersona(@PathVariable BigDecimal personaId, @PathVariable Integer documentoId, @PathVariable Integer facultadId) {
-		return new ResponseEntity<Integer>(service.findAllByPersona(personaId, documentoId, facultadId, 2).size(), HttpStatus.OK);
+		return ResponseEntity.ok(service.findAllByPersona(personaId, documentoId, facultadId, 2).size());
 	}
 	
 	@GetMapping("/days/{personaId}/{documentoId}/{facultadId}/{days}")
 	public ResponseEntity<List<AlumnoExamen>> findAllByPersonaDays(@PathVariable BigDecimal personaId, @PathVariable Integer documentoId, @PathVariable Integer facultadId, @PathVariable Integer days) {
-		return new ResponseEntity<List<AlumnoExamen>>(service.findAllByPersona(personaId, documentoId, facultadId, days), HttpStatus.OK);
+		return ResponseEntity.ok(service.findAllByPersona(personaId, documentoId, facultadId, days));
 	}
 	
 }
