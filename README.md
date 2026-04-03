@@ -114,6 +114,7 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE.md](LICENSE.m
 🟢 Activo - En desarrollo activo
 
 ### Últimas Actualizaciones
+- Configuración de SonarCloud para análisis de código estático
 - Actualización a Spring Boot 4.0.5 y SpringDoc OpenAPI 3.0.2
 - Actualización de OpenPDF a 3.0.3
 - Refactorización de AlumnoExamenController y AlumnoExamenService con inyección por constructor
