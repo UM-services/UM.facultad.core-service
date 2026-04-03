@@ -14,11 +14,11 @@ Este servicio proporciona la funcionalidad core para la gestión de facultades, 
 ## 🛠️ Tecnologías Utilizadas
 
 - Java 25
-- Spring Boot 4.0.2
+- Spring Boot 4.0.5
 - MySQL 9.6.0
 - Apache POI 5.5.1
-- OpenPDF 3.0.1
-- SpringDoc OpenAPI 3.0.1
+- OpenPDF 3.0.3
+- SpringDoc OpenAPI 3.0.2
 - Spring Security
 - Lombok
 - Docker
@@ -114,8 +114,10 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE.md](LICENSE.m
 🟢 Activo - En desarrollo activo
 
 ### Últimas Actualizaciones
+- Actualización a Spring Boot 4.0.5 y SpringDoc OpenAPI 3.0.2
+- Actualización de OpenPDF a 3.0.3
+- Refactorización de AlumnoExamenController y AlumnoExamenService con inyección por constructor
 - Migración completa a Java eliminando Kotlin
-- Actualización a Spring Boot 4.0.0-M3
 - Implementación de Spring Security
 - Adición de tests unitarios
 - Generación automática de documentación via GitHub Actions
