@@ -5,6 +5,25 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.3] - 2026-04-03
+
+### Changed
+- Actualización de GitHub Actions en pipeline de documentación:
+  - actions/checkout@v4 → @v6
+  - actions/setup-java@v4 → @v5
+  - actions/upload-pages-artifact@v3 → @v4
+  - actions/deploy-pages@v4 → @v5
+
+### Changed
+- Actualización de GitHub Actions en pipeline Maven:
+  - actions/checkout@v4 → @v6
+  - actions/setup-java@v4 → @v5 (JDK 24 → 25)
+  - actions/cache@v4 → @v5
+  - docker/login-action@v3 → @v4
+  - docker/metadata-action@v5 → @v6
+  - docker/setup-buildx-action@v3 → @v4
+  - docker/build-push-action@v6 → @v7
+
 ## [1.3.2] - 2026-04-03
 
 ### Added

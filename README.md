@@ -113,16 +113,15 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE.md](LICENSE.m
 
 🟢 Activo - En desarrollo activo
 
+### Versión Actual
+**1.3.3**
+
 ### Últimas Actualizaciones
+- Actualización de GitHub Actions (v4 → v6) en pipelines de documentación y Maven
+- Actualización de JDK de 24 a 25 en pipeline Maven
+- Actualización de acciones de Docker a últimas versiones
 - Configuración de SonarCloud para análisis de código estático
 - Actualización a Spring Boot 4.0.5 y SpringDoc OpenAPI 3.0.2
-- Actualización de OpenPDF a 3.0.3
-- Refactorización de AlumnoExamenController y AlumnoExamenService con inyección por constructor
-- Migración completa a Java eliminando Kotlin
-- Implementación de Spring Security
-- Adición de tests unitarios
-- Generación automática de documentación via GitHub Actions
-- Refactorización completa de inyección de dependencias
 
 ## 💬 Soporte
 
