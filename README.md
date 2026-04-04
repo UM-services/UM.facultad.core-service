@@ -114,10 +114,10 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE.md](LICENSE.m
 🟢 Activo - En desarrollo activo
 
 ### Versión Actual
-**1.3.4**
+**1.3.5**
 
 ### Últimas Actualizaciones
-- Actualización de configuración de GitHub Actions: variable `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true` para Node.js 24
+- Resolución de advertencias de GitHub Actions (eliminación de `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24`)
 - Actualización de GitHub Actions (v4 → v6) en pipelines de documentación y Maven
 - Actualización de JDK de 24 a 25 en pipeline Maven
 - Actualización de acciones de Docker a últimas versiones
