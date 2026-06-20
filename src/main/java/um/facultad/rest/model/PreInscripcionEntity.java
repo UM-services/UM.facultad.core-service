@@ -57,7 +57,7 @@ public class PreInscripcionEntity implements Serializable {
 	private Integer turnoId;
 
 	@Column(name = "pin_fecha")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ssZ", timezone = "UTC")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ssXX", timezone = "UTC")
 	private OffsetDateTime fecha;
 
 	@Column(name = "pin_chequera")

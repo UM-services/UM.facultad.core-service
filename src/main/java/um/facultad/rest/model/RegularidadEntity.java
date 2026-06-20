@@ -60,7 +60,7 @@ public class RegularidadEntity implements Serializable {
 	@Column(name = "idmateria")
 	private String materiaId;
 
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ssZ", timezone = "UTC")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ssXX", timezone = "UTC")
 	private OffsetDateTime fecha;
 
 	@Column(name = "reg_externa")
@@ -73,7 +73,7 @@ public class RegularidadEntity implements Serializable {
 	private Byte impresa = 0;
 
 	@Column(name = "reg_vencimiento")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ssZ", timezone = "UTC")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ssXX", timezone = "UTC")
 	private OffsetDateTime vencimiento;
 
 }
