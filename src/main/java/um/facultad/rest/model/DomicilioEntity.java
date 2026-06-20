@@ -40,7 +40,7 @@ public class DomicilioEntity implements Serializable {
 	@Column(name = "clave")
 	private Long domicilioId;
 
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ssZ", timezone = "UTC")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ssXX", timezone = "UTC")
 	private OffsetDateTime fecha = OffsetDateTime.now();
 
 	private String calle = "";

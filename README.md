@@ -14,11 +14,11 @@ Este servicio proporciona la funcionalidad core para la gestión de facultades, 
 ## 🛠️ Tecnologías Utilizadas
 
 - Java 25
-- Spring Boot 4.0.5
-- MySQL 9.6.0
+- Spring Boot 4.1.0
+- MySQL 9.7.0
 - Apache POI 5.5.1
-- OpenPDF 3.0.3
-- SpringDoc OpenAPI 3.0.2
+- OpenPDF 3.0.5
+- SpringDoc OpenAPI 3.0.3
 - Spring Security
 - Lombok
 - Docker
@@ -29,7 +29,7 @@ Este servicio proporciona la funcionalidad core para la gestión de facultades, 
 - Java 25 o superior
 - Maven 3.8+
 - Docker (opcional)
-- MySQL 5.7+
+- MySQL 8.0+
 
 ## 🚀 Instalación
 
@@ -114,15 +114,11 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE.md](LICENSE.m
 🟢 Activo - En desarrollo activo
 
 ### Versión Actual
-**1.3.5**
+**1.3.6**
 
 ### Últimas Actualizaciones
-- Resolución de advertencias de GitHub Actions (eliminación de `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24`)
-- Actualización de GitHub Actions (v4 → v6) en pipelines de documentación y Maven
-- Actualización de JDK de 24 a 25 en pipeline Maven
-- Actualización de acciones de Docker a últimas versiones
-- Configuración de SonarCloud para análisis de código estático
-- Actualización a Spring Boot 4.0.5 y SpringDoc OpenAPI 3.0.2
+- Actualización a Spring Boot 4.1.0, MySQL Connector 9.7.0, SpringDoc OpenAPI 3.0.3, OpenPDF 3.0.5
+- Corrección del formato de fecha ISO 8601 en todas las entidades (patrón `XX` con separador de dos puntos)
 
 ## 💬 Soporte
 

@@ -5,6 +5,18 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.6] - 2026-06-19
+
+### Changed
+- Actualización de Spring Boot de 4.0.5 a 4.1.0
+- Actualización de MySQL Connector de 9.6.0 a 9.7.0
+- Actualización de SpringDoc OpenAPI de 3.0.2 a 3.0.3
+- Actualización de OpenPDF de 3.0.3 a 3.0.5
+- Actualización de tomcat-embed-core de 11.0.20 a 11.0.22
+
+### Fixed
+- Corrección del formato de fecha ISO 8601: cambio de patrón `Z` a `XX` para incluir separador de dos puntos en el offset de zona horaria en todas las entidades
+
 ## [1.3.5] - 2026-04-03
 
 ### Fixed
