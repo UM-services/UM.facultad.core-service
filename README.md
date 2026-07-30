@@ -106,6 +106,7 @@ El proyecto sigue una **Arquitectura Hexagonal (Ports & Adapters)** organizada e
 - `MatriculacionContextController` (hexagonal): Contexto de matriculación
 - `AutoMatriculaController`: Proceso de automatriculación
 - `DomicilioController`: Manejo de domicilios
+- `InscripcionFullDto`: DTO agregado con datos de inscripción, pago, persona y domicilio (`GET /inscripcion/full/...`)
 
 ## 🤝 Contribución
 
@@ -128,14 +129,12 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE.md](LICENSE.m
 🟢 Activo - En desarrollo activo
 
 ### Versión Actual
-**1.4.0**
+**1.5.0**
 
 ### Últimas Actualizaciones
-- Migración completa a Arquitectura Hexagonal (Ports & Adapters) para los módulos carreras, inscripciones y matriculación
-- Nuevo módulo TesoreriaEstado con arquitectura hexagonal
-- Reorganización del módulo de matriculación bajo el contexto de inscripciones
-- Actualización de MySQL Connector a 26.7.0
-- Actualización de tomcat-embed-core a 11.0.24
+- Nuevo endpoint `/inscripcion/full` que retorna datos agregados de inscripción, pago, persona y domicilio
+- Nuevo `InscripcionFullDto` con datos consolidados de inscripción y pagador
+- Refactorización de `InscripcionFullDto` para usar dominio en lugar de entidad JPA
 
 ## 💬 Soporte
 

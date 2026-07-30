@@ -5,6 +5,19 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.0] - 2026-07-30
+
+### Added
+- Nuevo endpoint `GET /inscripcion/full/{facultadId}/{personaId}/{documentoId}/{lectivoId}` que retorna un `InscripcionFullDto` con datos agregados de:
+  - `Inscripcion` (domain model)
+  - `InscripcionPagoEntity` (información de pago)
+  - `PersonaEntity` (persona pagadora)
+  - `DomicilioEntity` (domicilio del pagador)
+- Nuevo método `findInscripcionFull()` en `InscripcionService` que integra datos de inscripción, pagos, persona y domicilio
+
+### Changed
+- Refactorización de `InscripcionFullDto`: el campo `inscripcion` cambió de tipo `InscripcionEntity` a `Inscripcion` (domain model) para alinearse con la arquitectura hexagonal
+
 ## [1.4.0] - 2026-07-30
 
 ### Added

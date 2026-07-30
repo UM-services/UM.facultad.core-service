@@ -33,3 +33,25 @@ erDiagram
         BigDecimal personaId
         Integer documentoId
     }
+    INSCRIPCION ||--o{ INSCRIPCION_PAGO : tiene
+    INSCRIPCION_PAGO {
+        Long inscripcionPagoId PK
+        BigDecimal personaId
+        Integer documentoId
+        Integer facultadId
+        Integer lectivoId
+        BigDecimal personaIdPagador
+        Integer documentoIdPagador
+    }
+    TESORERIA_ESTADO {
+        Long tesoreriaEstadoId PK
+        Integer facultadId
+        BigDecimal personaId
+        Integer documentoId
+        BigDecimal deuda
+        Byte manual
+        Byte importado
+        String observaciones
+        OffsetDateTime fechaTope
+        String uuid
+    }
