@@ -21,13 +21,15 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Service;
 
+import um.facultad.rest.hexagonal.carreras.carrera.domain.model.Carrera;
+import um.facultad.rest.hexagonal.inscripciones.inscripcion.domain.model.Inscripcion;
 import um.facultad.rest.model.*;
-import um.facultad.rest.service.CarreraService;
+import um.facultad.rest.hexagonal.carreras.carrera.application.service.CarreraService;
 import um.facultad.rest.service.EstadoAlumnoService;
 import um.facultad.rest.service.EstadoService;
 import um.facultad.rest.service.FacultadService;
 import um.facultad.rest.service.GeograficaService;
-import um.facultad.rest.service.InscripcionService;
+import um.facultad.rest.hexagonal.inscripciones.inscripcion.application.service.InscripcionService;
 import um.facultad.rest.service.LectivoService;
 import um.facultad.rest.service.LegajoService;
 import um.facultad.rest.service.PersonaService;
@@ -91,17 +93,17 @@ public class SheetService {
 		this.setCellString(row, 4, "Documento", style_normal);
 		this.setCellString(row, 5, "Carrera", style_normal);
 
-		Map<BigDecimal, InscripcionEntity> inscriptos = inscripcionService
+		Map<BigDecimal, Inscripcion> inscriptos = inscripcionService
 				.findAllByCurso(facultadId, lectivoId, geograficaId, curso).stream()
-				.collect(Collectors.toMap(InscripcionEntity::getPersonaId, inscripcion -> inscripcion));
+				.collect(Collectors.toMap(Inscripcion::getPersonaId, inscripcion -> inscripcion));
 		List<BigDecimal> numeros = new ArrayList<BigDecimal>(inscriptos.keySet());
 		Map<BigDecimal, LegajoEntity> legajos = legajoService.findAllByPersonaIdInAndFacultadId(numeros, facultadId).stream()
 				.collect(Collectors.toMap(LegajoEntity::getPersonaId, legajo -> legajo));
 		Map<BigDecimal, EstadoEntity> estados = estadoService.findAllByPersonaIdInAndFacultadId(numeros, facultadId).stream()
 				.collect(Collectors.toMap(EstadoEntity::getPersonaId, estado -> estado));
 		// Carreras
-		Map<String, CarreraEntity> carreras = carreraService.findAll().stream()
-				.collect(Collectors.toMap(CarreraEntity::getKey, carrera -> carrera));
+		Map<String, Carrera> carreras = carreraService.findAll().stream()
+				.collect(Collectors.toMap(Carrera::getKey, carrera -> carrera));
 
 		Integer orden = 0;
 		for (PersonaEntity persona : personaService.findAllByPersonaIdIn(numeros)) {
@@ -114,7 +116,7 @@ public class SheetService {
 				estado = estadoAlumnoService.findByEstadoId(estados.get(persona.getPersonaId()).getEstadoId())
 						.getIniciales();
 			}
-			InscripcionEntity inscripcion = inscriptos.get(persona.getPersonaId());
+			Inscripcion inscripcion = inscriptos.get(persona.getPersonaId());
 			String key = inscripcion.getFacultadId() + "." + inscripcion.getPlanId() + "." + inscripcion.getCarreraId();
 			String carrera = "";
 			if (carreras.containsKey(key))

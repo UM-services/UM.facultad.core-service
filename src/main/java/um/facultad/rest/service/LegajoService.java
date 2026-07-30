@@ -13,7 +13,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import um.facultad.rest.exception.LegajoException;
-import um.facultad.rest.model.InscripcionEntity;
+import um.facultad.rest.hexagonal.inscripciones.inscripcion.application.service.InscripcionService;
+import um.facultad.rest.hexagonal.inscripciones.inscripcion.domain.model.Inscripcion;
 import um.facultad.rest.model.LegajoEntity;
 import um.facultad.rest.model.PreInscripcionEntity;
 import um.facultad.rest.model.view.LegajoKey;
@@ -44,8 +45,8 @@ public class LegajoService {
 	}
 
 	public List<LegajoEntity> numeraByLectivoId(Integer facultadId, Integer lectivoId) {
-		Map<String, InscripcionEntity> inscripciones = inscripcionService.findAllByLectivo(facultadId, lectivoId).stream()
-				.collect(Collectors.toMap(InscripcionEntity::getKey, inscripcion -> inscripcion));
+		Map<String, Inscripcion> inscripciones = inscripcionService.findAllByLectivo(facultadId, lectivoId).stream()
+				.collect(Collectors.toMap(Inscripcion::getKey, inscripcion -> inscripcion));
 		List<LegajoKey> sin_legajos = legajokeyService.findAllByFacultadIdAndIntercambioAndNumerolegajoAndPersonakeyIn(
 				facultadId, (byte) 0, 0L, inscripciones.keySet());
 		List<LegajoEntity> legajos = new ArrayList<LegajoEntity>();

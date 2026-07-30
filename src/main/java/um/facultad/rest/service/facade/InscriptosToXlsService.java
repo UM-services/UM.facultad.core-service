@@ -19,14 +19,14 @@ import org.springframework.stereotype.Service;
 
 import um.facultad.rest.exception.DivisionException;
 import um.facultad.rest.exception.DomicilioException;
-import um.facultad.rest.exception.MateriaException;
+import um.facultad.rest.hexagonal.carreras.materia.application.exception.MateriaException;
 import um.facultad.rest.model.DivisionEntity;
 import um.facultad.rest.model.DomicilioEntity;
-import um.facultad.rest.model.MateriaEntity;
+import um.facultad.rest.hexagonal.carreras.materia.domain.model.Materia;
 import um.facultad.rest.model.view.InscriptoMateria;
 import um.facultad.rest.service.DivisionService;
 import um.facultad.rest.service.DomicilioService;
-import um.facultad.rest.service.MateriaService;
+import um.facultad.rest.hexagonal.carreras.materia.application.service.MateriaService;
 import um.facultad.rest.service.view.InscriptoMateriaService;
 
 /**
@@ -58,7 +58,7 @@ public class InscriptosToXlsService {
 		String filename = path + "lista-" + facultadId + "-" + lectivoId + "-" + planId + "-" + materiaId + "-"
 				+ cursoId + "-" + periodoId + "-" + divisionId + "-" + geograficaId + ".xls";
 
-		MateriaEntity materia = new MateriaEntity();
+		Materia materia = new Materia();
 		try {
 			materia = materiaService.findByUnique(facultadId, planId, materiaId);
 		} catch (MateriaException e) {

@@ -13,9 +13,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import um.facultad.rest.exception.LegajoException;
+import um.facultad.rest.hexagonal.inscripciones.inscripcion.domain.model.Inscripcion;
+import um.facultad.rest.hexagonal.inscripciones.inscripcionDetalle.domain.model.InscripcionDetalle;
+import um.facultad.rest.hexagonal.inscripciones.inscripcionDetalle.infrastructure.persistence.entity.InscripcionDetalleEntity;
 import um.facultad.rest.model.*;
-import um.facultad.rest.service.InscripcionDetalleService;
-import um.facultad.rest.service.InscripcionService;
+import um.facultad.rest.hexagonal.inscripciones.inscripcionDetalle.application.service.InscripcionDetalleService;
+import um.facultad.rest.hexagonal.inscripciones.inscripcion.application.service.InscripcionService;
 import um.facultad.rest.service.LegajoService;
 import um.facultad.rest.service.MateriaCursoService;
 import um.facultad.rest.service.PreInscripcionService;
@@ -37,12 +40,12 @@ public class AutoMatriculaService {
 	private final InscripcionDetalleService inscripciondetalleservice;
 
 	@Transactional
-	public List<InscripcionEntity> auto_matricula_pre(Integer facultadId, Integer lectivoId, Integer geograficaId,
+	public List<Inscripcion> auto_matricula_pre(Integer facultadId, Integer lectivoId, Integer geograficaId,
                                                       Integer turnoId) {
-		List<InscripcionEntity> inscriptos = new ArrayList<InscripcionEntity>();
-		Map<BigDecimal, InscripcionEntity> oldies = inscripcionservice.findAllByLectivo(facultadId, lectivoId).stream()
-				.collect(Collectors.toMap(InscripcionEntity::getPersonaId, inscripcion -> inscripcion));
-		List<InscripcionDetalleEntity> materias = new ArrayList<InscripcionDetalleEntity>();
+		List<Inscripcion> inscriptos = new ArrayList<Inscripcion>();
+		Map<BigDecimal, Inscripcion> oldies = inscripcionservice.findAllByLectivo(facultadId, lectivoId).stream()
+				.collect(Collectors.toMap(Inscripcion::getPersonaId, inscripcion -> inscripcion));
+		List<InscripcionDetalle> materias = new ArrayList<>();
 		// Por cada alumno del pre genera una matrícula a 1er año
 		for (PreInscripcionEntity preinscripcion : preinscripcionservice.findAllByTurno(facultadId, lectivoId, geograficaId,
 				turnoId)) {
@@ -57,21 +60,21 @@ public class AutoMatriculaService {
 			if (oldies.containsKey(preinscripcion.getPersonaId())) {
 				inscripcionId = oldies.get(preinscripcion.getPersonaId()).getInscripcionId();
 			}
-			inscriptos.add(new InscripcionEntity(preinscripcion.getFacultadId(), preinscripcion.getPersonaId(),
+			inscriptos.add(new Inscripcion(preinscripcion.getFacultadId(), preinscripcion.getPersonaId(),
 					preinscripcion.getDocumentoId(), lectivoId, inscripcionId, Tool.dateAbsoluteArgentina(), "", "", 0L,
 					1, legajo.getPlanId(), legajo.getCarreraId(), preinscripcion.getGeograficaId(), (byte) 0, (byte) 0,
 					1989 + lectivoId, (byte) 0, (byte) 0, 0, "Automatricula", 0, 0, 0, (byte) 0));
 			// Buscar y registrar las materias de 1er año
-			Map<String, InscripcionDetalleEntity> detalles = inscripciondetalleservice
+			Map<String, InscripcionDetalle> detalles = inscripciondetalleservice
 					.findAllByPersona(preinscripcion.getPersonaId(), preinscripcion.getDocumentoId(), facultadId,
 							lectivoId)
-					.stream().collect(Collectors.toMap(InscripcionDetalleEntity::getMateriaId, detalle -> detalle));
+					.stream().collect(Collectors.toMap(InscripcionDetalle::getMateriaId, detalle -> detalle));
 			for (MateriaCursoEntity materiacurso : materiacursoservice.findAllByCurso(preinscripcion.getFacultadId(),
 					legajo.getPlanId(), legajo.getCarreraId(), 1)) {
 				Long inscripciondetalleId = null;
 				if (detalles.containsKey(materiacurso.getMateriaId()))
 					inscripciondetalleId = detalles.get(materiacurso.getMateriaId()).getInscripciondetalleId();
-				materias.add(new InscripcionDetalleEntity(preinscripcion.getPersonaId(), preinscripcion.getDocumentoId(),
+				materias.add(new InscripcionDetalle(preinscripcion.getPersonaId(), preinscripcion.getDocumentoId(),
 						lectivoId, facultadId, materiacurso.getPlanId(), materiacurso.getMateriaId(),
 						inscripciondetalleId, materiacurso.getCurso(), materiacurso.getPeriodo(), 0, (byte) 0, (byte) 0,
 						(byte) 0, (byte) 0, (byte) 0, null));

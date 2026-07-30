@@ -1,17 +1,17 @@
 sequenceDiagram
-    participant U as Usuario
-    participant C as Controller
-    participant S as Service
-    participant R as Repository
-    participant DB as Database
+    actor U as Usuario
+    participant C as Controller REST
+    participant UC as Application Service<br/>(Use Case)
+    participant AD as JPA Adapter
+    participant DB as MySQL Database
 
     U->>C: POST /inscripcion
-    C->>S: procesarInscripcion()
-    S->>R: save(inscripcion)
-    R->>DB: INSERT
-    DB-->>R: OK
-    R-->>S: Inscripcion
-    S->>S: generarDocumentos()
-    S->>S: enviarEmail()
-    S-->>C: Response
-    C-->>U: 201 Created
+    C->>UC: execute(domainModel)
+    UC->>AD: save(entity)
+    AD->>DB: INSERT
+    DB-->>AD: OK
+    AD-->>UC: entitySaved
+    UC->>UC: generarDocumentos()
+    UC->>UC: enviarEmail()
+    UC-->>C: domainModelResult
+    C-->>U: 201 Created (ResponseDTO)
