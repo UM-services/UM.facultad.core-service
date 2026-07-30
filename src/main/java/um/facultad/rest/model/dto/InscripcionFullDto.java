@@ -4,8 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import um.facultad.rest.hexagonal.inscripciones.inscripcion.domain.model.Inscripcion;
 import um.facultad.rest.model.DomicilioEntity;
-import um.facultad.rest.hexagonal.inscripciones.inscripcion.infrastructure.persistence.entity.InscripcionEntity;
 import um.facultad.rest.model.InscripcionPagoEntity;
 import um.facultad.rest.model.PersonaEntity;
 
@@ -15,7 +15,7 @@ import um.facultad.rest.model.PersonaEntity;
 @AllArgsConstructor
 public class InscripcionFullDto {
 
-    private InscripcionEntity inscripcion;
+    private Inscripcion inscripcion;
     private InscripcionPagoEntity inscripcionPago;
     private PersonaEntity personaPago;
     private DomicilioEntity domicilioPago;

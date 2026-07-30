@@ -8,6 +8,7 @@ import um.facultad.rest.hexagonal.inscripciones.inscripcion.application.exceptio
 import um.facultad.rest.hexagonal.inscripciones.inscripcion.application.service.InscripcionService;
 import um.facultad.rest.hexagonal.inscripciones.inscripcion.infrastructure.web.dto.InscripcionResponse;
 import um.facultad.rest.hexagonal.inscripciones.inscripcion.infrastructure.web.mapper.InscripcionDtoMapper;
+import um.facultad.rest.model.dto.InscripcionFullDto;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -68,6 +69,16 @@ public class InscripcionController {
             return new ResponseEntity<>(inscripcionDtoMapper.toResponse(inscripcion), HttpStatus.OK);
         } catch (InscripcionException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage(), e);
+        }
+    }
+
+    @GetMapping("/full/{facultadId}/{personaId}/{documentoId}/{lectivoId}")
+    public ResponseEntity<InscripcionFullDto> findInscripcionFull(@PathVariable Integer facultadId,
+                                                                  @PathVariable BigDecimal personaId, @PathVariable Integer documentoId, @PathVariable Integer lectivoId) {
+        try {
+            return ResponseEntity.ok(service.findInscripcionFull(facultadId, personaId, documentoId, lectivoId));
+        } catch (InscripcionException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
     }
 

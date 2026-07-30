@@ -4,6 +4,22 @@ sequenceDiagram
     participant UC as Application Service<br/>(Use Case)
     participant AD as JPA Adapter
     participant DB as MySQL Database
+    participant PS as PersonaService
+    participant DS as DomicilioService
+    participant IPS as InscripcionPagoService
+
+    U->>C: GET /inscripcion/full/{facultadId}/{personaId}/{documentoId}/{lectivoId}
+    C->>UC: findInscripcionFull()
+    UC->>UC: findByUnique()
+    UC-->>C: inscripcion
+    UC->>IPS: findByUnique()
+    IPS-->>UC: inscripcionPago
+    UC->>PS: findByPersonaIdAndDocumentoId()
+    PS-->>UC: personaPago
+    UC->>DS: findByPersonaIdAndDocumentoId()
+    DS-->>UC: domicilioPago
+    UC-->>C: InscripcionFullDto
+    C-->>U: 200 OK (InscripcionFullDto)
 
     U->>C: POST /inscripcion
     C->>UC: execute(domainModel)
