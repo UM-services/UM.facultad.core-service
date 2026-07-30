@@ -5,6 +5,33 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.0] - 2026-07-30
+
+### Added
+- Nuevo módulo `tesoreriaEstado` con arquitectura hexagonal completa:
+  - Domain: modelo `TesoreriaEstado`, puerto `FindTesoreriaEstadoByUniqueUseCase`, repositorio `TesoreriaRepository`
+  - Application: servicio `TesoreriaEstadoService`, implementación `FindTesoreriaEstadoByUniqueUseCaseImpl`
+  - Infrastructure: controlador REST, entidad JPA, mapper, adapter, DTO response
+
+### Changed
+- Migración completa de los módulos `carreras` (carrera, materia, plan) a Arquitectura Hexagonal (Ports & Adapters)
+- Migración completa de los módulos `inscripciones` (inscripcion, inscripcionDetalle) a Arquitectura Hexagonal
+- Reorganización del módulo `matriculacion` de `um.facultad.rest.hexagonal.matriculacion` a `um.facultad.rest.hexagonal.inscripciones.matriculacion`
+- Actualización de dependencias:
+  - MySQL Connector de 9.7.0 a 26.7.0
+  - Tomcat Embed Core de 11.0.22 a 11.0.24
+- Refactorización de `PendienteInfoService`: migración de `@Autowired` a inyección por constructor (`@RequiredArgsConstructor`)
+- Actualización de imports en servicios legacy (`LegajoService`, `AutoMatriculaService`, `SheetService`, `MatriculaToPdfService`, `MailService`, `InscriptosToXlsService`, `PendienteInfoService`) para usar domain models en lugar de entities directas
+
+### Removed
+- Eliminación de servicios legacy: `CarreraService`, `PlanService`, `MateriaService`, `InscripcionService`, `InscripcionDetalleService`
+- Eliminación de repositorios legacy: `CarreraRepository`, `PlanRepository`, `InscripcionDetalleRepository`
+- Eliminación de controladores legacy: `CarreraController`, `PlanController`, `InscripcionController`, `InscripcionDetalleController`
+- Eliminación de excepciones legacy: `CarreraException`, `InscripcionException`
+- Eliminación de `CarreraEntity` del paquete `model`
+- Eliminación de entidades duplicadas de dominio del módulo `matriculacion` (Carrera, Inscripcion, Materia, Plan)
+- Eliminación de `logback-spring.xml`
+
 ## [1.3.6] - 2026-06-19
 
 ### Changed

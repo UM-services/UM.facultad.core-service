@@ -7,24 +7,24 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import um.facultad.rest.model.InscripcionEntity;
+import um.facultad.rest.hexagonal.inscripciones.inscripcion.domain.model.Inscripcion;
 import um.facultad.rest.model.MateriaCarreraEntity;
 import um.facultad.rest.model.dto.PendienteInfo;
-import um.facultad.rest.service.CarreraService;
+import um.facultad.rest.hexagonal.carreras.carrera.application.service.CarreraService;
 import um.facultad.rest.service.DocumentoService;
 import um.facultad.rest.service.FacultadService;
 import um.facultad.rest.service.GeograficaService;
-import um.facultad.rest.service.InscripcionDetalleService;
-import um.facultad.rest.service.InscripcionService;
+import um.facultad.rest.hexagonal.inscripciones.inscripcionDetalle.application.service.InscripcionDetalleService;
+import um.facultad.rest.hexagonal.inscripciones.inscripcion.application.service.InscripcionService;
 import um.facultad.rest.service.LectivoService;
 import um.facultad.rest.service.MateriaCarreraService;
 import um.facultad.rest.service.MateriaCursoService;
-import um.facultad.rest.service.MateriaService;
+import um.facultad.rest.hexagonal.carreras.materia.application.service.MateriaService;
 import um.facultad.rest.service.PersonaService;
-import um.facultad.rest.service.PlanService;
+import um.facultad.rest.hexagonal.carreras.plan.application.service.PlanService;
 import um.facultad.rest.service.RegularidadService;
 
 /**
@@ -32,46 +32,22 @@ import um.facultad.rest.service.RegularidadService;
  *
  */
 @Service
+@RequiredArgsConstructor
 public class PendienteInfoService {
 
-	@Autowired
-	private FacultadService facultadservice;
-
-	@Autowired
-	private LectivoService lectivoservice;
-
-	@Autowired
-	private GeograficaService geograficaservice;
-
-	@Autowired
-	private DocumentoService documentoservice;
-
-	@Autowired
-	private PersonaService personaservice;
-
-	@Autowired
-	private InscripcionService inscripcionservice;
-
-	@Autowired
-	private PlanService planservice;
-
-	@Autowired
-	private CarreraService carreraservice;
-
-	@Autowired
-	private InscripcionDetalleService inscripciondetalleservice;
-
-	@Autowired
-	private MateriaService materiaservice;
-
-	@Autowired
-	private MateriaCarreraService materiacarreraservice;
-
-	@Autowired
-	private MateriaCursoService materiacursoservice;
-
-	@Autowired
-	private RegularidadService regularidadservice;
+	private final FacultadService facultadservice;
+	private final LectivoService lectivoservice;
+	private final GeograficaService geograficaservice;
+	private final DocumentoService documentoservice;
+	private final PersonaService personaservice;
+	private final InscripcionService inscripcionservice;
+	private final PlanService planservice;
+	private final CarreraService carreraservice;
+	private final InscripcionDetalleService inscripciondetalleservice;
+	private final MateriaService materiaservice;
+	private final MateriaCarreraService materiacarreraservice;
+	private final MateriaCursoService materiacursoservice;
+	private final RegularidadService regularidadservice;
 
 	public PendienteInfo findByAlumno(Integer facultadId, Integer lectivoId, Integer geograficaId, BigDecimal personaId,
 			Integer documentoId) {
@@ -81,7 +57,7 @@ public class PendienteInfoService {
 		info.setGeografica(geograficaservice.findByGeograficaId(geograficaId));
 		info.setDocumento(documentoservice.findByDocumentoId(documentoId));
 		info.setPersona(personaservice.findByPersonaIdAndDocumentoId(personaId, documentoId));
-		InscripcionEntity inscripcion = null;
+		Inscripcion inscripcion = null;
 		info.setInscripcion(
 				inscripcion = inscripcionservice.findByUnique(facultadId, personaId, documentoId, lectivoId));
 		info.setPlan(planservice.findByUnique(inscripcion.getFacultadId(), inscripcion.getPlanId()));
@@ -96,7 +72,7 @@ public class PendienteInfoService {
 				inscripcion.getCarreraId()));
 		info.setRegularidades(regularidadservice.findAllByMaterias(personaId, documentoId, inscripcion.getFacultadId(),
 				inscripcion.getPlanId(),
-				materias.stream().map(materia -> materia.getMateriaId()).collect(Collectors.toList())));
+				materias.stream().map(MateriaCarreraEntity::getMateriaId).collect(Collectors.toList())));
 		info.setInscripciones(inscripcionservice.findAllAnteriores(personaId, documentoId, facultadId, lectivoId));
 		return info;
 	}

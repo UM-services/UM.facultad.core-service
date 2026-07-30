@@ -9,13 +9,14 @@ Este servicio proporciona la funcionalidad core para la gestión de facultades, 
 - Manejo de domicilios
 - Procesamiento de pagos
 - Automatriculación
+- Estado de tesorería
 - Integración con servicios externos
 
 ## 🛠️ Tecnologías Utilizadas
 
 - Java 25
 - Spring Boot 4.1.0
-- MySQL 9.7.0
+- MySQL Connector 26.7.0
 - Apache POI 5.5.1
 - OpenPDF 3.0.5
 - SpringDoc OpenAPI 3.0.3
@@ -79,19 +80,32 @@ mvn test
 
 ## 🏗️ Arquitectura
 
-El proyecto sigue una arquitectura en capas:
-- Controllers: Endpoints REST
-- Services: Lógica de negocio
-- Repositories: Acceso a datos
-- Models: Entidades y DTOs
-- Exceptions: Manejo de errores personalizado
+El proyecto sigue una **Arquitectura Hexagonal (Ports & Adapters)** organizada en bounded contexts:
+
+### Bounded Contexts
+
+- **carreras**: Gestión de carreras, planes y materias
+- **inscripciones**: Gestión de inscripciones, detalle de inscripciones y matriculación
+- **tesoreriaEstado**: Consulta de estado de tesorería
+
+### Capas por Contexto
+
+- **Domain**: Modelos de dominio y puertos (interfaces)
+- **Application**: Casos de uso (servicios de aplicación)
+- **Infrastructure - Web**: Controladores REST y DTOs
+- **Infrastructure - Persistence**: Adaptadores JPA, entidades y repositorios
 
 ### Principales Componentes
 
-- `InscripcionController`: Gestión de inscripciones
+- `CarreraController` (hexagonal): Gestión de carreras
+- `InscripcionController` (hexagonal): Gestión de inscripciones
+- `InscripcionDetalleController` (hexagonal): Detalle de inscripciones
+- `PlanController` (hexagonal): Gestión de planes de estudio
+- `MateriaController` (hexagonal): Gestión de materias
+- `TesoreriaEstadoController` (hexagonal): Estado de tesorería
+- `MatriculacionContextController` (hexagonal): Contexto de matriculación
+- `AutoMatriculaController`: Proceso de automatriculación
 - `DomicilioController`: Manejo de domicilios
-- `AutoMatriculaService`: Proceso de automatriculación
-- `InscripcionPago`: Gestión de pagos de inscripción
 
 ## 🤝 Contribución
 
@@ -114,11 +128,14 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE.md](LICENSE.m
 🟢 Activo - En desarrollo activo
 
 ### Versión Actual
-**1.3.6**
+**1.4.0**
 
 ### Últimas Actualizaciones
-- Actualización a Spring Boot 4.1.0, MySQL Connector 9.7.0, SpringDoc OpenAPI 3.0.3, OpenPDF 3.0.5
-- Corrección del formato de fecha ISO 8601 en todas las entidades (patrón `XX` con separador de dos puntos)
+- Migración completa a Arquitectura Hexagonal (Ports & Adapters) para los módulos carreras, inscripciones y matriculación
+- Nuevo módulo TesoreriaEstado con arquitectura hexagonal
+- Reorganización del módulo de matriculación bajo el contexto de inscripciones
+- Actualización de MySQL Connector a 26.7.0
+- Actualización de tomcat-embed-core a 11.0.24
 
 ## 💬 Soporte
 

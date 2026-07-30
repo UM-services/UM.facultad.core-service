@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import um.facultad.rest.model.DomicilioEntity;
-import um.facultad.rest.model.InscripcionEntity;
+import um.facultad.rest.hexagonal.inscripciones.inscripcion.infrastructure.persistence.entity.InscripcionEntity;
 import um.facultad.rest.model.InscripcionPagoEntity;
 import um.facultad.rest.model.PersonaEntity;
 

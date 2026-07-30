@@ -14,11 +14,11 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
-import um.facultad.rest.exception.MateriaException;
-import um.facultad.rest.model.MateriaEntity;
+import um.facultad.rest.hexagonal.carreras.materia.application.exception.MateriaException;
+import um.facultad.rest.hexagonal.carreras.materia.domain.model.Materia;
 import um.facultad.rest.model.extern.NotificacionExamen;
 import um.facultad.rest.model.view.AlumnoExamen;
-import um.facultad.rest.service.MateriaService;
+import um.facultad.rest.hexagonal.carreras.materia.application.service.MateriaService;
 import um.facultad.rest.service.view.AlumnoExamenService;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
@@ -54,7 +54,7 @@ public class MailService {
 				divisionId, geograficaId);
 		String data = "";
 
-		MateriaEntity materia = new MateriaEntity();
+		Materia materia = new Materia();
 		try {
 			materia = materiaService.findByUnique(facultadId, planId, materiaId);
 		} catch (MateriaException e) {

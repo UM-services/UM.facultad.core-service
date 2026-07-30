@@ -16,27 +16,31 @@ import org.openpdf.text.pdf.PdfWriter;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
-import um.facultad.rest.exception.CarreraException;
+import um.facultad.rest.hexagonal.carreras.carrera.application.exception.CarreraException;
 import um.facultad.rest.exception.DomicilioException;
 import um.facultad.rest.exception.FacultadException;
-import um.facultad.rest.exception.InscripcionException;
+import um.facultad.rest.hexagonal.carreras.carrera.domain.model.Carrera;
+import um.facultad.rest.hexagonal.carreras.materia.domain.model.Materia;
+import um.facultad.rest.hexagonal.inscripciones.inscripcion.application.exception.InscripcionException;
 import um.facultad.rest.exception.LegajoException;
 import um.facultad.rest.exception.LocalidadException;
-import um.facultad.rest.exception.MateriaException;
+import um.facultad.rest.hexagonal.carreras.materia.application.exception.MateriaException;
 import um.facultad.rest.exception.NacimientoException;
 import um.facultad.rest.exception.ProvinciaException;
+import um.facultad.rest.hexagonal.inscripciones.inscripcion.domain.model.Inscripcion;
+import um.facultad.rest.hexagonal.inscripciones.inscripcionDetalle.domain.model.InscripcionDetalle;
 import um.facultad.rest.model.*;
-import um.facultad.rest.service.CarreraService;
+import um.facultad.rest.hexagonal.carreras.carrera.application.service.CarreraService;
 import um.facultad.rest.service.DocumentoService;
 import um.facultad.rest.service.DomicilioService;
 import um.facultad.rest.service.FacultadService;
 import um.facultad.rest.service.GeograficaService;
-import um.facultad.rest.service.InscripcionDetalleService;
-import um.facultad.rest.service.InscripcionService;
+import um.facultad.rest.hexagonal.inscripciones.inscripcionDetalle.application.service.InscripcionDetalleService;
+import um.facultad.rest.hexagonal.inscripciones.inscripcion.application.service.InscripcionService;
 import um.facultad.rest.service.LectivoService;
 import um.facultad.rest.service.LegajoService;
 import um.facultad.rest.service.LocalidadService;
-import um.facultad.rest.service.MateriaService;
+import um.facultad.rest.hexagonal.carreras.materia.application.service.MateriaService;
 import um.facultad.rest.service.NacimientoService;
 import um.facultad.rest.service.PersonaService;
 import um.facultad.rest.service.ProvinciaService;
@@ -69,7 +73,7 @@ public class MatriculaToPdfService {
 
 	public String generateMatriculaPdf(BigDecimal personaId, Integer documentoId, Integer facultadId,
 			Integer lectivoId) {
-		InscripcionEntity inscripcion = null;
+		Inscripcion inscripcion = null;
 		try {
 			inscripcion = inscripcionService.findByUnique(facultadId, personaId, documentoId, lectivoId);
 		} catch (InscripcionException e) {
@@ -135,12 +139,12 @@ public class MatriculaToPdfService {
 		}
 		log.debug("Provincia -> {}", provincia);
 
-		CarreraEntity carrera = null;
+		Carrera carrera = null;
 		try {
 			carrera = carreraService.findByUnique(inscripcion.getFacultadId(), inscripcion.getPlanId(),
 					inscripcion.getCarreraId());
 		} catch (CarreraException e) {
-			carrera = new CarreraEntity();
+			carrera = new Carrera();
 		}
 		log.debug("Carrera -> {}", carrera);
 
@@ -263,17 +267,17 @@ public class MatriculaToPdfService {
 			paragraph.setAlignment(Element.ALIGN_LEFT);
 			document.add(paragraph);
 
-			Integer orden = 1;
+			int orden = 1;
 
-			for (InscripcionDetalleEntity inscripciondetalle : inscripcionDetalleService.findAllByPersona(
+			for (InscripcionDetalle inscripciondetalle : inscripcionDetalleService.findAllByPersona(
 					inscripcion.getPersonaId(), inscripcion.getDocumentoId(), inscripcion.getFacultadId(),
 					inscripcion.getLectivoId())) {
-				MateriaEntity materia = null;
+				Materia materia = null;
 				try {
 					materia = materiaService.findByUnique(inscripciondetalle.getFacultadId(),
 							inscripciondetalle.getPlanId(), inscripciondetalle.getMateriaId());
 				} catch (MateriaException e) {
-					materia = new MateriaEntity();
+					materia = new Materia();
 				}
 
 				table = new PdfPTable(1);
