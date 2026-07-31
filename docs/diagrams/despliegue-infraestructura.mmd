@@ -1,20 +1,27 @@
-graph TB
+flowchart TD
     subgraph GH ["GitHub Actions"]
-        A["CI/CD Pipeline"]
+        A["Build and Analyze"]
+        E["Build and Push Docker Image"]
+        F["Generate Documentation"]
     end
 
     subgraph DC ["Docker Container"]
-        B["Spring Boot App"]
+        B["Spring Boot JVM Image"]
     end
 
-    subgraph EX ["Externos"]
+    subgraph GP ["GitHub Pages"]
+        G["Documentation Site"]
+    end
+
+    subgraph EX ["External Services"]
         C["MySQL Database"]
         D["External APIs"]
     end
 
-    A --> E["Build & Test"]
-    E --> F["Deploy to Prod"]
-    F --> B
+    A --> E
+    A --> F
+    E --> B
+    F --> G
     B --> C
     B --> D
 
