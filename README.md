@@ -131,12 +131,12 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE.md](LICENSE.m
 🟢 Activo - En desarrollo activo
 
 ### Versión Actual
-**1.6.1**
+**1.6.2**
 
 ### Últimas Actualizaciones
-- Refactorización de la inyección de dependencias: migración de `@Autowired` a inyección por constructor (`@RequiredArgsConstructor`) en 47 controladores y servicios
-- Limpieza de código en `InscripcionController` (`ResponseEntity.ok()`, `ResponseStatusException` sin causa redundante)
-- `MatriculacionContextRepositoryImpl` migrado a inyección por constructor con `@Qualifier("personasPersonaMapper")` a nivel de campo
+- Modernización de respuestas HTTP en los controladores mediante `ResponseEntity.ok()`
+- Los endpoints de carrera, materia y plan devuelven `404 Not Found` cuando no existe el recurso solicitado
+- Actualización de las pruebas de los controladores para usar inyección por constructor
 
 ## 💬 Soporte
 
