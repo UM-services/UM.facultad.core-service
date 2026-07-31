@@ -131,14 +131,12 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE.md](LICENSE.m
 🟢 Activo - En desarrollo activo
 
 ### Versión Actual
-**1.6.0**
+**1.6.1**
 
 ### Últimas Actualizaciones
-- Nuevo bounded context `personas` con módulos hexagonales de persona y domicilio (controladores REST, servicios, casos de uso, adaptadores JPA y DTOs)
-- Nuevo módulo hexagonal `inscripcionPago` con `InscripcionPagoService`, casos de uso y adaptador JPA
-- El domain model `Persona` incorpora los campos `sexo`, `profesionId` y `mascara`
-- `InscripcionFullDto` y `PendienteInfo` migrados a domain models (ya no usan entidades JPA)
-- Migración de los servicios, controladores y repositorios legacy de persona, domicilio e inscripción-pago a la arquitectura hexagonal
+- Refactorización de la inyección de dependencias: migración de `@Autowired` a inyección por constructor (`@RequiredArgsConstructor`) en 47 controladores y servicios
+- Limpieza de código en `InscripcionController` (`ResponseEntity.ok()`, `ResponseStatusException` sin causa redundante)
+- `MatriculacionContextRepositoryImpl` migrado a inyección por constructor con `@Qualifier("personasPersonaMapper")` a nivel de campo
 
 ## 💬 Soporte
 

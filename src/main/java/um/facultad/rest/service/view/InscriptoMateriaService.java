@@ -3,9 +3,9 @@
  */
 package um.facultad.rest.service.view;
 
+import lombok.RequiredArgsConstructor;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -17,9 +17,9 @@ import um.facultad.rest.repository.view.IInscriptoMateriaRepository;
  *
  */
 @Service
+@RequiredArgsConstructor
 public class InscriptoMateriaService {
-	@Autowired
-	private IInscriptoMateriaRepository repository;
+	private final IInscriptoMateriaRepository repository;
 
 	public List<InscriptoMateria> findAllByDivision(Integer facultadId, Integer lectivoId, Integer planId,
 			String materiaId, Integer cursoId, Integer periodoId, Integer divisionId, Integer geograficaId) {

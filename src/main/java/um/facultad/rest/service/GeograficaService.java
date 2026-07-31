@@ -3,7 +3,7 @@
  */
 package um.facultad.rest.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import um.facultad.rest.exception.GeograficaException;
@@ -15,10 +15,10 @@ import um.facultad.rest.repository.GeograficaRepository;
  *
  */
 @Service
+@RequiredArgsConstructor
 public class GeograficaService {
 
-	@Autowired
-	private GeograficaRepository repository;
+	private final GeograficaRepository repository;
 
 	public GeograficaEntity findByGeograficaId(Integer geograficaId) {
 		return repository.findByGeograficaId(geograficaId).orElseThrow(() -> new GeograficaException(geograficaId));

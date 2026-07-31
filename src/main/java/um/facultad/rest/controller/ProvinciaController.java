@@ -3,7 +3,7 @@
  */
 package um.facultad.rest.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,10 +20,10 @@ import um.facultad.rest.service.ProvinciaService;
  */
 @RestController
 @RequestMapping("/provincia")
+@RequiredArgsConstructor
 public class ProvinciaController {
 	
-	@Autowired
-	private ProvinciaService service;
+	private final ProvinciaService service;
 
 	@GetMapping("/unique/{facultadId}/{provinciaId}")
 	public ResponseEntity<ProvinciaEntity> findByUnique(@PathVariable Integer facultadId, @PathVariable Integer provinciaId) {

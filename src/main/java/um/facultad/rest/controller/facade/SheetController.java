@@ -3,11 +3,11 @@
  */
 package um.facultad.rest.controller.facade;
 
+import lombok.RequiredArgsConstructor;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -26,10 +26,10 @@ import um.facultad.rest.service.facade.SheetService;
  */
 @RestController
 @RequestMapping("/sheet")
+@RequiredArgsConstructor
 public class SheetController {
 
-	@Autowired
-	private SheetService service;
+	private final SheetService service;
 
 	@GetMapping("/matriculacurso/{facultadId}/{lectivoId}/{geograficaId}/{curso}")
 	public ResponseEntity<Resource> generateCargos(@PathVariable Integer facultadId, @PathVariable Integer lectivoId,

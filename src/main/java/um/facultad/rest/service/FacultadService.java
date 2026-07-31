@@ -3,7 +3,7 @@
  */
 package um.facultad.rest.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import um.facultad.rest.exception.FacultadException;
@@ -15,10 +15,10 @@ import um.facultad.rest.repository.FacultadRepository;
  *
  */
 @Service
+@RequiredArgsConstructor
 public class FacultadService {
 
-	@Autowired
-	private FacultadRepository repository;
+	private final FacultadRepository repository;
 
 	public FacultadEntity findByFacultadId(Integer facultadId) {
 		return repository.findByFacultadId(facultadId).orElseThrow(() -> new FacultadException(facultadId));

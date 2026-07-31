@@ -3,10 +3,10 @@
  */
 package um.facultad.rest.controller.facade;
 
+import lombok.RequiredArgsConstructor;
 import java.math.BigDecimal;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,10 +25,10 @@ import jakarta.mail.MessagingException;
  */
 @RestController
 @RequestMapping("/notificacion")
+@RequiredArgsConstructor
 public class NotificacionController {
 
-	@Autowired
-	private MailService service;
+	private final MailService service;
 
 	/**
 	 * Este endpoint envía una notificacion por mail en caso que el alumno rinda

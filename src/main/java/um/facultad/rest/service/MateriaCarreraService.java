@@ -3,9 +3,9 @@
  */
 package um.facultad.rest.service;
 
+import lombok.RequiredArgsConstructor;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import um.facultad.rest.model.MateriaCarreraEntity;
@@ -16,10 +16,10 @@ import um.facultad.rest.repository.MateriaCarreraRepository;
  *
  */
 @Service
+@RequiredArgsConstructor
 public class MateriaCarreraService {
 
-	@Autowired
-	private MateriaCarreraRepository repository;
+	private final MateriaCarreraRepository repository;
 
 	public List<MateriaCarreraEntity> findAllByCarrera(Integer facultadId, Integer planId, Integer carreraId) {
 		return repository.findAllByFacultadIdAndPlanIdAndCarreraId(facultadId, planId, carreraId);

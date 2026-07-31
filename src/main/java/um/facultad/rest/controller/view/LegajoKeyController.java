@@ -3,9 +3,9 @@
  */
 package um.facultad.rest.controller.view;
 
+import lombok.RequiredArgsConstructor;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,10 +23,10 @@ import um.facultad.rest.service.view.LegajoKeyService;
  */
 @RestController
 @RequestMapping("/legajokey")
+@RequiredArgsConstructor
 public class LegajoKeyController {
 
-	@Autowired
-	private LegajoKeyService service;
+	private final LegajoKeyService service;
 
 	@PostMapping("/unifieds/{facultadId}")
 	public ResponseEntity<List<LegajoKey>> findAllByFacultadAndPersonaKeys(@PathVariable Integer facultadId,

@@ -3,9 +3,9 @@
  */
 package um.facultad.rest.service;
 
+import lombok.RequiredArgsConstructor;
 import java.math.BigDecimal;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import um.facultad.rest.exception.BajaException;
@@ -17,10 +17,10 @@ import um.facultad.rest.repository.BajaRepository;
  *
  */
 @Service
+@RequiredArgsConstructor
 public class BajaService {
 
-	@Autowired
-	private BajaRepository repository;
+	private final BajaRepository repository;
 
 	public BajaEntity findByUnique(Integer facultadId, BigDecimal personaId, Integer documentoId, Integer lectivoId) {
 		return repository.findByFacultadIdAndPersonaIdAndDocumentoIdAndLectivoId(facultadId, personaId, documentoId,

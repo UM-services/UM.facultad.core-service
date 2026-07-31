@@ -3,9 +3,9 @@
  */
 package um.facultad.rest.controller;
 
+import lombok.RequiredArgsConstructor;
 import java.math.BigDecimal;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,10 +22,10 @@ import um.facultad.rest.service.TituloEntregaService;
  */
 @RestController
 @RequestMapping("/tituloentrega")
+@RequiredArgsConstructor
 public class TituloEntregaController {
 
-	@Autowired
-	private TituloEntregaService service;
+	private final TituloEntregaService service;
 
 	@GetMapping("/unique/{personaId}/{documentoId}/{facultadId}/{planId}/{carreraId}")
 	public ResponseEntity<TituloEntregaEntity> findByUnique(@PathVariable BigDecimal personaId,

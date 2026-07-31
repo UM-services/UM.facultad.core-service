@@ -3,10 +3,10 @@
  */
 package um.facultad.rest.service.view;
 
+import lombok.RequiredArgsConstructor;
 import java.util.List;
 import java.util.Set;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import um.facultad.rest.model.view.LegajoKey;
@@ -17,10 +17,10 @@ import um.facultad.rest.repository.view.ILegajoKeyRepository;
  *
  */
 @Service
+@RequiredArgsConstructor
 public class LegajoKeyService {
 
-	@Autowired
-	private ILegajoKeyRepository repository;
+	private final ILegajoKeyRepository repository;
 
 	public List<LegajoKey> findAllByFacultadIdAndIntercambioAndNumerolegajoAndPersonakeyIn(Integer facultadId,
 			Byte intercambio, Long numerolegajo, Set<String> keys) {

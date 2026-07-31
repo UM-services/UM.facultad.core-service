@@ -1,6 +1,6 @@
 package um.facultad.rest.hexagonal.inscripciones.matriculacion.infrastructure.persistence;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import um.facultad.rest.hexagonal.inscripciones.inscripcion.application.exception.InscripcionException;
@@ -18,20 +18,14 @@ import um.facultad.rest.hexagonal.personas.persona.infrastructure.persistence.re
 import java.math.BigDecimal;
 
 @Component
+@RequiredArgsConstructor
 public class MatriculacionContextRepositoryImpl implements MatriculacionContextRepository {
 
     private final JpaPersonaRepository personaRepository;
+    @Qualifier("personasPersonaMapper")
     private final PersonaMapper personaMapper;
     private final JpaInscripcionRepository inscripcionRepository;
     private final InscripcionMapper inscripcionMapper;
-
-    @Autowired
-    public MatriculacionContextRepositoryImpl(JpaPersonaRepository personaRepository, @Qualifier("personasPersonaMapper") PersonaMapper personaMapper, JpaInscripcionRepository inscripcionRepository, InscripcionMapper inscripcionMapper) {
-        this.personaRepository = personaRepository;
-        this.personaMapper = personaMapper;
-        this.inscripcionRepository = inscripcionRepository;
-        this.inscripcionMapper = inscripcionMapper;
-    }
 
     @Override
     public Persona findPersonaByPersonaIdAndDocumentoId(BigDecimal personaId, Integer documentoId) {

@@ -3,9 +3,9 @@
  */
 package um.facultad.rest.service;
 
+import lombok.RequiredArgsConstructor;
 import java.math.BigDecimal;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import um.facultad.rest.exception.TituloEntregaException;
@@ -17,10 +17,10 @@ import um.facultad.rest.repository.TituloEntregaRepository;
  *
  */
 @Service
+@RequiredArgsConstructor
 public class TituloEntregaService {
 
-	@Autowired
-	private TituloEntregaRepository repository;
+	private final TituloEntregaRepository repository;
 
 	public TituloEntregaEntity findByUnique(BigDecimal personaId, Integer documentoId, Integer facultadId, Integer planId,
                                             Integer carreraId) {

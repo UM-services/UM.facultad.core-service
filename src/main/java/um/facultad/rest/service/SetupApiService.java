@@ -3,7 +3,7 @@
  */
 package um.facultad.rest.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import um.facultad.rest.exception.SetupApiException;
@@ -15,9 +15,9 @@ import um.facultad.rest.repository.SetupApiRepository;
  *
  */
 @Service
+@RequiredArgsConstructor
 public class SetupApiService {
-	@Autowired
-	private SetupApiRepository repository;
+	private final SetupApiRepository repository;
 
 	public SetupApiEntity findLast() {
 		return repository.findTopByOrderBySetupId().orElseThrow(() -> new SetupApiException());

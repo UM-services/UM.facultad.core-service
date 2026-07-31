@@ -3,7 +3,7 @@
  */
 package um.facultad.rest.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import um.facultad.rest.exception.DivisionException;
@@ -15,10 +15,10 @@ import um.facultad.rest.repository.DivisionRepository;
  *
  */
 @Service
+@RequiredArgsConstructor
 public class DivisionService {
 
-	@Autowired
-	private DivisionRepository repository;
+	private final DivisionRepository repository;
 
 	public DivisionEntity findByUnique(Integer facultadId, Integer divisionId) {
 		return repository.findByFacultadIdAndDivisionId(facultadId, divisionId)

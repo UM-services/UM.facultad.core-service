@@ -3,9 +3,9 @@
  */
 package um.facultad.rest.controller.view;
 
+import lombok.RequiredArgsConstructor;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,10 +22,10 @@ import um.facultad.rest.service.view.InscriptoCursoService;
  */
 @RestController
 @RequestMapping("/inscriptocurso")
+@RequiredArgsConstructor
 public class InscriptoCursoController {
 
-	@Autowired
-	private InscriptoCursoService service;
+	private final InscriptoCursoService service;
 
 	@GetMapping("/lectivo/{facultadId}/{lectivoId}/{geograficaId}")
 	public ResponseEntity<List<InscriptoCurso>> findAllByLectivo(@PathVariable Integer facultadId,

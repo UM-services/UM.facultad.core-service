@@ -3,7 +3,7 @@
  */
 package um.facultad.rest.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,10 +19,10 @@ import um.facultad.rest.service.SetupApiService;
  */
 @RestController
 @RequestMapping("/setupapi")
+@RequiredArgsConstructor
 public class SetupApiController {
 	
-	@Autowired
-	private SetupApiService service;
+	private final SetupApiService service;
 	
 	@GetMapping("/last")
 	public ResponseEntity<SetupApiEntity> findLast() {

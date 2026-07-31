@@ -3,9 +3,9 @@
  */
 package um.facultad.rest.controller;
 
+import lombok.RequiredArgsConstructor;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,10 +21,10 @@ import um.facultad.rest.service.LectivoService;
  */
 @RestController
 @RequestMapping("/lectivo")
+@RequiredArgsConstructor
 public class LectivoController {
 
-	@Autowired
-	private LectivoService service;
+	private final LectivoService service;
 
 	@GetMapping("/")
 	public ResponseEntity<List<LectivoEntity>> findAll() {
