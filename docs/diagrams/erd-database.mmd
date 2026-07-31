@@ -27,7 +27,7 @@ erDiagram
         Long inscripcionId FK
         Integer materiaId
     }
-    DOMICILIO ||--o{ PERSONA : reside
+    PERSONA ||--o| DOMICILIO : reside
     DOMICILIO {
         Long domicilioId PK
         BigDecimal personaId

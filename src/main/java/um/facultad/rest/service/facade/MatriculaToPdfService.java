@@ -17,7 +17,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 import um.facultad.rest.hexagonal.carreras.carrera.application.exception.CarreraException;
-import um.facultad.rest.exception.DomicilioException;
+import um.facultad.rest.hexagonal.personas.domicilio.application.exception.DomicilioException;
 import um.facultad.rest.exception.FacultadException;
 import um.facultad.rest.hexagonal.carreras.carrera.domain.model.Carrera;
 import um.facultad.rest.hexagonal.carreras.materia.domain.model.Materia;
@@ -29,10 +29,12 @@ import um.facultad.rest.exception.NacimientoException;
 import um.facultad.rest.exception.ProvinciaException;
 import um.facultad.rest.hexagonal.inscripciones.inscripcion.domain.model.Inscripcion;
 import um.facultad.rest.hexagonal.inscripciones.inscripcionDetalle.domain.model.InscripcionDetalle;
+import um.facultad.rest.hexagonal.personas.domicilio.domain.model.Domicilio;
+import um.facultad.rest.hexagonal.personas.persona.domain.model.Persona;
 import um.facultad.rest.model.*;
 import um.facultad.rest.hexagonal.carreras.carrera.application.service.CarreraService;
 import um.facultad.rest.service.DocumentoService;
-import um.facultad.rest.service.DomicilioService;
+import um.facultad.rest.hexagonal.personas.domicilio.application.service.DomicilioService;
 import um.facultad.rest.service.FacultadService;
 import um.facultad.rest.service.GeograficaService;
 import um.facultad.rest.hexagonal.inscripciones.inscripcionDetalle.application.service.InscripcionDetalleService;
@@ -42,7 +44,7 @@ import um.facultad.rest.service.LegajoService;
 import um.facultad.rest.service.LocalidadService;
 import um.facultad.rest.hexagonal.carreras.materia.application.service.MateriaService;
 import um.facultad.rest.service.NacimientoService;
-import um.facultad.rest.service.PersonaService;
+import um.facultad.rest.hexagonal.personas.persona.application.service.PersonaService;
 import um.facultad.rest.service.ProvinciaService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -91,7 +93,7 @@ public class MatriculaToPdfService {
 
 		GeograficaEntity geografica = geograficaService.findByGeograficaId(inscripcion.getGeograficaId());
 		log.debug("Geografica -> {}", geografica);
-		PersonaEntity persona = personaService.findByPersonaIdAndDocumentoId(personaId, documentoId);
+		Persona persona = personaService.findByPersonaIdAndDocumentoId(personaId, documentoId);
 		log.debug("Persona -> {}", persona);
 		LectivoEntity lectivo = lectivoService.findByLectivoId(lectivoId);
 		log.debug("Lectivo -> {}", lectivo);
@@ -114,11 +116,11 @@ public class MatriculaToPdfService {
 		}
 		log.debug("Legajo -> {}", legajo);
 
-		DomicilioEntity domicilio = null;
+		Domicilio domicilio = null;
 		try {
 			domicilio = domicilioService.findByPersonaIdAndDocumentoId(personaId, documentoId);
 		} catch (DomicilioException e) {
-			domicilio = new DomicilioEntity();
+			domicilio = new Domicilio();
 		}
 		log.debug("Domicilio -> {}", domicilio);
 

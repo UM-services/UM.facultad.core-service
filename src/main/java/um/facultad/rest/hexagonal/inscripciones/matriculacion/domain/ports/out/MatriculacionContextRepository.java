@@ -1,7 +1,7 @@
 package um.facultad.rest.hexagonal.inscripciones.matriculacion.domain.ports.out;
 
 import um.facultad.rest.hexagonal.inscripciones.inscripcion.domain.model.Inscripcion;
-import um.facultad.rest.hexagonal.inscripciones.matriculacion.domain.model.Persona;
+import um.facultad.rest.hexagonal.personas.persona.domain.model.Persona;
 
 import java.math.BigDecimal;
 

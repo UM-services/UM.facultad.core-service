@@ -5,6 +5,35 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.6.0] - 2026-07-31
+
+### Added
+- Nuevo bounded context `personas` con arquitectura hexagonal (Ports & Adapters) completa:
+  - Módulo `persona`: dominio (modelo `Persona`, puertos `FindPersonaByPersonaIdAndDocumentoIdUseCase`, `FindAllPersonasByPersonaIdInUseCase` y repositorio `PersonaRepository`), aplicación (`PersonaService`, implementaciones de casos de uso y `PersonaException`), infraestructura (controlador REST, `PersonaResponse`, `PersonaDtoMapper`, adaptador JPA, entidad y mapper de persistencia)
+  - Módulo `domicilio`: dominio (modelos `Domicilio` y `Pagador`, puertos `FindDomicilioByPersonaIdAndDocumentoIdUseCase`, `FindDomicilioByPagadorUseCase`, `AddDomicilioUseCase`, `UpdateDomicilioUseCase`, `SincronizeDomicilioUseCase`, repositorio `DomicilioRepository` y puertos de salida `PagadorPort`, `TesoreriaSincronizePort`), aplicación (`DomicilioService`, casos de uso e `DomicilioException`), infraestructura (controlador REST, `DomicilioRequest`, `DomicilioResponse`, `DomicilioDtoMapper`, adaptadores JPA/Pagador/Tesorería, entidad y mapper de persistencia)
+- Nuevo módulo `inscripcionPago` con arquitectura hexagonal dentro del bounded context `inscripciones`:
+  - Dominio: modelo `InscripcionPago`, puerto `FindInscripcionPagoByUniqueUseCase` y repositorio `InscripcionPagoRepository`
+  - Aplicación: `InscripcionPagoService`, implementación del caso de uso e `InscripcionPagoException`
+  - Infraestructura: adaptador JPA, entidad, mapper y repositorio JPA
+
+### Changed
+- `InscripcionService.findInscripcionFull()`: los datos de pago, persona pagadora y domicilio ahora se obtienen mediante los domain models (`InscripcionPago`, `Persona`, `Domicilio`) en lugar de entidades JPA
+- `InscripcionFullDto`: los campos `inscripcionPago`, `personaPago` y `domicilioPago` cambian de entidades a domain models; `@Data` reemplazado por `@Getter`/`@Setter`
+- `PendienteInfo`: el campo `persona` migra de `PersonaEntity` a `Persona` (domain model)
+- Módulo `matriculacion`: el modelo `Persona` se reubica en `personas.persona`, actualizando `MatriculacionContext`, `MatriculacionContextService`, `GetPersonaDataUseCase`, `MatriculacionContextRepository` y su implementación
+- `PersonaController` y `DomicilioController`: recreados bajo el paquete hexagonal con DTOs de request/response
+- `InscriptosToXlsService`: migrado a inyección por constructor (`@RequiredArgsConstructor`) con logging `@Slf4j`
+- `SheetService`: reemplazo de `printStackTrace()` por `log.error()`
+- `PersonaEntityControllerTest`: actualizado al nuevo `PersonaService` hexagonal
+
+### Removed
+- Eliminación de los servicios legacy `PersonaService`, `DomicilioService` e `InscripcionPagoService` del paquete `service`
+- Eliminación de los controladores legacy `PersonaController` y `DomicilioController` del paquete `controller`
+- Eliminación de las excepciones legacy `PersonaException`, `DomicilioException` e `InscripcionPagoException` del paquete `exception` (reubicadas en sus módulos hexagonales)
+- Eliminación de los repositorios legacy `PersonaRepository`, `DomicilioRepository` e `InscripcionPagoRepository` del paquete `repository` (renombrados a `Jpa*Repository`)
+- Eliminación de las entidades `PersonaEntity`, `DomicilioEntity` e `InscripcionPagoEntity` del paquete `model` (reubicadas en sus módulos hexagonales)
+- Eliminación de los mappers de infraestructura del módulo `matriculacion` (Carrera, Inscripcion, Materia, Persona, Plan)
+
 ## [1.5.0] - 2026-07-30
 
 ### Added

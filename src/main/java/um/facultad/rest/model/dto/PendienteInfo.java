@@ -12,6 +12,7 @@ import um.facultad.rest.hexagonal.carreras.materia.domain.model.Materia;
 import um.facultad.rest.hexagonal.carreras.plan.domain.model.Plan;
 import um.facultad.rest.hexagonal.inscripciones.inscripcion.domain.model.Inscripcion;
 import um.facultad.rest.hexagonal.inscripciones.inscripcionDetalle.domain.model.InscripcionDetalle;
+import um.facultad.rest.hexagonal.personas.persona.domain.model.Persona;
 import um.facultad.rest.model.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -35,7 +36,7 @@ public class PendienteInfo implements Serializable {
 	private LectivoEntity lectivo;
 	private GeograficaEntity geografica;
 	private DocumentoEntity documento;
-	private PersonaEntity persona;
+	private Persona persona;
 	private Plan plan;
 	private Carrera carrera;
 	private Inscripcion inscripcion;

@@ -23,6 +23,8 @@ import org.springframework.stereotype.Service;
 
 import um.facultad.rest.hexagonal.carreras.carrera.domain.model.Carrera;
 import um.facultad.rest.hexagonal.inscripciones.inscripcion.domain.model.Inscripcion;
+import um.facultad.rest.hexagonal.personas.persona.domain.model.Persona;
+import um.facultad.rest.hexagonal.personas.persona.infrastructure.persistence.entity.PersonaEntity;
 import um.facultad.rest.model.*;
 import um.facultad.rest.hexagonal.carreras.carrera.application.service.CarreraService;
 import um.facultad.rest.service.EstadoAlumnoService;
@@ -32,7 +34,7 @@ import um.facultad.rest.service.GeograficaService;
 import um.facultad.rest.hexagonal.inscripciones.inscripcion.application.service.InscripcionService;
 import um.facultad.rest.service.LectivoService;
 import um.facultad.rest.service.LegajoService;
-import um.facultad.rest.service.PersonaService;
+import um.facultad.rest.hexagonal.personas.persona.application.service.PersonaService;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -106,7 +108,7 @@ public class SheetService {
 				.collect(Collectors.toMap(Carrera::getKey, carrera -> carrera));
 
 		Integer orden = 0;
-		for (PersonaEntity persona : personaService.findAllByPersonaIdIn(numeros)) {
+		for (Persona persona : personaService.findAllByPersonaIdIn(numeros)) {
 			row = sheet.createRow(++fila);
 			Long numero_legajo = 0L;
 			if (legajos.containsKey(persona.getPersonaId()))
@@ -141,7 +143,7 @@ public class SheetService {
 			log.debug(file.getAbsolutePath());
 			book.close();
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(e.getMessage());
 		}
 		return filename;
 	}
