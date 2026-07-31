@@ -3,7 +3,7 @@
  */
 package um.facultad.rest.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import um.facultad.rest.exception.DocumentoException;
@@ -15,10 +15,10 @@ import um.facultad.rest.repository.DocumentoRepository;
  *
  */
 @Service
+@RequiredArgsConstructor
 public class DocumentoService {
 
-	@Autowired
-	private DocumentoRepository repository;
+	private final DocumentoRepository repository;
 
 	public DocumentoEntity findByDocumentoId(Integer documentoId) {
 		return repository.findByDocumentoId(documentoId).orElseThrow(() -> new DocumentoException(documentoId));

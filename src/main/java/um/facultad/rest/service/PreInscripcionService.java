@@ -3,10 +3,10 @@
  */
 package um.facultad.rest.service;
 
+import lombok.RequiredArgsConstructor;
 import java.math.BigDecimal;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import um.facultad.rest.exception.PreInscripcionException;
@@ -18,10 +18,10 @@ import um.facultad.rest.repository.PreInscripcionRepository;
  *
  */
 @Service
+@RequiredArgsConstructor
 public class PreInscripcionService {
 
-	@Autowired
-	private PreInscripcionRepository repository;
+	private final PreInscripcionRepository repository;
 
 	public List<PreInscripcionEntity> findAllByLectivo(Integer facultadId, Integer lectivoId) {
 		return repository.findAllByFacultadIdAndLectivoId(facultadId, lectivoId);

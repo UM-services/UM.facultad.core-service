@@ -3,6 +3,8 @@
  */
 package um.facultad.rest.controller.facade;
 
+import lombok.RequiredArgsConstructor;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -31,15 +33,11 @@ import jakarta.mail.MessagingException;
  */
 @RestController
 @RequestMapping("/formularios")
+@RequiredArgsConstructor
 public class FormularioController {
 
 	private final MatriculaToPdfService matriculaToPdfService;
 	private final MailService mailing;
-
-	public FormularioController(MatriculaToPdfService matriculaToPdfService, MailService mailing) {
-		this.matriculaToPdfService = matriculaToPdfService;
-		this.mailing = mailing;
-	}
 
 	@GetMapping("/matricula/{personaId}/{documentoId}/{facultadId}/{lectivoId}")
 	public ResponseEntity<Resource> generateMatricula(@PathVariable BigDecimal personaId, @PathVariable Integer documentoId,

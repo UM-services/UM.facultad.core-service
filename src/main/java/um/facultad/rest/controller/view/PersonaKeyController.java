@@ -3,9 +3,9 @@
  */
 package um.facultad.rest.controller.view;
 
+import lombok.RequiredArgsConstructor;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,10 +22,10 @@ import um.facultad.rest.service.view.PersonaKeyService;
  */
 @RestController
 @RequestMapping("/personakey")
+@RequiredArgsConstructor
 public class PersonaKeyController {
 
-	@Autowired
-	private PersonaKeyService service;
+	private final PersonaKeyService service;
 
 	@PostMapping("/unifieds")
 	public ResponseEntity<List<PersonaKey>> findAllByUnifieds(@RequestBody List<String> unifieds) {

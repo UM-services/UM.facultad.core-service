@@ -3,9 +3,9 @@
  */
 package um.facultad.rest.controller.facade;
 
+import lombok.RequiredArgsConstructor;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,10 +22,10 @@ import um.facultad.rest.service.facade.AutoMatriculaService;
  */
 @RestController
 @RequestMapping("/automatricula")
+@RequiredArgsConstructor
 public class AutoMatriculaController {
 
-	@Autowired
-	private AutoMatriculaService service;
+	private final AutoMatriculaService service;
 
 	@GetMapping("/pre/{facultadId}/{lectivoId}/{geograficaId}/{turnoId}")
 	public ResponseEntity<List<Inscripcion>> auto_matricula_pre(@PathVariable Integer facultadId,

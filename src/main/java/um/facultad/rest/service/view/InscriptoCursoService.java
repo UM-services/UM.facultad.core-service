@@ -3,9 +3,9 @@
  */
 package um.facultad.rest.service.view;
 
+import lombok.RequiredArgsConstructor;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -17,10 +17,10 @@ import um.facultad.rest.repository.view.IInscriptoCursoRepository;
  *
  */
 @Service
+@RequiredArgsConstructor
 public class InscriptoCursoService {
 
-	@Autowired
-	private IInscriptoCursoRepository repository;
+	private final IInscriptoCursoRepository repository;
 
 	public List<InscriptoCurso> findAllByLectivo(Integer facultadId, Integer lectivoId, Integer geograficaId) {
 		return repository.findAllByFacultadIdAndLectivoIdAndGeograficaId(facultadId, lectivoId, geograficaId,

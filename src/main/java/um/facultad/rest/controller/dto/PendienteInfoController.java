@@ -3,9 +3,9 @@
  */
 package um.facultad.rest.controller.dto;
 
+import lombok.RequiredArgsConstructor;
 import java.math.BigDecimal;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,10 +22,10 @@ import um.facultad.rest.service.dto.PendienteInfoService;
  */
 @RestController
 @RequestMapping("/pendienteinfo")
+@RequiredArgsConstructor
 public class PendienteInfoController {
 
-	@Autowired
-	private PendienteInfoService service;
+	private final PendienteInfoService service;
 
 	@GetMapping("/info/{facultadId}/{lectivoId}/{geograficaId}/{personaId}/{documentoId}")
 	public ResponseEntity<PendienteInfo> findByAlumno(@PathVariable Integer facultadId, @PathVariable Integer lectivoId,

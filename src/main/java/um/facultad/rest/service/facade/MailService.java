@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -30,22 +31,13 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class MailService {
 
 	private final InscriptosToXlsService xlsService;
 	private final JavaMailSender sender;
 	private final MateriaService materiaService;
 	private final AlumnoExamenService alumnoExamenService;
-
-	public MailService(InscriptosToXlsService xlsService,
-					   JavaMailSender sender,
-					   MateriaService materiaService,
-					   AlumnoExamenService alumnoExamenService) {
-		this.xlsService = xlsService;
-		this.sender = sender;
-		this.materiaService = materiaService;
-		this.alumnoExamenService = alumnoExamenService;
-	}
 
 	public String sendLista(Integer facultadId, Integer lectivoId, Integer planId, String materiaId, Integer cursoId,
 			Integer periodoId, Integer divisionId, Integer geograficaId, String email) throws MessagingException {

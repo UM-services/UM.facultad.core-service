@@ -3,7 +3,7 @@
  */
 package um.facultad.rest.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import um.facultad.rest.exception.ProvinciaException;
@@ -15,9 +15,9 @@ import um.facultad.rest.repository.ProvinciaRepository;
  *
  */
 @Service
+@RequiredArgsConstructor
 public class ProvinciaService {
-	@Autowired
-	private ProvinciaRepository repository;
+	private final ProvinciaRepository repository;
 
 	public ProvinciaEntity findByUnique(Integer facultadId, Integer provinciaId) {
 		return repository.findByFacultadIdAndProvinciaId(facultadId, provinciaId)

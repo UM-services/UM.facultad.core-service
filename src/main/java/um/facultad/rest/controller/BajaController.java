@@ -3,9 +3,9 @@
  */
 package um.facultad.rest.controller;
 
+import lombok.RequiredArgsConstructor;
 import java.math.BigDecimal;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,10 +26,10 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequestMapping("/baja")
 @Slf4j
+@RequiredArgsConstructor
 public class BajaController {
 
-	@Autowired
-	private BajaService service;
+	private final BajaService service;
 
 	@GetMapping("/unique/{facultadId}/{personaId}/{documentoId}/{lectivoId}")
 	public ResponseEntity<BajaEntity> findByUnique(@PathVariable Integer facultadId, @PathVariable BigDecimal personaId,

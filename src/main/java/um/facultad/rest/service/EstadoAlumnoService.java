@@ -3,7 +3,7 @@
  */
 package um.facultad.rest.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import um.facultad.rest.exception.EstadoAlumnoException;
@@ -15,10 +15,10 @@ import um.facultad.rest.repository.EstadoAlumnoRepository;
  *
  */
 @Service
+@RequiredArgsConstructor
 public class EstadoAlumnoService {
 
-	@Autowired
-	private EstadoAlumnoRepository repository;
+	private final EstadoAlumnoRepository repository;
 
 	public EstadoAlumnoEntity findByEstadoId(Integer estadoId) {
 		return repository.findByEstadoId(estadoId).orElseThrow(() -> new EstadoAlumnoException(estadoId));

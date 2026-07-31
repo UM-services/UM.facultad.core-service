@@ -3,9 +3,9 @@
  */
 package um.facultad.rest.service;
 
+import lombok.RequiredArgsConstructor;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -18,10 +18,10 @@ import um.facultad.rest.repository.LectivoRepository;
  *
  */
 @Service
+@RequiredArgsConstructor
 public class LectivoService {
 
-	@Autowired
-	private LectivoRepository repository;
+	private final LectivoRepository repository;
 
 	public List<LectivoEntity> findAll() {
 		return repository.findAll(Sort.by("lectivoId").ascending());

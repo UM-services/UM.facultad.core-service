@@ -3,9 +3,9 @@
  */
 package um.facultad.rest.service;
 
+import lombok.RequiredArgsConstructor;
 import java.math.BigDecimal;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import um.facultad.rest.exception.NacimientoException;
@@ -17,10 +17,10 @@ import um.facultad.rest.repository.NacimientoRepository;
  *
  */
 @Service
+@RequiredArgsConstructor
 public class NacimientoService {
 
-	@Autowired
-	private NacimientoRepository repository;
+	private final NacimientoRepository repository;
 
 	public NacimientoEntity findByUnique(BigDecimal personaId, Integer documentoId) {
 		return repository.findByPersonaIdAndDocumentoId(personaId, documentoId)

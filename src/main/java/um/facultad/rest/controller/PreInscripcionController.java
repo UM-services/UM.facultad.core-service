@@ -3,10 +3,10 @@
  */
 package um.facultad.rest.controller;
 
+import lombok.RequiredArgsConstructor;
 import java.math.BigDecimal;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,10 +23,10 @@ import um.facultad.rest.service.PreInscripcionService;
  */
 @RestController
 @RequestMapping("/preinscripcion")
+@RequiredArgsConstructor
 public class PreInscripcionController {
 
-	@Autowired
-	private PreInscripcionService service;
+	private final PreInscripcionService service;
 
 	@GetMapping("/lectivo/{facultadId}/{lectivoId}")
 	public ResponseEntity<List<PreInscripcionEntity>> findAllByLectivo(@PathVariable Integer facultadId,
