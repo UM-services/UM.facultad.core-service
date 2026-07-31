@@ -5,6 +5,14 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.6.1] - 2026-07-31
+
+### Changed
+- Refactorización de inyección de dependencias: migración completa de `@Autowired` (inyección por campo) a inyección por constructor con `@RequiredArgsConstructor` en 47 controladores y servicios
+- `InscripcionController`: reemplazo de `new ResponseEntity<>(..., HttpStatus.OK)` por `ResponseEntity.ok()` y eliminación de la causa redundante en `ResponseStatusException`
+- `MatriculacionContextRepositoryImpl`: migrado a inyección por constructor, trasladando `@Qualifier("personasPersonaMapper")` al campo
+- Limpieza de código en `MailService` y `FormularioController`: eliminación de constructores explícitos redundantes
+
 ## [1.6.0] - 2026-07-31
 
 ### Added
