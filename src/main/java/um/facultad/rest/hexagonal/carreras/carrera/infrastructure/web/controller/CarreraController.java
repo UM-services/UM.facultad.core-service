@@ -1,6 +1,8 @@
 package um.facultad.rest.hexagonal.carreras.carrera.infrastructure.web.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.server.ResponseStatusException;
+import um.facultad.rest.hexagonal.carreras.carrera.application.exception.CarreraException;
 import um.facultad.rest.hexagonal.carreras.carrera.application.service.CarreraService;
 import um.facultad.rest.hexagonal.carreras.carrera.infrastructure.web.dto.CarreraResponse;
 import um.facultad.rest.hexagonal.carreras.carrera.infrastructure.web.mapper.CarreraDtoMapper;
@@ -27,15 +29,19 @@ public class CarreraController {
         List<CarreraResponse> responses = service.findAll().stream()
                 .map(dtoMapper::toResponse)
                 .toList();
-        return new ResponseEntity<>(responses, HttpStatus.OK);
+        return ResponseEntity.ok(responses);
     }
 
     @GetMapping("/unique/{facultadId}/{planId}/{carreraId}")
     public ResponseEntity<CarreraResponse> findByUnique(@PathVariable Integer facultadId,
                                                          @PathVariable Integer planId,
                                                          @PathVariable Integer carreraId) {
-        CarreraResponse response = dtoMapper.toResponse(service.findByUnique(facultadId, planId, carreraId));
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        try {
+            CarreraResponse response = dtoMapper.toResponse(service.findByUnique(facultadId, planId, carreraId));
+            return ResponseEntity.ok(response);
+        } catch (CarreraException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+        }
     }
 
 }

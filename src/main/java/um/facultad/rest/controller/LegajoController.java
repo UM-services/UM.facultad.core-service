@@ -31,12 +31,12 @@ public class LegajoController {
 
 	private final LegajoService service;
 
-	@GetMapping("/persona/{personaId}/{documentoId}/{facultadId}")
+@GetMapping("/persona/{personaId}/{documentoId}/{facultadId}")
 	public ResponseEntity<LegajoEntity> findByPersona(@PathVariable BigDecimal personaId, @PathVariable Integer documentoId,
-                                                      @PathVariable Integer facultadId) {
+                                                       @PathVariable Integer facultadId) {
 		// agregar respuesta para evitar la excepcion
 		try {
-			return new ResponseEntity<>(service.findByPersona(personaId, documentoId, facultadId), HttpStatus.OK);
+			return ResponseEntity.ok(service.findByPersona(personaId, documentoId, facultadId));
 		} catch (LegajoException e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage(), e);
 		}
@@ -44,22 +44,20 @@ public class LegajoController {
 
 	@GetMapping("/asigna/{facultadId}/{lectivoId}/{personaId}/{documentoId}")
 	public ResponseEntity<LegajoEntity> asignaNumeroLegajo(@PathVariable Integer facultadId, @PathVariable Integer lectivoId,
-                                                           @PathVariable BigDecimal personaId, @PathVariable Integer documentoId) {
-		return new ResponseEntity<>(service.asignaNumeroLegajo(facultadId, lectivoId, personaId, documentoId),
-				HttpStatus.OK);
+                                                            @PathVariable BigDecimal personaId, @PathVariable Integer documentoId) {
+		return ResponseEntity.ok(service.asignaNumeroLegajo(facultadId, lectivoId, personaId, documentoId));
 	}
 
 	@GetMapping("/numera/{facultadId}/{lectivoId}")
 	public ResponseEntity<List<LegajoEntity>> numeraByLectivoId(@PathVariable Integer facultadId,
-                                                                @PathVariable Integer lectivoId) {
-		return new ResponseEntity<>(service.numeraByLectivoId(facultadId, lectivoId), HttpStatus.OK);
+                                                                 @PathVariable Integer lectivoId) {
+		return ResponseEntity.ok(service.numeraByLectivoId(facultadId, lectivoId));
 	}
 
 	@GetMapping("/pre/{facultadId}/{lectivoId}/{geograficaId}")
 	public ResponseEntity<List<LegajoKey>> findAllByPreuniversitario(@PathVariable Integer facultadId,
-                                                                     @PathVariable Integer lectivoId, @PathVariable Integer geograficaId) {
-		return new ResponseEntity<>(service.findAllByPreuniversitario(facultadId, lectivoId, geograficaId),
-				HttpStatus.OK);
+                                                                      @PathVariable Integer lectivoId, @PathVariable Integer geograficaId) {
+		return ResponseEntity.ok(service.findAllByPreuniversitario(facultadId, lectivoId, geograficaId));
 	}
 
 }

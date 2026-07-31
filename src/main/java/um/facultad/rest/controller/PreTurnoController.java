@@ -27,10 +27,10 @@ public class PreTurnoController {
 
 	private final PreTurnoService service;
 
-	@GetMapping("/lectivo/{facultadId}/{lectivoId}")
+@GetMapping("/lectivo/{facultadId}/{lectivoId}")
 	public ResponseEntity<List<PreTurnoEntity>> findAllByLectivo(@PathVariable Integer facultadId,
                                                                  @PathVariable Integer lectivoId) {
-		return new ResponseEntity<List<PreTurnoEntity>>(service.findAllByLectivo(facultadId, lectivoId), HttpStatus.OK);
+		return ResponseEntity.ok(service.findAllByLectivo(facultadId, lectivoId));
 	}
 	
 }

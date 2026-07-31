@@ -24,8 +24,7 @@ public class PersonaController {
     @GetMapping("/{personaId}/{documentoId}")
     public ResponseEntity<PersonaResponse> findByPersonaIdAndDocumentoId(@PathVariable BigDecimal personaId,
                                                                          @PathVariable Integer documentoId) {
-        return new ResponseEntity<>(dtoMapper.toResponse(service.findByPersonaIdAndDocumentoId(personaId, documentoId)),
-                HttpStatus.OK);
+        return ResponseEntity.ok(dtoMapper.toResponse(service.findByPersonaIdAndDocumentoId(personaId, documentoId)));
     }
 
 }

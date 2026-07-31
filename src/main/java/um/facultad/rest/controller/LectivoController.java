@@ -28,12 +28,12 @@ public class LectivoController {
 
 	@GetMapping("/")
 	public ResponseEntity<List<LectivoEntity>> findAll() {
-		return new ResponseEntity<List<LectivoEntity>>(service.findAll(), HttpStatus.OK);
+		return ResponseEntity.ok(service.findAll());
 	}
 	
 	@GetMapping("/reverse")
 	public ResponseEntity<List<LectivoEntity>> findAllReverse() {
-		return new ResponseEntity<List<LectivoEntity>>(service.findAllReverse(), HttpStatus.OK);
+		return ResponseEntity.ok(service.findAllReverse());
 	}
 
 }

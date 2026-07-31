@@ -36,8 +36,7 @@ public class BajaController {
                                                    @PathVariable Integer documentoId, @PathVariable Integer lectivoId) {
 		log.info("Baja Controller Facultad Request");
 		try {
-			return new ResponseEntity<BajaEntity>(service.findByUnique(facultadId, personaId, documentoId, lectivoId),
-					HttpStatus.OK);
+            return ResponseEntity.ok(service.findByUnique(facultadId, personaId, documentoId, lectivoId));
 		} catch (BajaException e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}

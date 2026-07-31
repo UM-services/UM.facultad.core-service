@@ -31,8 +31,7 @@ public class LegajoKeyController {
 	@PostMapping("/unifieds/{facultadId}")
 	public ResponseEntity<List<LegajoKey>> findAllByFacultadAndPersonaKeys(@PathVariable Integer facultadId,
                                                                            @RequestBody List<String> personaKeys) {
-		return new ResponseEntity<List<LegajoKey>>(service.findAllByFacultadAndPersonaKeys(facultadId, personaKeys),
-				HttpStatus.OK);
+        return ResponseEntity.ok(service.findAllByFacultadAndPersonaKeys(facultadId, personaKeys));
 	}
 
 }

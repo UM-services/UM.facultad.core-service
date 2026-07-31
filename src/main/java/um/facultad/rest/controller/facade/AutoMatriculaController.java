@@ -30,8 +30,7 @@ public class AutoMatriculaController {
 	@GetMapping("/pre/{facultadId}/{lectivoId}/{geograficaId}/{turnoId}")
 	public ResponseEntity<List<Inscripcion>> auto_matricula_pre(@PathVariable Integer facultadId,
                                                                       @PathVariable Integer lectivoId, @PathVariable Integer geograficaId, @PathVariable Integer turnoId) {
-		return new ResponseEntity<>(
-				service.auto_matricula_pre(facultadId, lectivoId, geograficaId, turnoId), HttpStatus.OK);
+        return ResponseEntity.ok(service.auto_matricula_pre(facultadId, lectivoId, geograficaId, turnoId));
 	}
 	
 }

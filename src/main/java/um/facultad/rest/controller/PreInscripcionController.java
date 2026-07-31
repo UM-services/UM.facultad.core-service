@@ -31,28 +31,25 @@ public class PreInscripcionController {
 	@GetMapping("/lectivo/{facultadId}/{lectivoId}")
 	public ResponseEntity<List<PreInscripcionEntity>> findAllByLectivo(@PathVariable Integer facultadId,
                                                                        @PathVariable Integer lectivoId) {
-		return new ResponseEntity<List<PreInscripcionEntity>>(service.findAllByLectivo(facultadId, lectivoId), HttpStatus.OK);
+        return ResponseEntity.ok(service.findAllByLectivo(facultadId, lectivoId));
 	}
 
 	@GetMapping("/sede/{facultadId}/{lectivoId}/{geograficaId}")
 	public ResponseEntity<List<PreInscripcionEntity>> findAllBySede(@PathVariable Integer facultadId,
                                                                     @PathVariable Integer lectivoId, @PathVariable Integer geograficaId) {
-		return new ResponseEntity<List<PreInscripcionEntity>>(service.findAllBySede(facultadId, lectivoId, geograficaId),
-				HttpStatus.OK);
+        return ResponseEntity.ok(service.findAllBySede(facultadId, lectivoId, geograficaId));
 	}
 
 	@GetMapping("/turno/{facultadId}/{lectivoId}/{geograficaId}/{turnoId}")
 	public ResponseEntity<List<PreInscripcionEntity>> findAllByTurnoKey(@PathVariable Integer facultadId,
                                                                         @PathVariable Integer lectivoId, @PathVariable Integer geograficaId, @PathVariable Integer turnoId) {
-		return new ResponseEntity<List<PreInscripcionEntity>>(
-				service.findAllByTurno(facultadId, lectivoId, geograficaId, turnoId), HttpStatus.OK);
+        return ResponseEntity.ok(service.findAllByTurno(facultadId, lectivoId, geograficaId, turnoId));
 	}
 
 	@GetMapping("/personalectivo/{facultadId}/{personaId}/{documentoId}/{lectivoId}")
 	public ResponseEntity<PreInscripcionEntity> findPersonaByLectivo(@PathVariable Integer facultadId,
                                                                      @PathVariable BigDecimal personaId, @PathVariable Integer documentoId, @PathVariable Integer lectivoId) {
-		return new ResponseEntity<PreInscripcionEntity>(
-				service.findPersonaByLectivo(facultadId, personaId, documentoId, lectivoId), HttpStatus.OK);
+        return ResponseEntity.ok(service.findPersonaByLectivo(facultadId, personaId, documentoId, lectivoId));
 	}
 	
 }

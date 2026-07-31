@@ -28,36 +28,30 @@ public class DomicilioController {
     @GetMapping("/{personaId}/{documentoId}")
     public ResponseEntity<DomicilioResponse> findByPersonaIdAndDocumentoId(@PathVariable BigDecimal personaId,
                                                                            @PathVariable Integer documentoId) {
-        return new ResponseEntity<>(dtoMapper.toResponse(service.findByPersonaIdAndDocumentoId(personaId, documentoId)),
-                HttpStatus.OK);
+        return ResponseEntity.ok(dtoMapper.toResponse(service.findByPersonaIdAndDocumentoId(personaId, documentoId)));
     }
 
     @GetMapping("/pagador/{personaId}/{documentoId}")
     public ResponseEntity<DomicilioResponse> findByPagador(@PathVariable BigDecimal personaId,
                                                            @PathVariable Integer documentoId) {
-        return new ResponseEntity<>(dtoMapper.toResponse(service.findByPagador(personaId, documentoId)),
-                HttpStatus.OK);
+        return ResponseEntity.ok(dtoMapper.toResponse(service.findByPagador(personaId, documentoId)));
     }
 
     @PostMapping("/")
     public ResponseEntity<DomicilioResponse> add(@RequestBody DomicilioRequest request) {
-        return new ResponseEntity<>(dtoMapper.toResponse(service.add(dtoMapper.toDomain(request), true)),
-                HttpStatus.OK);
+        return ResponseEntity.ok(dtoMapper.toResponse(service.add(dtoMapper.toDomain(request), true)));
     }
 
     @PutMapping("/{personaId}/{documentoId}")
     public ResponseEntity<DomicilioResponse> update(@RequestBody DomicilioRequest request,
                                                     @PathVariable BigDecimal personaId,
                                                     @PathVariable Integer documentoId) {
-        return new ResponseEntity<>(
-                dtoMapper.toResponse(service.update(dtoMapper.toDomain(request), personaId, documentoId, true)),
-                HttpStatus.OK);
+        return ResponseEntity.ok(dtoMapper.toResponse(service.update(dtoMapper.toDomain(request), personaId, documentoId, true)));
     }
 
     @PostMapping("/sincronize")
     public ResponseEntity<DomicilioResponse> sincronize(@RequestBody DomicilioRequest request) {
-        return new ResponseEntity<>(dtoMapper.toResponse(service.sincronize(dtoMapper.toDomain(request))),
-                HttpStatus.OK);
+        return ResponseEntity.ok(dtoMapper.toResponse(service.sincronize(dtoMapper.toDomain(request))));
     }
 
 }

@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.server.ResponseStatusException;
+import um.facultad.rest.hexagonal.carreras.plan.application.exception.PlanException;
 import um.facultad.rest.hexagonal.carreras.plan.application.service.PlanService;
 import um.facultad.rest.hexagonal.carreras.plan.infrastructure.web.dto.PlanResponse;
 import um.facultad.rest.hexagonal.carreras.plan.infrastructure.web.mapper.PlanDtoMapper;
@@ -24,14 +26,18 @@ public class PlanController {
 
     @GetMapping("/")
     public ResponseEntity<List<PlanResponse>> findAll() {
-        return new ResponseEntity<>(service.findAll().stream()
+        return ResponseEntity.ok(service.findAll().stream()
                 .map(planDtoMapper::toResponse)
-                .toList(), HttpStatus.OK);
+                .toList());
     }
 
     @GetMapping("/unique/{facultadId}/{planId}")
     public ResponseEntity<PlanResponse> findByUnique(@PathVariable Integer facultadId, @PathVariable Integer planId) {
-        return new ResponseEntity<>(planDtoMapper.toResponse(service.findByUnique(facultadId, planId)), HttpStatus.OK);
+        try {
+            return ResponseEntity.ok(planDtoMapper.toResponse(service.findByUnique(facultadId, planId)));
+        } catch (PlanException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+        }
     }
 
 }

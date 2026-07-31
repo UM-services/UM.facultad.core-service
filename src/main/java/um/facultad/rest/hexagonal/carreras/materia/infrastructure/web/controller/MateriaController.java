@@ -1,6 +1,7 @@
 package um.facultad.rest.hexagonal.carreras.materia.infrastructure.web.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.server.ResponseStatusException;
 import um.facultad.rest.hexagonal.carreras.materia.application.service.MateriaService;
 import um.facultad.rest.hexagonal.carreras.materia.infrastructure.web.dto.MateriaResponse;
 import um.facultad.rest.hexagonal.carreras.materia.infrastructure.web.mapper.MateriaDtoMapper;
@@ -25,17 +26,20 @@ public class MateriaController {
     @GetMapping("/byplan/{facultadId}/{planId}")
     public ResponseEntity<List<MateriaResponse>> findAllByPlan(@PathVariable Integer facultadId,
                                                                 @PathVariable Integer planId) {
-        return new ResponseEntity<>(service.findAllByPlan(facultadId, planId).stream()
+        return ResponseEntity.ok(service.findAllByPlan(facultadId, planId).stream()
                 .map(dtoMapper::toResponse)
-                .toList(), HttpStatus.OK);
+                .toList());
     }
 
     @GetMapping("/unique/{facultadId}/{planId}/{materiaId}")
     public ResponseEntity<MateriaResponse> findByUnique(@PathVariable Integer facultadId,
                                                          @PathVariable Integer planId,
                                                          @PathVariable String materiaId) {
-        return new ResponseEntity<>(dtoMapper.toResponse(service.findByUnique(facultadId, planId, materiaId)),
-                HttpStatus.OK);
+        try {
+            return ResponseEntity.ok(dtoMapper.toResponse(service.findByUnique(facultadId, planId, materiaId)));
+        } catch (MatchException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+        }
     }
 
 }

@@ -5,6 +5,15 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.6.2] - 2026-07-31
+
+### Changed
+- Modernización de las respuestas exitosas de los controladores mediante `ResponseEntity.ok()`, sin cambiar los endpoints ni sus cargas de respuesta.
+- Actualización de las pruebas de `CarreraController` y `PersonaEntityController` para usar inyección por constructor.
+
+### Fixed
+- Los endpoints de búsqueda única de carrera, materia y plan traducen la ausencia del recurso a `404 Not Found`.
+
 ## [1.6.1] - 2026-07-31
 
 ### Changed
@@ -237,4 +246,4 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 
 ### Security
 - Implementación de validación de datos
-- Mejora en el manejo de excepciones 
+- Mejora en el manejo de excepciones
