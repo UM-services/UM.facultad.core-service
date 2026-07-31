@@ -15,11 +15,14 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.h
   - Dominio: modelo `InscripcionPago`, puerto `FindInscripcionPagoByUniqueUseCase` y repositorio `InscripcionPagoRepository`
   - Aplicación: `InscripcionPagoService`, implementación del caso de uso e `InscripcionPagoException`
   - Infraestructura: adaptador JPA, entidad, mapper y repositorio JPA
+- El domain model `Persona` se extiende con los campos `sexo`, `profesionId` y `mascara`
 
 ### Changed
 - `InscripcionService.findInscripcionFull()`: los datos de pago, persona pagadora y domicilio ahora se obtienen mediante los domain models (`InscripcionPago`, `Persona`, `Domicilio`) en lugar de entidades JPA
 - `InscripcionFullDto`: los campos `inscripcionPago`, `personaPago` y `domicilioPago` cambian de entidades a domain models; `@Data` reemplazado por `@Getter`/`@Setter`
 - `PendienteInfo`: el campo `persona` migra de `PersonaEntity` a `Persona` (domain model)
+- `PendienteInfoService`: actualizado para consumir el `PersonaService` hexagonal
+- `MatriculaToPdfService`: los datos de persona y domicilio se obtienen mediante los domain models `Persona` y `Domicilio` en lugar de las entidades JPA `PersonaEntity`/`DomicilioEntity`
 - Módulo `matriculacion`: el modelo `Persona` se reubica en `personas.persona`, actualizando `MatriculacionContext`, `MatriculacionContextService`, `GetPersonaDataUseCase`, `MatriculacionContextRepository` y su implementación
 - `PersonaController` y `DomicilioController`: recreados bajo el paquete hexagonal con DTOs de request/response
 - `InscriptosToXlsService`: migrado a inyección por constructor (`@RequiredArgsConstructor`) con logging `@Slf4j`

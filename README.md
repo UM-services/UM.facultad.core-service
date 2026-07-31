@@ -136,6 +136,7 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE.md](LICENSE.m
 ### Últimas Actualizaciones
 - Nuevo bounded context `personas` con módulos hexagonales de persona y domicilio (controladores REST, servicios, casos de uso, adaptadores JPA y DTOs)
 - Nuevo módulo hexagonal `inscripcionPago` con `InscripcionPagoService`, casos de uso y adaptador JPA
+- El domain model `Persona` incorpora los campos `sexo`, `profesionId` y `mascara`
 - `InscripcionFullDto` y `PendienteInfo` migrados a domain models (ya no usan entidades JPA)
 - Migración de los servicios, controladores y repositorios legacy de persona, domicilio e inscripción-pago a la arquitectura hexagonal
 
