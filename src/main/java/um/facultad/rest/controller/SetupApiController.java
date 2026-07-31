@@ -26,7 +26,7 @@ public class SetupApiController {
 	
 	@GetMapping("/last")
 	public ResponseEntity<SetupApiEntity> findLast() {
-		return new ResponseEntity<SetupApiEntity>(service.findLast(), HttpStatus.OK);
+		return ResponseEntity.ok(service.findLast());
 	}
 	
 }

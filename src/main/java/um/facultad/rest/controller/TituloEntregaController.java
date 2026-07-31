@@ -31,8 +31,7 @@ public class TituloEntregaController {
 	public ResponseEntity<TituloEntregaEntity> findByUnique(@PathVariable BigDecimal personaId,
                                                             @PathVariable Integer documentoId, @PathVariable Integer facultadId, @PathVariable Integer planId,
                                                             @PathVariable Integer carreraId) {
-		return new ResponseEntity<TituloEntregaEntity>(
-				service.findByUnique(personaId, documentoId, facultadId, planId, carreraId), HttpStatus.OK);
+		return ResponseEntity.ok(service.findByUnique(personaId, documentoId, facultadId, planId, carreraId));
 	}
 	
 }

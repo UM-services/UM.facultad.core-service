@@ -30,16 +30,14 @@ public class PreunivCarreraController {
 	@GetMapping("/lectivo/{facultadId}/{lectivoId}")
 	public ResponseEntity<List<PreunivCarrera>> findAllByLectivo(@PathVariable Integer facultadId,
                                                                  @PathVariable Integer lectivoId) {
-		return new ResponseEntity<List<PreunivCarrera>>(service.findAllByLectivo(facultadId, lectivoId), HttpStatus.OK);
+        return ResponseEntity.ok(service.findAllByLectivo(facultadId, lectivoId));
 	}
 
 	@GetMapping("/carrera/{facultadId}/{lectivoId}/{geograficaId}/{turnoId}/{planId}/{carreraId}")
 	public ResponseEntity<List<PreunivCarrera>> findAllByCarrera(@PathVariable Integer facultadId,
 			@PathVariable Integer lectivoId, @PathVariable Integer geograficaId, @PathVariable Integer turnoId,
 			@PathVariable Integer planId, @PathVariable Integer carreraId) {
-		return new ResponseEntity<List<PreunivCarrera>>(
-				service.findAllByCarrera(facultadId, lectivoId, geograficaId, turnoId, planId, carreraId),
-				HttpStatus.OK);
+        return ResponseEntity.ok(service.findAllByCarrera(facultadId, lectivoId, geograficaId, turnoId, planId, carreraId));
 	}
 
 }

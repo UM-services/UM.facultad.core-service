@@ -30,14 +30,13 @@ public class InscriptoCursoController {
 	@GetMapping("/lectivo/{facultadId}/{lectivoId}/{geograficaId}")
 	public ResponseEntity<List<InscriptoCurso>> findAllByLectivo(@PathVariable Integer facultadId,
                                                                  @PathVariable Integer lectivoId, @PathVariable Integer geograficaId) {
-		return new ResponseEntity<List<InscriptoCurso>>(service.findAllByLectivo(facultadId, lectivoId, geograficaId),
-				HttpStatus.OK);
+        return ResponseEntity.ok(service.findAllByLectivo(facultadId, lectivoId, geograficaId));
 	}
 
 	@GetMapping("/curso/{facultadId}/{lectivoId}")
 	public ResponseEntity<List<InscriptoCurso>> findAllByCurso(@PathVariable Integer facultadId,
 			@PathVariable Integer lectivoId) {
-		return new ResponseEntity<List<InscriptoCurso>>(service.findAllByCurso(facultadId, lectivoId), HttpStatus.OK);
+        return ResponseEntity.ok(service.findAllByCurso(facultadId, lectivoId));
 	}
 
 }

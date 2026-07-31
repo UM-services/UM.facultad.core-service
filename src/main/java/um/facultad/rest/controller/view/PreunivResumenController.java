@@ -30,7 +30,7 @@ public class PreunivResumenController {
 	@GetMapping("/lectivo/{facultadId}/{lectivoId}")
 	public ResponseEntity<List<PreunivResumen>> findAllByLectivo(@PathVariable Integer facultadId,
                                                                  @PathVariable Integer lectivoId) {
-		return new ResponseEntity<List<PreunivResumen>>(service.findAllByLectivo(facultadId, lectivoId), HttpStatus.OK);
+        return ResponseEntity.ok(service.findAllByLectivo(facultadId, lectivoId));
 	}
 	
 }

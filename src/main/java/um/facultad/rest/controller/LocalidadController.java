@@ -25,10 +25,10 @@ public class LocalidadController {
 	
 	private final LocalidadService service;
 
-	@GetMapping("/unique/{facultadId}/{provinciaId}/{localidadId}")
+@GetMapping("/unique/{facultadId}/{provinciaId}/{localidadId}")
 	public ResponseEntity<LocalidadEntity> findByUnique(@PathVariable Integer facultadId, @PathVariable Integer provinciaId,
-                                                        @PathVariable Integer localidadId) {
-		return new ResponseEntity<LocalidadEntity>(service.findByUnique(facultadId, provinciaId, localidadId), HttpStatus.OK);
+                                                         @PathVariable Integer localidadId) {
+		return ResponseEntity.ok(service.findByUnique(facultadId, provinciaId, localidadId));
 	}
 	
 }

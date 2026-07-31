@@ -27,7 +27,7 @@ public class ProvinciaController {
 
 	@GetMapping("/unique/{facultadId}/{provinciaId}")
 	public ResponseEntity<ProvinciaEntity> findByUnique(@PathVariable Integer facultadId, @PathVariable Integer provinciaId) {
-		return new ResponseEntity<ProvinciaEntity>(service.findByUnique(facultadId, provinciaId), HttpStatus.OK);
+		return ResponseEntity.ok(service.findByUnique(facultadId, provinciaId));
 	}
 
 }

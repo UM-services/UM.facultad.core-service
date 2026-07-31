@@ -29,6 +29,6 @@ public class PersonaKeyController {
 
 	@PostMapping("/unifieds")
 	public ResponseEntity<List<PersonaKey>> findAllByUnifieds(@RequestBody List<String> unifieds) {
-		return new ResponseEntity<List<PersonaKey>>(service.findAllByUnifieds(unifieds), HttpStatus.OK);
+        return ResponseEntity.ok(service.findAllByUnifieds(unifieds));
 	}
 }

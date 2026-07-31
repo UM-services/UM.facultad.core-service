@@ -30,7 +30,6 @@ public class PendienteInfoController {
 	@GetMapping("/info/{facultadId}/{lectivoId}/{geograficaId}/{personaId}/{documentoId}")
 	public ResponseEntity<PendienteInfo> findByAlumno(@PathVariable Integer facultadId, @PathVariable Integer lectivoId,
 			@PathVariable Integer geograficaId, @PathVariable BigDecimal personaId, @PathVariable Integer documentoId) {
-		return new ResponseEntity<PendienteInfo>(
-				service.findByAlumno(facultadId, lectivoId, geograficaId, personaId, documentoId), HttpStatus.OK);
+        return ResponseEntity.ok(service.findByAlumno(facultadId, lectivoId, geograficaId, personaId, documentoId));
 	}
 }
