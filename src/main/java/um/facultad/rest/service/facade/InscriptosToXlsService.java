@@ -6,6 +6,8 @@ package um.facultad.rest.service.facade;
 import java.io.File;
 import java.io.FileOutputStream;
 
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
@@ -18,14 +20,15 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 import um.facultad.rest.exception.DivisionException;
-import um.facultad.rest.exception.DomicilioException;
+import um.facultad.rest.hexagonal.personas.domicilio.application.exception.DomicilioException;
 import um.facultad.rest.hexagonal.carreras.materia.application.exception.MateriaException;
+import um.facultad.rest.hexagonal.personas.domicilio.domain.model.Domicilio;
 import um.facultad.rest.model.DivisionEntity;
-import um.facultad.rest.model.DomicilioEntity;
+import um.facultad.rest.hexagonal.personas.domicilio.infrastructure.persistence.entity.DomicilioEntity;
 import um.facultad.rest.hexagonal.carreras.materia.domain.model.Materia;
 import um.facultad.rest.model.view.InscriptoMateria;
 import um.facultad.rest.service.DivisionService;
-import um.facultad.rest.service.DomicilioService;
+import um.facultad.rest.hexagonal.personas.domicilio.application.service.DomicilioService;
 import um.facultad.rest.hexagonal.carreras.materia.application.service.MateriaService;
 import um.facultad.rest.service.view.InscriptoMateriaService;
 
@@ -34,22 +37,15 @@ import um.facultad.rest.service.view.InscriptoMateriaService;
  *
  */
 @Service
+@RequiredArgsConstructor
+@Slf4j
 public class InscriptosToXlsService {
 
-	@Autowired
-	private InscriptoMateriaService inscriptoMateriaService;
-
-	@Autowired
-	private DomicilioService domicilioService;
-
-	@Autowired
-	private MateriaService materiaService;
-
-	@Autowired
-	private DivisionService divisionService;
-
-	@Autowired
-	private Environment env;
+	private final InscriptoMateriaService inscriptoMateriaService;
+	private final DomicilioService domicilioService;
+	private final MateriaService materiaService;
+	private final DivisionService divisionService;
+	private final Environment env;
 
 	public String generateListaXls(Integer facultadId, Integer lectivoId, Integer planId, String materiaId,
 			Integer cursoId, Integer periodoId, Integer divisionId, Integer geograficaId) {
@@ -126,12 +122,12 @@ public class InscriptosToXlsService {
 		cell.setCellStyle(style_bold);
 		for (InscriptoMateria inscripto : inscriptoMateriaService.findAllByDivision(facultadId, lectivoId, planId,
 				materiaId, cursoId, periodoId, divisionId, geograficaId)) {
-			DomicilioEntity domicilio = new DomicilioEntity();
+			Domicilio domicilio = new Domicilio();
 			try {
 				domicilio = domicilioService.findByPersonaIdAndDocumentoId(inscripto.getPersonaId(),
 						inscripto.getDocumentoId());
 			} catch (DomicilioException e) {
-
+				log.error(e.getMessage());
 			}
 			row = sheet.createRow(++fila);
 			cell = row.createCell(0);

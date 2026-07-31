@@ -23,7 +23,7 @@ import um.facultad.rest.service.LectivoService;
 import um.facultad.rest.service.MateriaCarreraService;
 import um.facultad.rest.service.MateriaCursoService;
 import um.facultad.rest.hexagonal.carreras.materia.application.service.MateriaService;
-import um.facultad.rest.service.PersonaService;
+import um.facultad.rest.hexagonal.personas.persona.application.service.PersonaService;
 import um.facultad.rest.hexagonal.carreras.plan.application.service.PlanService;
 import um.facultad.rest.service.RegularidadService;
 

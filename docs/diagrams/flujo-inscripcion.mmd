@@ -1,33 +1,20 @@
 sequenceDiagram
     actor U as Usuario
-    participant C as Controller REST
-    participant UC as Application Service<br/>(Use Case)
-    participant AD as JPA Adapter
-    participant DB as MySQL Database
+    participant C as InscripcionController
+    participant UC as InscripcionService
+    participant IPS as InscripcionPagoService
     participant PS as PersonaService
     participant DS as DomicilioService
-    participant IPS as InscripcionPagoService
 
     U->>C: GET /inscripcion/full/{facultadId}/{personaId}/{documentoId}/{lectivoId}
     C->>UC: findInscripcionFull()
     UC->>UC: findByUnique()
-    UC-->>C: inscripcion
+    UC-->>UC: inscripcion
     UC->>IPS: findByUnique()
     IPS-->>UC: inscripcionPago
-    UC->>PS: findByPersonaIdAndDocumentoId()
+    UC->>PS: findByPersonaIdAndDocumentoId(personaIdPagador, documentoId)
     PS-->>UC: personaPago
-    UC->>DS: findByPersonaIdAndDocumentoId()
+    UC->>DS: findByPersonaIdAndDocumentoId(personaId, documentoId)
     DS-->>UC: domicilioPago
     UC-->>C: InscripcionFullDto
     C-->>U: 200 OK (InscripcionFullDto)
-
-    U->>C: POST /inscripcion
-    C->>UC: execute(domainModel)
-    UC->>AD: save(entity)
-    AD->>DB: INSERT
-    DB-->>AD: OK
-    AD-->>UC: entitySaved
-    UC->>UC: generarDocumentos()
-    UC->>UC: enviarEmail()
-    UC-->>C: domainModelResult
-    C-->>U: 201 Created (ResponseDTO)

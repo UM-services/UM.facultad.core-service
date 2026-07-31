@@ -85,7 +85,8 @@ El proyecto sigue una **Arquitectura Hexagonal (Ports & Adapters)** organizada e
 ### Bounded Contexts
 
 - **carreras**: Gestión de carreras, planes y materias
-- **inscripciones**: Gestión de inscripciones, detalle de inscripciones y matriculación
+- **inscripciones**: Gestión de inscripciones, pagos, detalle de inscripciones y matriculación
+- **personas**: Gestión de personas y domicilios
 - **tesoreriaEstado**: Consulta de estado de tesorería
 
 ### Capas por Contexto
@@ -104,8 +105,9 @@ El proyecto sigue una **Arquitectura Hexagonal (Ports & Adapters)** organizada e
 - `MateriaController` (hexagonal): Gestión de materias
 - `TesoreriaEstadoController` (hexagonal): Estado de tesorería
 - `MatriculacionContextController` (hexagonal): Contexto de matriculación
+- `PersonaController` (hexagonal): Consulta de personas
+- `DomicilioController` (hexagonal): Manejo de domicilios
 - `AutoMatriculaController`: Proceso de automatriculación
-- `DomicilioController`: Manejo de domicilios
 - `InscripcionFullDto`: DTO agregado con datos de inscripción, pago, persona y domicilio (`GET /inscripcion/full/...`)
 
 ## 🤝 Contribución
@@ -129,12 +131,14 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE.md](LICENSE.m
 🟢 Activo - En desarrollo activo
 
 ### Versión Actual
-**1.5.0**
+**1.6.0**
 
 ### Últimas Actualizaciones
-- Nuevo endpoint `/inscripcion/full` que retorna datos agregados de inscripción, pago, persona y domicilio
-- Nuevo `InscripcionFullDto` con datos consolidados de inscripción y pagador
-- Refactorización de `InscripcionFullDto` para usar dominio en lugar de entidad JPA
+- Nuevo bounded context `personas` con módulos hexagonales de persona y domicilio (controladores REST, servicios, casos de uso, adaptadores JPA y DTOs)
+- Nuevo módulo hexagonal `inscripcionPago` con `InscripcionPagoService`, casos de uso y adaptador JPA
+- El domain model `Persona` incorpora los campos `sexo`, `profesionId` y `mascara`
+- `InscripcionFullDto` y `PendienteInfo` migrados a domain models (ya no usan entidades JPA)
+- Migración de los servicios, controladores y repositorios legacy de persona, domicilio e inscripción-pago a la arquitectura hexagonal
 
 ## 💬 Soporte
 

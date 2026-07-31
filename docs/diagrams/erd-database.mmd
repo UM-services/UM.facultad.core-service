@@ -7,6 +7,8 @@ erDiagram
         String apellido
         String nombre
         String sexo
+        Integer profesionId
+        String mascara
     }
     LEGAJO ||--o{ INSCRIPCION : registra
     LEGAJO {
@@ -27,7 +29,7 @@ erDiagram
         Long inscripcionId FK
         Integer materiaId
     }
-    DOMICILIO ||--o{ PERSONA : reside
+    PERSONA ||--o| DOMICILIO : reside
     DOMICILIO {
         Long domicilioId PK
         BigDecimal personaId

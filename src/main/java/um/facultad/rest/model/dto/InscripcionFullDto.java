@@ -1,23 +1,21 @@
 package um.facultad.rest.model.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import um.facultad.rest.hexagonal.inscripciones.inscripcion.domain.model.Inscripcion;
-import um.facultad.rest.model.DomicilioEntity;
-import um.facultad.rest.model.InscripcionPagoEntity;
-import um.facultad.rest.model.PersonaEntity;
+import um.facultad.rest.hexagonal.inscripciones.inscripcionPago.domain.model.InscripcionPago;
+import um.facultad.rest.hexagonal.personas.domicilio.domain.model.Domicilio;
+import um.facultad.rest.hexagonal.personas.persona.domain.model.Persona;
 
-@Data
+@Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class InscripcionFullDto {
 
     private Inscripcion inscripcion;
-    private InscripcionPagoEntity inscripcionPago;
-    private PersonaEntity personaPago;
-    private DomicilioEntity domicilioPago;
+    private InscripcionPago inscripcionPago;
+    private Persona personaPago;
+    private Domicilio domicilioPago;
 
 }

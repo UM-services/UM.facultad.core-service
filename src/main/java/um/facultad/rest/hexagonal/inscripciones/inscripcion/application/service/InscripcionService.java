@@ -2,18 +2,20 @@ package um.facultad.rest.hexagonal.inscripciones.inscripcion.application.service
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import um.facultad.rest.exception.InscripcionPagoException;
+import um.facultad.rest.hexagonal.inscripciones.inscripcionPago.application.exception.InscripcionPagoException;
 import um.facultad.rest.hexagonal.inscripciones.inscripcion.application.exception.InscripcionException;
 import um.facultad.rest.hexagonal.inscripciones.inscripcion.domain.model.Inscripcion;
 import um.facultad.rest.hexagonal.inscripciones.inscripcion.domain.ports.in.*;
-import um.facultad.rest.hexagonal.inscripciones.inscripcion.infrastructure.persistence.entity.InscripcionEntity;
-import um.facultad.rest.model.DomicilioEntity;
-import um.facultad.rest.model.InscripcionPagoEntity;
-import um.facultad.rest.model.PersonaEntity;
+import um.facultad.rest.hexagonal.inscripciones.inscripcionPago.domain.model.InscripcionPago;
+import um.facultad.rest.hexagonal.personas.domicilio.domain.model.Domicilio;
+import um.facultad.rest.hexagonal.personas.domicilio.infrastructure.persistence.entity.DomicilioEntity;
+import um.facultad.rest.hexagonal.inscripciones.inscripcionPago.infrastructure.persistence.entity.InscripcionPagoEntity;
+import um.facultad.rest.hexagonal.personas.persona.domain.model.Persona;
+import um.facultad.rest.hexagonal.personas.persona.infrastructure.persistence.entity.PersonaEntity;
 import um.facultad.rest.model.dto.InscripcionFullDto;
-import um.facultad.rest.service.DomicilioService;
-import um.facultad.rest.service.InscripcionPagoService;
-import um.facultad.rest.service.PersonaService;
+import um.facultad.rest.hexagonal.personas.domicilio.application.service.DomicilioService;
+import um.facultad.rest.hexagonal.inscripciones.inscripcionPago.application.service.InscripcionPagoService;
+import um.facultad.rest.hexagonal.personas.persona.application.service.PersonaService;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -64,9 +66,9 @@ public class InscripcionService {
         } catch (InscripcionException e) {
             inscripcion = null;
         }
-        InscripcionPagoEntity inscripcionPago;
-        PersonaEntity personaPago;
-        DomicilioEntity domicilioPago;
+        InscripcionPago inscripcionPago;
+        Persona personaPago;
+        Domicilio domicilioPago;
         try {
             inscripcionPago = inscripcionPagoService.findByUnique(facultadId, personaId, documentoId, lectivoId);
             personaPago = personaService.findByPersonaIdAndDocumentoId(inscripcionPago.getPersonaIdPagador(), inscripcionPago.getDocumentoId());

@@ -2,7 +2,7 @@ package um.facultad.rest.hexagonal.inscripciones.matriculacion.application.useca
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import um.facultad.rest.hexagonal.inscripciones.matriculacion.domain.model.Persona;
+import um.facultad.rest.hexagonal.personas.persona.domain.model.Persona;
 import um.facultad.rest.hexagonal.inscripciones.matriculacion.domain.ports.in.GetPersonaDataUseCase;
 import um.facultad.rest.hexagonal.inscripciones.matriculacion.domain.ports.out.MatriculacionContextRepository;
 
