@@ -1,16 +1,26 @@
 graph TB
-    subgraph "GitHub Actions"
-        A[CI/CD Pipeline]
+    subgraph GH ["GitHub Actions"]
+        A["CI/CD Pipeline"]
     end
 
-    subgraph "Docker Container"
-        B[Spring Boot App]
-        B --> C[MySQL]
-        B --> D[External APIs]
+    subgraph DC ["Docker Container"]
+        B["Spring Boot App"]
     end
 
-    A --> E[Build & Test]
-    E --> F[Deploy to Prod]
+    subgraph EX ["Externos"]
+        C["MySQL Database"]
+        D["External APIs"]
+    end
 
+    A --> E["Build & Test"]
+    E --> F["Deploy to Prod"]
+    F --> B
+    B --> C
+    B --> D
+
+    style A fill:#e1f5fe
+    style E fill:#e1f5fe
+    style F fill:#e1f5fe
     style B fill:#e8f5e8
     style C fill:#fff3e0
+    style D fill:#fff3e0

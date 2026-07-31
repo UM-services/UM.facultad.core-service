@@ -14,7 +14,7 @@ sequenceDiagram
     IPS-->>UC: inscripcionPago
     UC->>PS: findByPersonaIdAndDocumentoId(personaIdPagador, documentoId)
     PS-->>UC: personaPago
-    UC->>DS: findByPersonaIdAndDocumentoId(personaId, documentoId)
+    UC->>DS: findByPersonaIdAndDocumentoId(personaPago.personaId, personaPago.documentoId)
     DS-->>UC: domicilioPago
     UC-->>C: InscripcionFullDto
     C-->>U: 200 OK (InscripcionFullDto)
