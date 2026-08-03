@@ -5,6 +5,14 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.6.3] - 2026-08-03
+
+### Changed
+- Actualización de SpringDoc OpenAPI de `3.0.3` a `3.1.0`.
+
+### Fixed
+- El endpoint `GET /tesoreriaEstado/unique/{facultadId}/{personaId}/{documentoId}` devuelve `404 Not Found` cuando no existe el estado de tesorería solicitado, en lugar de `400 Bad Request`.
+
 ## [1.6.2] - 2026-07-31
 
 ### Changed

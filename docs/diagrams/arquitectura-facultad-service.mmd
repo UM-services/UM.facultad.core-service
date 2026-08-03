@@ -1,4 +1,4 @@
-graph TB
+flowchart TD
     subgraph Clientes ["Clientes"]
         A["Cliente HTTP"] --> B["Spring Security"]
     end
@@ -18,7 +18,7 @@ graph TB
         end
         C --> D
         D --> E
-        E --> F
+        F --> E
     end
 
     subgraph External ["Externo"]

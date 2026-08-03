@@ -19,7 +19,7 @@ Este servicio proporciona la funcionalidad core para la gestión de facultades, 
 - MySQL Connector 26.7.0
 - Apache POI 5.5.1
 - OpenPDF 3.0.5
-- SpringDoc OpenAPI 3.0.3
+- SpringDoc OpenAPI 3.1.0
 - Spring Security
 - Lombok
 - Docker
@@ -131,11 +131,13 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE.md](LICENSE.m
 🟢 Activo - En desarrollo activo
 
 ### Versión Actual
-**1.6.2**
+**1.6.3**
 
 ### Últimas Actualizaciones
 - Modernización de respuestas HTTP en los controladores mediante `ResponseEntity.ok()`
 - Los endpoints de carrera, materia y plan devuelven `404 Not Found` cuando no existe el recurso solicitado
+- El endpoint de estado de tesorería devuelve `404 Not Found` cuando no existe el recurso solicitado
+- Actualización de SpringDoc OpenAPI a `3.1.0`
 - Actualización de las pruebas de los controladores para usar inyección por constructor
 
 ## 💬 Soporte
