@@ -2,9 +2,9 @@ sequenceDiagram
     actor U as Usuario
     participant C as InscripcionController
     participant UC as InscripcionService
-    participant IPS as InscripcionPagoService
-    participant PS as PersonaService
-    participant DS as DomicilioService
+    participant IPS as InscripcionPagoApplicationService
+    participant PS as PersonaApplicationService
+    participant DS as DomicilioApplicationService
 
     U->>C: GET /inscripcion/full/{facultadId}/{personaId}/{documentoId}/{lectivoId}
     C->>UC: findInscripcionFull()
