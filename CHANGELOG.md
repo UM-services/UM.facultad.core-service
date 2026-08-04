@@ -5,6 +5,14 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.6.4] - 2026-08-04
+
+### Fixed
+- `GET /pendienteinfo/info/{facultadId}/{lectivoId}/{geograficaId}/{personaId}/{documentoId}` devuelve la información disponible cuando falla la carga de una sección, usando valores vacíos para las colecciones afectadas, en lugar de interrumpir toda la respuesta.
+
+### Added
+- Pruebas unitarias para verificar la respuesta parcial ante fallos en cargas base y dependientes.
+
 ## [1.6.3] - 2026-08-03
 
 ### Changed
