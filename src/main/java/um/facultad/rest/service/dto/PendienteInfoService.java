@@ -113,8 +113,8 @@ public class PendienteInfoService {
 			T value = supplier.get();
 			return value == null ? fallback : value;
 		} catch (RuntimeException exception) {
-			log.warn("No se pudo cargar la sección {} para facultad={}, persona={}, documento={}", section, facultadId,
-					personaId, documentoId, exception);
+			log.warn("No se pudo cargar la sección {} para facultad={}, persona={}, documento={}: {}", section, facultadId,
+					personaId, documentoId, exception.getMessage());
 			return fallback;
 		}
 	}
