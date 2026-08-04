@@ -131,7 +131,7 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE.md](LICENSE.m
 🟢 Activo - En desarrollo activo
 
 ### Versión Actual
-**1.6.3**
+**1.6.4**
 
 ### Últimas Actualizaciones
 - Modernización de respuestas HTTP en los controladores mediante `ResponseEntity.ok()`
@@ -139,6 +139,7 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE.md](LICENSE.m
 - El endpoint de estado de tesorería devuelve `404 Not Found` cuando no existe el recurso solicitado
 - Actualización de SpringDoc OpenAPI a `3.1.0`
 - Actualización de las pruebas de los controladores para usar inyección por constructor
+- `PendienteInfoService` devuelve una respuesta parcial cuando falla la carga de una sección y registra el detalle del error
 
 ## 💬 Soporte
 
