@@ -5,6 +5,16 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.6.5] - 2026-10-22
+
+### Changed
+- Actualización de Spring Boot de `4.1.0` a `4.1.1`.
+- Actualización de SpringDoc OpenAPI de `3.1.0` a `3.1.1`.
+- Actualización de MySQL Connector/J de `26.7.0` a `26.10.0`.
+- Actualización de Apache POI (`poi` y `poi-ooxml`) de `5.5.1` a `6.0.0`.
+- Actualización de `tomcat-embed-core` de `11.0.24` a `11.0.27`.
+- `PendienteInfoService`: los avisos de sección no disponible registran únicamente el mensaje de la excepción, sin el stack trace.
+
 ## [1.6.4] - 2026-08-04
 
 ### Fixed
