@@ -15,11 +15,11 @@ Este servicio proporciona la funcionalidad core para la gestión de facultades, 
 ## 🛠️ Tecnologías Utilizadas
 
 - Java 25
-- Spring Boot 4.1.0
-- MySQL Connector 26.7.0
-- Apache POI 5.5.1
+- Spring Boot 4.1.1
+- MySQL Connector 26.10.0
+- Apache POI 6.0.0
 - OpenPDF 3.0.5
-- SpringDoc OpenAPI 3.1.0
+- SpringDoc OpenAPI 3.1.1
 - Spring Security
 - Lombok
 - Docker
@@ -131,13 +131,15 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE.md](LICENSE.m
 🟢 Activo - En desarrollo activo
 
 ### Versión Actual
-**1.6.4**
+**1.6.5**
 
 ### Últimas Actualizaciones
+- Actualización de Spring Boot a `4.1.1`, SpringDoc OpenAPI a `3.1.1` y `tomcat-embed-core` a `11.0.27`
+- Actualización de MySQL Connector/J a `26.10.0` y Apache POI a `6.0.0`
+- `PendienteInfoService` registra solo el mensaje de la excepción en los avisos de sección no disponible, sin stack trace
 - Modernización de respuestas HTTP en los controladores mediante `ResponseEntity.ok()`
 - Los endpoints de carrera, materia y plan devuelven `404 Not Found` cuando no existe el recurso solicitado
 - El endpoint de estado de tesorería devuelve `404 Not Found` cuando no existe el recurso solicitado
-- Actualización de SpringDoc OpenAPI a `3.1.0`
 - Actualización de las pruebas de los controladores para usar inyección por constructor
 - `PendienteInfoService` devuelve una respuesta parcial cuando falla la carga de una sección y registra el detalle del error
 
