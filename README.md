@@ -15,7 +15,7 @@ Este servicio proporciona la funcionalidad core para la gestión de facultades, 
 ## 🛠️ Tecnologías Utilizadas
 
 - Java 25
-- Spring Boot 4.1.1
+- Spring Boot 4.1.2
 - MySQL Connector 26.10.0
 - Apache POI 6.0.0
 - OpenPDF 3.0.5
@@ -131,10 +131,11 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE.md](LICENSE.m
 🟢 Activo - En desarrollo activo
 
 ### Versión Actual
-**1.6.5**
+**1.6.6**
 
 ### Últimas Actualizaciones
-- Actualización de Spring Boot a `4.1.1`, SpringDoc OpenAPI a `3.1.1` y `tomcat-embed-core` a `11.0.27`
+- Actualización de Spring Boot a `4.1.2` y JaCoCo Maven Plugin a `0.8.15`
+- Actualización de SpringDoc OpenAPI a `3.1.1` y `tomcat-embed-core` a `11.0.27`
 - Actualización de MySQL Connector/J a `26.10.0` y Apache POI a `6.0.0`
 - `PendienteInfoService` registra solo el mensaje de la excepción en los avisos de sección no disponible, sin stack trace
 - Modernización de respuestas HTTP en los controladores mediante `ResponseEntity.ok()`
